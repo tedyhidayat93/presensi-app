@@ -1,7 +1,7 @@
 ## Tentang Aplikasi Presensi 
 Aplikasi presensi karyawan dibuat dengan Laravel 10 berbasis WEB platform
 
-# Langkah Install
+### Langkah Install
 1. Clone project dari repostiory
 2. Jalankan command "composer update"
 3. Sesuaikan nama database pada file .env yang ada di database 
