@@ -1,8 +1,12 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-0 pd-x-20 pd-b-200">
+@section('content')
+<div class="section">
+    
+    <div class="section-header">
+        <h1>Laporan</h1>
+    </div>
 
     <div class="row">
         <div class="col-12 mt-3">
@@ -20,7 +24,7 @@
                 <div class="d-block d-md-flex align-item-center justify-content-between mb-3">
                     <div>
                         <h4 class="text-dark mb-1 card-title">Laporan Kehadiran Karyawan</h4>
-                        <h6 class="tx-dark">PT. Maggiollini Indonesia</h6>
+                        <h6 class="text-dark">PT. Maggiollini Indonesia</h6>
                     </div>
                     <div>
                     </div>
@@ -32,7 +36,7 @@
                     <div class="col-12 col-md-6">
                         <table class="table table-bordered w-100">
                             <tr>
-                                <td width="150" class="tx-dark"><b> Jenis </b></th>
+                                <td width="150" class="text-dark"><b> Jenis </b></th>
                                 <td width="10">:</td>
                                 <td>
                                     <b>
@@ -47,11 +51,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="150" class="tx-dark"><b> Periode </b></th>
+                                <td width="150" class="text-dark"><b> Periode </b></th>
                                 <td width="10">:</td>
                                 <td>
                                     @if (request()->query('from') != '' || request()->query('to') != '')
-                                    <h6 class="tx-13 tx-info"> 
+                                    <h6 class="text-13 text-info"> 
                                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', request()->query('from'))->isoFormat('D MMMM Y'); }} 
                                         &nbsp;
                                         -
@@ -62,16 +66,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="150" class="tx-dark"><b> Hari Kerja </b></th>
+                                <td width="150" class="text-dark"><b> Hari Kerja </b></th>
                                 <td width="10">:</td>
                                 <td>
                                     @if (request()->query('from') != '' || request()->query('to') != '')
-                                    <h6 class="tx-13 text-info"> {{$total_working_days}} Hari (Tanpa Hari Minggu)</h6>
+                                    <h6 class="text-13 text-info"> {{$total_working_days}} Hari (Tanpa Hari Minggu)</h6>
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <td width="150" class="tx-dark"><b> Tipe Pegawai </b></td>
+                                <td width="150" class="text-dark"><b> Tipe Pegawai </b></td>
                                 <td width="10">:</td>
                                 <td>
                                     <b>
@@ -95,19 +99,19 @@
                                 </tr>
                                 <tr>
                                     <th> 1.</th>
-                                    <td>Warna <span class="tx-danger font-weight-bold"> Merah </span> pada jam kerja menandakan keterlambatan.</td>
+                                    <td>Warna <span class="text-danger font-weight-bold"> Merah </span> pada jam kerja menandakan keterlambatan.</td>
                                 </tr>
                                 <tr>
                                     <th>2.</th>
-                                    <td>Warna <span class="tx-danger font-weight-bold"> Merah </span> pada kolom tanggal di tabel kehadiran menandakan tanggal merah hari libur (Minggu).</td>
+                                    <td>Warna <span class="text-danger font-weight-bold"> Merah </span> pada kolom tanggal di tabel kehadiran menandakan tanggal merah hari libur (Minggu).</td>
                                 </tr>
                                 <tr>
                                     <th>3.</th>
-                                    <td>Warna <span class="tx-warning font-weight-bold"> Oranye </span> pada Tanggal di tabel kehadiran menandakan tanggal merah hari libur nasional. Arahkan kursor selama 3 detik untuk mengetahui keterangan hari libur nasional.</td>
+                                    <td>Warna <span class="text-warning font-weight-bold"> Oranye </span> pada Tanggal di tabel kehadiran menandakan tanggal merah hari libur nasional. Arahkan kursor selama 3 detik untuk mengetahui keterangan hari libur nasional.</td>
                                 </tr>
                                 <tr>
                                     <th>4.</th>
-                                    <td>Warna <span class="tx-success font-weight-bold"> Hijau </span> pada Tanggal di tabel kehadiran menandakan hari kerja.</td>
+                                    <td>Warna <span class="text-success font-weight-bold"> Hijau </span> pada Tanggal di tabel kehadiran menandakan hari kerja.</td>
                                 </tr>
                                 <tr>
                                     <th>5.</th>
@@ -124,7 +128,7 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Cari Karyawan">
-                            <button type="submit" class="ml-2 btn btn-teal"><i class="fa fa-search"></i> Cari</button>
+                            <button type="submit" class="ml-2 btn btn-info"><i class="fa fa-search"></i> Cari</button>
                         </div>
                     </div>
                     <div class="col-md-8 d-flex justify-content-end align-items-start">
@@ -142,7 +146,7 @@
                            
                             <tr>
                                 <th class="bg-dark text-light">No</th>
-                                <th class="tx-center bg-dark text-light" ><i class="fa fa-cog"></i> <br> Aksi</th>
+                                <th class="text-center bg-dark text-light" ><i class="fa fa-cog"></i> <br> Aksi</th>
                                 <th class="bg-dark text-light" >Nama Karyawan </th>
                                 @if (request()->query('jenis_presensi') == 'absen_biasa')
                                     <th class="bg-info text-light">Hadir</th>
@@ -209,7 +213,7 @@
                              <tr>
                                 <td>{{$i++}}.</td>
 
-                                <td class="tx-center" >
+                                <td class="text-center" >
                                     <a href="{{route('adm.report.detail', ['karyawan' => $row['usr_id'], 'from_date' => request()->query('from'), 'to_date' => request()->query('to')])}}" target="_blank" class="btn btn-sm btn-outline-info">
                                        <i class="fa fa-eye"></i>
                                        Detail
@@ -259,25 +263,25 @@
                                                     @foreach ($detail_presensi[$row['usr_id']][$hari]['jam'] as $key => $val)
                                                         @if ($val['izin'] != null)
                                                             <a href="{{route('adm.izin.detail',$val['id_izin'])}}" target="_blank" title="Lihat Detail">
-                                                                <b class="tx-info">IZIN</b>
+                                                                <b class="text-info">IZIN</b>
                                                                 <br> 
                                                                 <span class="text-primary"> {{ $val['izin'] }}</span>
                                                                 <br>
                                                             </a>
                                                         @else
                                                                 @if ($val['jenis_lembur'] != null)
-                                                                    <b class="tx-dark"> <span> {{ $val['jenis_lembur'] }}</span> </b>
+                                                                    <b class="text-dark"> <span> {{ $val['jenis_lembur'] }}</span> </b>
                                                                     <br>
                                                                 @else
                                                                     @if (request()->query('jenis_presensi') == 'absen_biasa_lembur')
-                                                                    <b class="tx-info"> <span> Presensi Harian</span> </b>
+                                                                    <b class="text-info"> <span> Presensi Harian</span> </b>
                                                                     <br>
                                                                     @endif
                                                                 @endif
                                                                 
-                                                                <b> IN: </b> <span class="{{ $val['late'] != null ? 'tx-danger' : '' }}"> {{ $val['in'] ?? '-' }}</span>
+                                                                <b> IN: </b> <span class="{{ $val['late'] != null ? 'text-danger' : '' }}"> {{ $val['in'] ?? '-' }}</span>
                                                                 <br>
-                                                                <b> OUT: </b> <span class="{{ $val['late'] != null ? 'tx-danger' : '' }}">  {{ $val['out']  ?? '-' }}</span> 
+                                                                <b> OUT: </b> <span class="{{ $val['late'] != null ? 'text-danger' : '' }}">  {{ $val['out']  ?? '-' }}</span> 
                                                                 <br>
                                                         @endif
                                                     @endforeach
@@ -301,7 +305,7 @@
         <div class="col-12">
             <div class="br-section-wrapper pd-15 h-100 text-center">
                 <h6 class="my-5">
-                    Silakan pilih <b class="tx-info"> Jenis Presensi </b> dan <b class="tx-info"> Periode (Dari Tanggal - Sampai Tanggal) </b> untuk menampilkan data laporan presensi.
+                    Silakan pilih <b class="text-info"> Jenis Presensi </b> dan <b class="text-info"> Periode (Dari Tanggal - Sampai Tanggal) </b> untuk menampilkan data laporan presensi.
                 </h6>
             </div>
         </div>
@@ -312,11 +316,11 @@
 
 <div id="modalEkspor" class="modal fade">
     <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
-        <div class="modal-content tx-size-sm">
+        <div class="modal-content">
             <div class="card-header d-flex justify-content-between">
                 <span class="d-flex align-items-center">
-                    <i class="fa fa-download tx-primary lh-1 d-inline-block"></i>
-                    <span class="tx-primary ml-2 font-weight-bold">
+                    <i class="fa fa-download text-primary lh-1 d-inline-block"></i>
+                    <span class="text-primary ml-2 font-weight-bold">
                         Ekspor Laporan
                     </span>
                 </span>
@@ -325,7 +329,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <div class="modal-body text-center">
 
                 <div class="row">
                     <div class="col-12 col-md">

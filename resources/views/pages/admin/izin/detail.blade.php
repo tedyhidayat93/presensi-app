@@ -1,7 +1,7 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
+@section('content')
 <div class="br-pagebody mg-t-5 pd-x-30">
 
     <div class="row mb-3">
@@ -24,30 +24,30 @@
                                             @endif
                                         </td>
                                         <td colspan="2">
-                                            <h4 class="tx-teal tx-25 mg-b-0">{{$data->user->full_name}}</h4>
-                                            <span class="tx-12"><b>Jabatan : </b> {{$data->user->jabatan->type ?? '-'}}</span>
+                                            <h4 class="text-info text-25 mg-b-0">{{$data->user->full_name}}</h4>
+                                            <span class="text-12"><b>Jabatan : </b> {{$data->user->jabatan->type ?? '-'}}</span>
                                         </td>
                                         <td>
-                                            <span class="tx-12">Terdaftar Sejak</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{ date('d-M-Y', strtotime($data->user->registered_at))}}</h4>
+                                            <span class="text-12">Terdaftar Sejak</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{ date('d-M-Y', strtotime($data->user->registered_at))}}</h4>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="tx-12">Shift</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->user->shifft->shift_name}}</h4>
+                                            <span class="text-12">Shift</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->shifft->shift_name}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">Email</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->user->email}}</h4>
+                                            <span class="text-12">Email</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->email}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">NIP</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->user->nip}}</h4>
+                                            <span class="text-12">NIP</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->nip}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">NIK</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->user->nik}}</h4>
+                                            <span class="text-12">NIK</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->nik}}</h4>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -84,7 +84,7 @@
                             <div class="row">
                                 <div class="col d-flex align-items-center justify-content-between">
                                     @if ($data->validation_by === null)
-                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modaldemo">
+                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo">
                                         <div><i class="fa fa-check"></i> Validasi Izin</div>
                                     </a>
                                     @else
@@ -141,11 +141,11 @@
                 <div class="pd-x-30 pd-t-30 pd-b-10">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="tx-13 tx-uppercase tx-inverse tx-semibold tx-spacing-1 mb-0">Lokasi Realtime Saat Mengajukan Izin
+                            <h6 class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Realtime Saat Mengajukan Izin
                             </h6>
                             <small>Tanggal : <b> {{ date('d-M-Y', strtotime($data->created_at))}} </b></small>
                         </div>
-                        <div class="tx-13">
+                        <div class="text-13">
                             <p class="mg-b-0"><span class="square-8 rounded-circle bg-purple mg-r-10"></span> Koordinat
                                 : <b> {{$data->latlong ?? '-'}} </b></p>
                             <p class="mg-b-0"><span class="square-8 rounded-circle bg-pink mg-r-10"></span> Waktu :
@@ -166,7 +166,7 @@
                         @endif
                     @else
                     <div style="width:100%; height:345px;" class="bg-gray-100 d-flex flex-column align-items-center justify-content-center">
-                        <i class="tx-info icon ion-map tx-50"></i>
+                        <i class="text-info icon ion-map text-50"></i>
                         <h5 class="">Geolocation Sedang Tidak Aktif.</h5>
                     </div>
                     @endif
@@ -179,19 +179,19 @@
 </div><!-- br-pagebody -->
 
 <div id="modaldemo" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <i
-                    class="fa fa-question-circle tx-100  {{$data->is_active == 1 ? 'tx-danger' : 'tx-success'}} lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="{{$data->is_active == 1 ? 'tx-danger' : 'tx-success'}} tx-semibold mg-b-20">Yakin Menyetujui Permohonan Izin ?
+                    class="fa fa-question-circle text-100  {{$data->is_active == 1 ? 'text-danger' : 'text-success'}} lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="{{$data->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold mg-b-20">Yakin Menyetujui Permohonan Izin ?
                 </h4>
                 <p class="mg-b-20 mg-x-20"><b>Alasan Izin : </b>  " {{$data->alasan ?? '-'}} "</p>
-                <a href="{{route('adm.izin.acc', ['id' => $data->id, 'act' => 3])}}" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Tolak</a>
-                <a href="{{route('adm.izin.acc', ['id' => $data->id, 'act' => 2])}}" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Setujui</a>
+                <a href="{{route('adm.izin.acc', ['id' => $data->id, 'act' => 3])}}" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Tolak</a>
+                <a href="{{route('adm.izin.acc', ['id' => $data->id, 'act' => 2])}}" class="btn btn-success text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Setujui</a>
             </div><!-- modal-body -->
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->

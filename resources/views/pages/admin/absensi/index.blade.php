@@ -1,94 +1,69 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
-    <div class="row row-sm mb-3">
-        <div class="col-sm-6 col-md col-lg">
-            <div class="bg-dark rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-person-stalker tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-5">Presensi Lembur
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_lembur}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Karyawan</span>
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Log Presensi</h1>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-statistic-2">
+                <div class="card-stats">
+                  <div class="card-stats-title"></div>
+                  <div class="card-stats-items">
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-dark">{{$total_lembur}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Lembur</div>
                     </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-success">{{$total_tepatwaktu}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Harian Tepat Waktu</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-danger">{{$total_terlambat}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Harian Telat</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-primary">{{$total_pulang_cepat}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Harian Pulang Lebih Awal</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-warning">{{$total_belum_checkout}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Harian/Lembur Belum Checkout</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                  </div>
                 </div>
             </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-md col-lg">
-            <div class="bg-success rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-person-stalker tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-5">Presensi Harian Tepat Waktu</p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_tepatwaktu}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Karyawan</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-md col-lg">
-            <div class="bg-primary rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-person-stalker tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-5">Presensi Harian Pulang Lebih Awal</p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_pulang_cepat}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Karyawan</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-md col-lg">
-            <div class="bg-danger rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-person-stalker tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-5">Presensi Harian Terlambat 
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_terlambat}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Karyawan</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-md col-lg">
-            <div class="bg-warning rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-person-stalker tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-5">Belum Checkout Harian/Lembur 
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_belum_checkout}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Presensi</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        
+        </div>
     </div><!-- row -->
 
     <div class="row">
         <div class="col">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
-                    <div class="card-header">
-                        <h6 class="card-title">
-                            <span class="tx-gray">Per Tanggal : <br> <b class="tx-info"> {{ \App\Helpers\General::dateIndo($date) ?? $date_now}} </b></span>
+                    <div class="card-body d-md-flex justify-content-between align-items-center">
+                        <h6 class="" style="font-size: 14px;">
+                            <span class="text-gray">Per Tanggal : <br> <b class="text-info"> {{ \App\Helpers\General::dateIndo($date) ?? $date_now}} </b></span>
                         </h6>
                         <form action="" method="get" class="d-block d-md-flex">
                             {{-- @csrf --}}
                             <div class="form-group mb-0 mr-1">
-                                <select name="tipe" class="form-control" >
+                                <select name="tipe" class="form-control form-control-sm" >
                                     <option value="" selected>-- Jenis Presensi --</option>
                                     <option value="absen_biasa">Presensi Harian</option>
                                     <option value="absen_lembur">Presensi Lembur</option>
                                 </select>
                             </div>
                             <div class="form-group mb-0 mr-1">
-                                <select name="keterangan" class="form-control" >
+                                <select name="keterangan" class="form-control form-control-sm" >
                                     <option value="" selected>-- keterangan --</option>
                                     <option value="terlambat">Terlambat</option>
                                     <option value="tepat_waktu">Tepat Waktu</option>
@@ -97,7 +72,7 @@
                                 </select>
                             </div>
                             <div class="form-group mb-0 mr-1">
-                                <select name="employee_id" class="selecttu form-control" >
+                                <select name="employee_id" class="select2 form-control" >
                                     <option value="" selected disabled>-- Karyawan --</option>
                                     @if ($users)
                                     @foreach ($users as $j)
@@ -107,14 +82,11 @@
                                 </select>
                             </div>
                             <div class="form-group d-flex align-items-center">
-                                {{-- <input type="date" value="{{Carbon\Carbon::now()->toDateString()}}" name="date" class="form-control form-sm"> --}}
-                                <input type="date" value="" name="date" class="form-control form-sm">
+                                {{-- <input type="date" value="{{Carbon\Carbon::now()->toDateString()}}" name="date" class="form-control form-control-sm"> --}}
+                                <input type="date" value="" name="date" class="form-control form-control-md">
                                 &nbsp;
-                                <button type="submit" class="btn btn-teal btn-with-icon">
-                                    <div class="ht-40">
-                                        <span class="pd-x-20">Filter</span>
-                                        {{-- <span class="icon wd-40"><i class="fa fa-search"></i></span> --}}
-                                    </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Filter
                                 </button>
                             </div>
                         </form>
@@ -152,7 +124,7 @@
                         @endif
                         
                         <table id="customDatatble" class="table display nowrap">
-                            <thead class="table-info">
+                            <thead class="table-primary">
                                 <tr>
                                     <th class="wd-5p">#</th>
                                     <th class="">Karyawan</th>
@@ -208,7 +180,7 @@
                                                 <i title="Status Foto Chcek In" class="mr-1  {{ $row->foto_masuk != null ? 'text-success' : '' }} fa fa-image"></i>
                                                 <i title="Status Lokasi" class="mr-1 {{$row->latlong_in != null ? 'text-success' : ''}} fa fa-map-marker"></i>
                                             </div>
-                                            <span class="tx-18 mt-1 font-weight-bold {{$row->late != null ? 'tx-danger':'text-dark'}}">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span>
+                                            <span class="text-18 mt-1 font-weight-bold {{$row->late != null ? 'text-danger':'text-dark'}}">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span>
 
                                         </td>
                                         <td>{{ $row->date_out == null ? date('d-M-Y', strtotime($row->updated_at)) : date('d-M-Y', strtotime($row->date_out))}}</td>
@@ -221,14 +193,14 @@
                                                     <i title="Otomatis Cehck-out oleh Sistem" class="text-warning fa fa-sign-out"></i> 
                                                 @endif 
                                             </div>
-                                            <span class="tx-18 mt-1 font-weight-bold text-dark">  {{ $row->clock_out != null ? date('H:i:s', strtotime($row->clock_out)) : '-'}} </span>
+                                            <span class="text-18 mt-1 font-weight-bold text-dark">  {{ $row->clock_out != null ? date('H:i:s', strtotime($row->clock_out)) : '-'}} </span>
                                         </td>
-                                        <td> <span class="{{$row->late != null ? 'tx-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
+                                        <td> <span class="{{$row->late != null ? 'text-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
                                         <td>{{ $total_kerja ?? '-'}}</td>
                                         <td>
                                             <a href="{{route('adm.absen.detail', $row->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Detail</a>
                                             @if ($row->clock_out == null)
-                                            <a href="#" title="Untuk mencheckout karyawan yang lupa checkout presensinya." class="btn btn-warning tx-dark btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
+                                            <a href="#" title="Untuk mencheckout karyawan yang lupa checkout presensinya." class="btn btn-warning text-dark btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-sign-out "></i> Checkout</div> 
                                             </a>
                                             @endif
@@ -250,8 +222,8 @@
 <!-- MODAL ALERT MESSAGE DELETE -->
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
             <form action="{{route('adm.absen.checkout.manual')}}" method="post" class="submit_form">
                 @csrf
                 @method('PUT')
@@ -260,8 +232,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="d-flex align-items-center justify-content-start mg-b-20">
-                        <i class="fa fa-sign-out tx-40  tx-warning lh-1 d-inline-block"></i>
-                        <h4 class="tx-warning tx-semibold">Checkout Presensi</h4>
+                        <i class="fa fa-sign-out text-40  text-warning lh-1 d-inline-block"></i>
+                        <h4 class="text-warning font-weight-bold">Checkout Presensi</h4>
                     </div>
     
                     <p class="text-info">Fitur ini hanya untuk karyawan yang lupa melakukan presensi cehckout.</p>
@@ -301,33 +273,33 @@
                         <tr>
                             <th>Jam Masuk</th>
                             <td>:</td>
-                            <td> <span class="tx-18 mt-1 font-weight-bold text-dark">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span></td>
+                            <td> <span class="text-18 mt-1 font-weight-bold text-dark">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span></td>
                         </tr>
                         <tr>
                             <th>Tanggal Keluar</th>
                             <td>:</td>
                             <td>
-                                <input type="date" name="date_out" value="{{date('Y-m-d')}}" required class="form-control">
+                                <input type="date" name="date_out" value="{{date('Y-m-d')}}" required class="form-control form-control-sm">
                             </td>
                         </tr>
                         <tr>
                             <th>Jam Keluar</th>
                             <td>:</td>
                             <td>
-                                <input type="time" name="clock_out" value="" required class="form-control">
+                                <input type="time" name="clock_out" value="" required class="form-control form-control-sm">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">
                                 <div class="form-group">
                                     <label for=""> Catatan </label>
-                                    <textarea name="note" class="form-control" id="" cols="30" rows="3"></textarea>
+                                    <textarea name="note" class="form-control form-control-sm" id="" cols="30" rows="3"></textarea>
                                 </div>
                             </td>
                         </tr>
                     </table>
                 </div><!-- modal-body -->
-                <div class="modal-footer tx-center">
+                <div class="modal-footer text-center">
                     <input type="hidden" name="id" value="{{$row->id}}">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" aria-label="Close">
                         Batal
@@ -372,13 +344,15 @@ show-sub
         var dataTable = $('#customDatatble').DataTable({
                 // responsive: true,
                 aLengthMenu: [
-                    [10, 30, 50, 100, 200, 300, -1],
-                    [10, 30, 50, 100, 200, 300, "Semua"]
+                    [10, 15, 30, 50, 100, 200, 300, -1],
+                    [10, 15, 30, 50, 100, 200, 300, "Semua"]
                 ],
-                iDisplayLength: -1,
+                // iDisplayLength: -1,
+                pageLength: 15,
                 responsive: false,
-                "ordering": false,
+                "ordering": true,
                 language: {
+                    searchPlaceholder: 'Cari data...',
                     sSearch: '',
                     lengthMenu: '_MENU_ Data yang ditampilkan',
                 }
@@ -389,89 +363,3 @@ show-sub
 
 @endpush
 
-
-
-{{-- <table id="datatable1" class="table display nowrap">
-    <thead class="">
-        <tr>
-            <th class="wd-5p">#</th>
-            <th class="">Foto</th>
-            <th class="">Nama Karyawan</th>
-            <th class="">Jenis Presensi</th>
-            <th class="">Device</th>
-            <th class="">Shift</th>
-            <th class="">Tanggal</th>
-            <th class="">Jam Masuk</th>
-            <th class="">Lokasi Masuk</th>
-            <th class="">Foto Masuk</th>
-            <th class="">Jam Pulang</th>
-            <th class="">Lokasi Pulang</th>
-            <th class="">Foto Pulang</th>
-            <th class="">Total Waktu Kerja</th>
-            <th class="">Total Waktu Terlambat</th>
-            <th class="wd-5p">Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @php
-        $i=1;
-        @endphp
-        @foreach ($data as $row)
-
-        @if($row->type == 'absen_biasa' || $row->type == 'absen_lembur')
-            <tr>
-                <td>{{$i++}}.</td>
-                <td>
-                    @if ($row->karyawan->photo_profile)
-                    <img width="32" src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
-                    @else
-                    <img width="32" src="{{ asset('images/default-ava.jpg') }}"> 
-                    @endif
-                </td>
-                <td>{{$row->karyawan->full_name}}</td>
-                <td>
-                    @if ($row->type == 'absen_lembur')
-                        <span class="badge badge-info">Lembur</span>
-                        @php
-                            $total_kerja = $row->overtime != null ? \Carbon\Carbon::createFromTimestampUTC($row->overtime)->format('H:i:s') : '-';
-                        @endphp
-                    @elseif ($row->type == 'absen_biasa')
-                        <span class="badge badge-info">Harian</span>
-                        @php
-                            $total_kerja = $row->total_work != null ? \Carbon\Carbon::createFromTimestampUTC($row->total_work)->format('H:i:s') : '-';
-                        @endphp
-                    @else
-                        -
-                    @endif
-                </td>
-                <td>{{$row->device ?? "-"}}</td>
-                <td>{{$row->karyawan->shifft->shift_name ?? "-"}}</td>
-                <td>{{ date('d-M-Y', strtotime($row->date))}}</td>
-                <td>{{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}}</td>
-                <td>{{$row->latlong_in ?? '-'}}</td>
-                <td>
-                    @if ($row->foto_masuk != null)
-                    <img width="32" src="{{ asset('uploads/images/attendance/'.$row->foto_masuk) }}">
-                    @else
-                    -
-                    @endif
-                </td>
-                <td>@if ($row->is_auto_checkout_daily == 1) <i class="text-warning fa fa-sign-out"></i> @endif {{ $row->clock_out != null ? date('H:i:s', strtotime($row->clock_out)) : '-'}}</td>
-                <td>{{$row->latlong_out ?? '-'}}</td>
-                <td>
-                    @if ($row->foto_keluar != null)
-                    <img width="32" src="{{ asset('uploads/images/attendance/'.$row->foto_keluar) }}">
-                    @else
-                    -
-                    @endif
-                </td>
-                <td>{{ $total_kerja ?? '-'}}</td>
-                <td>{{ $row->late != null ? \Carbon\Carbon::createFromTimestampUTC($row->late)->format('H:i:s') : '-'}}</td>
-                <td>
-                    <a href="{{route('adm.absen.detail', $row->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Detail</a>
-                </td>
-            </tr>
-        @endif
-        @endforeach
-    </tbody>
-</table> --}}

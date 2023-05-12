@@ -1,15 +1,15 @@
 @extends('layouts.auth.app', $head)
 
-@section('dynamic-content')
+@section('content')
 <div class="login-wrapper mt-1 mt-md-5 wd-300 wd-xs-400 pd-25 pd-xs-30  bg-white rounded shadow-base">
     @if ($site->logo != null)
     <div class="text-center mg-b-20">
         <img class="" src="{{asset('uploads/images/site') . '/' . $site->logo}}" width="50">
     </div>    
     @endif
-    <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> <span class="tx-success">  {{$site->site_name}} </span>
-        <span class="tx-normal">]</span></div>
-    <div class="tx-center mg-b-30"> <i> {{$tagline_app ?? 'Aplikasi Presensi Kehadiran Karyawan'}} </i></div>
+    <div class="signin-logo text-center text-28 text-bold text-inverse"><span class="text-normal">[</span> <span class="text-success">  {{$site->site_name}} </span>
+        <span class="text-normal">]</span></div>
+    <div class="text-center mg-b-30"> <i> {{$tagline_app ?? 'Aplikasi Presensi Kehadiran Karyawan'}} </i></div>
 
     <form method="post" action="{{route('authenticate')}}">
         @csrf
@@ -21,7 +21,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="d-flex align-items-center justify-content-start">
-                        <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                        <i class="icon ion-ios-checkmark alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                         <span><strong>Well done!</strong> {{ $message }}</span>
                     </div><!-- d-flex -->
                 </div><!-- alert -->
@@ -31,7 +31,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="d-flex align-items-center justify-content-start">
-                        <i class="icon ion-ios-close alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                        <i class="icon ion-ios-close alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                         <span><strong>Sorry,</strong> {{ $message }}</span>
                     </div><!-- d-flex -->
                 </div><!-- alert -->
@@ -67,7 +67,7 @@
 
     </form>
 
-    <div class="tx-center mg-t-40">Version {{$version}}</div>
+    <div class="text-center mg-t-40">Version {{$version}}</div>
 </div><!-- login-wrapper -->
 @endsection
 

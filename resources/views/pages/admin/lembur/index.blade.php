@@ -1,14 +1,16 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
-
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Jadwal Lembur</h1>
+    </div>
 <div id="accordion" class="accordion" role="tablist" aria-multiselectable="true">
     <div class="card">
         <div class="card-header" role="tab" id="headingTwo">
           <h6 class="mg-b-0">
-            <a class="collapsed tx-gray-100 bg-dark transition d-flex align-items-center justify-content-between" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <a class="collapsed text-gray-100 bg-dark transition d-flex align-items-center justify-content-between" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <span>
                     Form Jadwal Lembur
                 </span>
@@ -43,7 +45,7 @@
                                         <div class="card-header" role="tab" id="headingOne">
                                         <h6 class="mg-b-0">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#staff"
-                                            aria-expanded="true" aria-controls="staff" class="tx-center tx-gray-800 transition">
+                                            aria-expanded="true" aria-controls="staff" class="text-center text-gray-800 transition">
                                             Karyawan Staff
                                             </a>
                                         </h6>
@@ -88,7 +90,7 @@
                                         <div class="card-header" role="tab" id="headingOne">
                                         <h6 class="mg-b-0">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#non_staff"
-                                            aria-expanded="true" aria-controls="non_staff" class="tx-center tx-gray-800 transition">
+                                            aria-expanded="true" aria-controls="non_staff" class="text-center text-gray-800 transition">
                                             Karyawan Non Staff
                                             </a>
                                         </h6>
@@ -182,23 +184,23 @@
 <!-- MODAL ALERT MESSAGE DELETE -->
 @foreach ($data_lembur as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     {{-- <span aria-hidden="true">&times;</span> --}}
                 </button>
-                <i class="fa fa-question-circle tx-100  {{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="{{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} tx-semibold mg-b-20">Yakin ingin menghapus jadawal lembur ?
+                <i class="fa fa-question-circle text-100  {{$row->is_active == 1 ? 'text-danger' : 'text-success'}} lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="{{$row->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold mg-b-20">Yakin ingin menghapus jadawal lembur ?
                 </h4>
                 <p class="mg-b-20 mg-x-20">Jadwal lembur <b> "{{$row->nama_lembur}}" </b> akan  dihapus.</p>
                 <form action="{{$route_delete}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$row->id}}">
-                    <button type="button" class="btn btn-light tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">Batal</button>
-                    <button type="submit" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Ya, Hapus</button>
+                    <button type="button" class="btn btn-light text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20" data-dismiss="modal" aria-label="Close">Batal</button>
+                    <button type="submit" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Ya, Hapus</button>
                 </form>
             </div><!-- modal-body -->
         </div><!-- modal-content -->

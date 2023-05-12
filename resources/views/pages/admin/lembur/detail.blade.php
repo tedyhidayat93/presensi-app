@@ -1,8 +1,8 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
+@section('content')
+<div class="section">
 
 
     <form action="{{route('adm.lembur.update.detail')}}" method="POST">
@@ -107,7 +107,7 @@
                                 <div class="card-header" role="tab" id="headingOne">
                                 <h6 class="mg-b-0">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#staff"
-                                    aria-expanded="true" aria-controls="staff" class="collapsed tx-center tx-gray-800 transition">
+                                    aria-expanded="true" aria-controls="staff" class="collapsed text-center text-gray-800 transition">
                                     <i class="fa fa-user-plus"></i> Tambah Karyawan Staff
                                     </a>
                                 </h6>
@@ -152,7 +152,7 @@
                                 <div class="card-header" role="tab" id="headingOne">
                                 <h6 class="mg-b-0">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#non_staff"
-                                    aria-expanded="true" aria-controls="non_staff" class="collapsed tx-center tx-gray-800 transition">
+                                    aria-expanded="true" aria-controls="non_staff" class="collapsed text-center text-gray-800 transition">
                                     <i class="fa fa-user-plus"></i> Tambah Karyawan Non Staff
                                     </a>
                                 </h6>

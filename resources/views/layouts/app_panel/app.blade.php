@@ -4,6 +4,8 @@
 
 
 <div class="main-content">
+    @include('layouts.app_panel.alerts')      
+    
 @yield('content')
 </div>
 

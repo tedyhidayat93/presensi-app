@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12 col-md-12">
                 <div class="form-group">
-                    <label class="form-control-label">Nama Lokasi <span class="tx-danger">*</span></label>
+                    <label class="form-control-label">Nama Lokasi <span class="text-danger">*</span></label>
                     <input class="form-control" type="text" name="name" placeholder="Masukkan Nama Lokasi"
                         value="{{old('name') ?? $edit->name}}" autocomplete="off">
                     @if($errors->has('name'))
@@ -29,7 +29,7 @@
                 <label class="form-control-label">Radius</label>
                 <div class="input-group">
                     <input type="number" class="form-control" id="radius" min="0" value="{{ $edit->radius ?? 0}}" name="radius" placeholder="0">
-                    <span class="input-group-addon">Meter</i></span>
+                    <span class="input-group-append">Meter</i></span>
                 </div>
                 @if($errors->has('radius'))
                 <div class="text-danger mg-t-10 d-flex justify-content-between align-items-center"

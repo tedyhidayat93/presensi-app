@@ -1,9 +1,11 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-100">
-
+@section('content')
+<div class="section">
+  <div class="section-header">
+    <h1>Tambah Admin</h1>
+  </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -48,11 +50,13 @@
                           </div><!-- col-4 -->
                           <div class="col-12 col-md-6">
                             <div class="form-group">
-                              <label class="form-control-label">Foto Admin (Maksimal Ukuran: 5MB, Extensi: jpg-jpeg-gif-png.)</label>
+                              <label class="form-control-label">Foto Admin (Maksimal Ukuran: 5MB, Extensi: jpg-jpeg-png.)</label>
                               <div class="input-group" id="elementfile">
                                 <input type="file" class="form-control" name="foto" accept="image/*">
-                                <div class="input-group-addon bg-info text-light" id="btn-removefile">
-                                  <i class="fa fa-upload"></i>
+                                <div class="input-group-append" id="btn-removefile">
+                                  <div class="input-group-text bg-info text-light">
+                                    <i class="fa fa-upload"></i>
+                                  </div>
                                 </div>
                               </div>
                             </div>

@@ -1,7 +1,7 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
+@section('content')
 <div class="br-pagebody mg-t-5 pd-x-30">
 
     <div class="row mb-3">
@@ -24,30 +24,30 @@
                                             @endif
                                         </td>
                                         <td colspan="2">
-                                            <h4 class="tx-teal tx-25 mg-b-0">{{$data->karyawan->full_name}}</h4>
-                                            <span class="tx-12"><b>Jabatan : </b> {{$data->karyawan->jabatan->type ?? '-'}}</span>
+                                            <h4 class="text-info text-25 mg-b-0">{{$data->karyawan->full_name}}</h4>
+                                            <span class="text-12"><b>Jabatan : </b> {{$data->karyawan->jabatan->type ?? '-'}}</span>
                                         </td>
                                         <td>
-                                            <span class="tx-12">Terdaftar Sejak</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{ date('d-M-Y', strtotime($data->karyawan->registered_at))}}</h4>
+                                            <span class="text-12">Terdaftar Sejak</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{ date('d-M-Y', strtotime($data->karyawan->registered_at))}}</h4>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class="tx-12">Shift</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->karyawan->shifft->shift_name}}</h4>
+                                            <span class="text-12">Shift</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->karyawan->shifft->shift_name}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">Email</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->karyawan->email}}</h4>
+                                            <span class="text-12">Email</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->karyawan->email}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">NIP</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->karyawan->nip}}</h4>
+                                            <span class="text-12">NIP</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->karyawan->nip}}</h4>
                                         </td>
                                         <td>
-                                            <span class="tx-12">NIK</span>
-                                            <h4 class="tx-inverse tx-14 mg-b-0">{{$data->karyawan->nik}}</h4>
+                                            <span class="text-12">NIK</span>
+                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->karyawan->nik}}</h4>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -171,11 +171,11 @@
                 <div class="pd-x-30 pd-t-30 pd-b-10">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="tx-13 tx-uppercase tx-inverse tx-semibold tx-spacing-1 mb-0">Lokasi Realtime Saat Mengajukan Izin
+                            <h6 class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Realtime Saat Mengajukan Izin
                             </h6>
                             <small>Tanggal : <b> {{ date('d-M-Y', strtotime($data->created_at))}} </b></small>
                         </div>
-                        <div class="tx-13">
+                        <div class="text-13">
                             <p class="mg-b-0"><span class="square-8 rounded-circle bg-purple mg-r-10"></span> Koordinat
                                 : <b> {{$data->latlong ?? '-'}} </b></p>
                             <p class="mg-b-0"><span class="square-8 rounded-circle bg-pink mg-r-10"></span> Waktu :
@@ -196,7 +196,7 @@
                         @endif
                     @else
                     <div style="width:100%; height:345px;" class="bg-gray-100 d-flex flex-column align-items-center justify-content-center">
-                        <i class="tx-info icon ion-map tx-50"></i>
+                        <i class="text-info icon ion-map text-50"></i>
                         <h5 class="">Geolocation Sedang Tidak Aktif.</h5>
                     </div>
                     @endif

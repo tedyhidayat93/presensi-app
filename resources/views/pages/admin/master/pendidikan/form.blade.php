@@ -4,7 +4,7 @@
     <div class="card-body">
         <input class="form-control" type="hidden" name="id" value="{{$edit->id}}">
         <div class="form-group">
-            <label class="form-control-label">Jenis <span class="tx-danger">*</span></label>
+            <label class="form-control-label">Nama Jenjang <span class="text-danger">*</span></label>
             <input class="form-control" type="text" name="education" placeholder="Masukan nama jenjang pendidikan"
                 value="{{old('education') ?? $edit->education}}" autocomplete="off">
             @if($errors->has('education'))

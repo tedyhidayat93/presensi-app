@@ -1,9 +1,11 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
-
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Jenis Lembur</h1>
+    </div>
     <div class="row">
         
         <div class="col-12 col-md-5">
@@ -57,23 +59,23 @@
 <!-- MODAL ALERT MESSAGE DELETE -->
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     {{-- <span aria-hidden="true">&times;</span> --}}
                 </button>
-                <i class="fa fa-question-circle tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger tx-semibold mg-b-20">Yakin ingin menghapus data ?
+                <i class="fas fa-question-circle text-danger d-inline-block mb-4" style="font-size:40px;"></i>
+                <h4 class="text-danger font-weight-bold mg-b-20">Yakin ingin menghapus data ?
                 </h4>
                 <p class="mg-b-20 mg-x-20">Data <b> "{{$row->type}}" </b> akan dihapus dari database.</p>
                 <form action="{{$route_delete}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$row->id}}">
-                    <button type="button" class="btn btn-light tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">Batal</button>
-                    <button type="submit" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Ya, Hapus</button>
+                    <button type="button" class="btn btn-light text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20" data-dismiss="modal" aria-label="Close">Batal</button>
+                    <button type="submit" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Ya, Hapus</button>
                 </form>
             </div><!-- modal-body -->
         </div><!-- modal-content -->

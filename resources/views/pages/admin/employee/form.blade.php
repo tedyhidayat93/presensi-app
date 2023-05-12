@@ -1,9 +1,11 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-100">
-
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Tambah Pegawai</h1>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -14,7 +16,7 @@
                     <div class="card-body">
                         <div class="row mg-b-10">
                             <div class="col-12">
-                                <div class="alert alert-info" role="alert">
+                                <div class="alert alert-info alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -30,7 +32,7 @@
                         
                         <div class="row mg-b-25">
                             <div class="col-12">
-                                <h6 class="tx-teal">Informasi Data Diri</h6>
+                                <h6 class="text-info">Informasi Data Diri</h6>
                                 <hr>
                             </div>
                             <div class="col-12">
@@ -108,13 +110,13 @@
 
                         <div class="row mt-2">
                             <div class="col-12">
-                                <h6 class="tx-teal">Informasi Kepegawaian</h6>
+                                <h6 class="text-info">Informasi Kepegawaian</h6>
                                 <hr>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Tanggal Masuk</label>
-                                    <input class="form-control" type="date" name="tanggal_masuk" value="{{old('tanggal_masuk') ?? $edit->tanggal_masuk}}">
+                                    <input class="form-control" type="date" name="tanggal_masuk" value="{{ date('Y-m-d') ?? $edit->tanggal_masuk}}">
                                 </div>
                             </div><!-- col-4 -->
                             <div class="col-12 col-md-4">
@@ -234,7 +236,7 @@
                         </div>    
                         <div class="row mt-3">
                             <div class="col-12">
-                                <h6 class="tx-teal">Informasi Akun</h6>
+                                <h6 class="text-info">Informasi Akun</h6>
                                 <hr>
                             </div>
                             <div class="col-12 col-md-4">
@@ -248,11 +250,13 @@
                             </div><!-- col-4 -->
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
-                                  <label class="form-control-label">Foto Karyawan (Maksimal: 5MB, Extensi: jpg-jpeg-gif-png.)</label>
+                                  <label class="form-control-label">Foto (Maksimal: 5MB, Extensi: jpg-jpeg-png.)</label>
                                   <div class="input-group" id="elementfile">
                                     <input type="file" class="form-control" name="foto" accept="image/*">
-                                    <div class="input-group-addon bg-info text-light" id="btn-removefile">
-                                      <i class="fa fa-upload"></i>
+                                    <div class="input-group-append" id="btn-removefile">
+                                      <div class="input-group-text bg-info text-light">
+                                        <i class="fa fa-upload"></i>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -267,7 +271,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12">
-                                <h6 class="tx-teal">Hak Akses Absensi</h6>
+                                <h6 class="text-info">Hak Akses Presensi</h6>
                                 <hr>
                             </div>
 
@@ -279,7 +283,7 @@
                                         <div class="col-12">
                                             <label class="form-control-label">Izinkan karyawan absen via website ?</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon bg-transparent">
+                                                <span class="input-group-append bg-transparent">
                                                     <label class="ckbox wd-16">
                                                         <input type="checkbox" name="is_web" value="1"
                                                             {{$edit->is_web == 1 ? 'checked="checked"':''}}><span></span>
@@ -292,7 +296,7 @@
                                         <div class="col-12">
                                             <label class="form-control-label">Izinkan karyawan absen via mobile ?</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon bg-transparent">
+                                                <span class="input-group-append bg-transparent">
                                                     <label class="ckbox wd-16">
                                                         <input type="checkbox" name="is_mobile" value="0"
                                                             {{$edit->is_mobile == 1 ? 'checked="checked"':''}}><span></span>

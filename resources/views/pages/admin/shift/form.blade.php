@@ -18,7 +18,7 @@
         </div>
         <input class="form-control" type="hidden" name="id" value="{{$edit->id}}">
         <div class="form-group">
-            <label class="form-control-label">Nama Shift <span class="tx-danger">*</span></label>
+            <label class="form-control-label">Nama Shift <span class="text-danger">*</span></label>
             <input class="form-control" type="text" name="shift_name" placeholder="Masukkan Nama Shift"
                 value="{{old('shift_name') ?? $edit->shift_name}}" autocomplete="off">
             @if($errors->has('shift_name'))
@@ -45,13 +45,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="senin_in" value="{{old('senin_in') ?? $edit->senin_in}}" {{$edit->senin_in == null && $edit->senin_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="senin_out" value="{{old('senin_out') ?? $edit->senin_out}}" {{$edit->senin_in == null && $edit->senin_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -72,13 +72,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="selasa_in" value="{{old('selasa_in') ?? $edit->selasa_in}}" {{$edit->selasa_in == null && $edit->selasa_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="selasa_out" value="{{old('selasa_out') ?? $edit->selasa_out}}" {{$edit->selasa_in == null && $edit->selasa_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -99,13 +99,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="rabu_in" value="{{old('rabu_in') ?? $edit->rabu_in}}" {{$edit->rabu_in == null && $edit->rabu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="rabu_out" value="{{old('rabu_out') ?? $edit->rabu_out}}" {{$edit->rabu_in == null && $edit->rabu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -126,13 +126,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="kamis_in" value="{{old('kamis_in') ?? $edit->kamis_in}}" {{$edit->kamis_in == null && $edit->kamis_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="kamis_out" value="{{old('kamis_out') ?? $edit->kamis_out}}" {{$edit->kamis_in == null && $edit->kamis_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -153,13 +153,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="jumat_in" value="{{old('jumat_in') ?? $edit->jumat_in}}" {{$edit->jumat_in == null && $edit->jumat_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="jumat_out" value="{{old('jumat_out') ?? $edit->jumat_out}}" {{$edit->jumat_in == null && $edit->jumat_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -180,13 +180,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="sabtu_in" value="{{old('sabtu_in') ?? $edit->sabtu_in}}" {{$edit->sabtu_in == null && $edit->sabtu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="sabtu_out" value="{{old('sabtu_out') ?? $edit->sabtu_out}}" {{$edit->sabtu_in == null && $edit->sabtu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
@@ -207,13 +207,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">IN</span>
+                    <span class="input-group-append">IN</span>
                     <input type="time" name="minggu_in" value="{{old('minggu_in') ?? $edit->minggu_in}}" {{$edit->minggu_in == null && $edit->minggu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-addon">OUT</span>
+                    <span class="input-group-append">OUT</span>
                     <input type="time" name="minggu_out" value="{{old('minggu_out') ?? $edit->minggu_out}}" {{$edit->minggu_in == null && $edit->minggu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>

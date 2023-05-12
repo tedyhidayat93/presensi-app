@@ -1,8 +1,12 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Pengaturan</h1>
+      </div>
+
     <div class="pd-10 bd rounded bg-light">
         <ul class="nav nav-pills flex-column flex-md-row" role="tablist">
             <li class="nav-item"><a
@@ -29,7 +33,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Nama Aplikasi <span
-                                                    class="tx-danger">*</span></label>
+                                                    class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="site_name"
                                                 value="{{old('site_name') ?? $edit->site_name}}">
                                         </div>
@@ -44,7 +48,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Telepon <span
-                                                    class="tx-danger">*</span></label>
+                                                    class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="phone"
                                                 value="{{old('phone') ?? $edit->phone}}">
                                         </div>
@@ -52,7 +56,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Email <span
-                                                    class="tx-danger">*</span></label>
+                                                    class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="email"
                                                 value="{{old('email') ?? $edit->email}}">
                                         </div>
@@ -78,7 +82,7 @@
                                                 jpg-jpeg-gif-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="favico" accept="image/*">
-                                                <div class="input-group-addon bg-info text-light">
+                                                <div class="input-group-append bg-info text-light">
                                                     <i class="fa fa-upload"></i>
                                                 </div>
                                             </div>
@@ -95,7 +99,7 @@
                                                 jpg-jpeg-gif-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="logo" accept="image/*">
-                                                <div class="input-group-addon bg-info text-light">
+                                                <div class="input-group-append bg-info text-light">
                                                     <i class="fa fa-upload"></i>
                                                 </div>
                                             </div>
@@ -124,7 +128,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon bg-transparent">
+                                                        <span class="input-group-append bg-transparent">
                                                             <label class="rdiobox wd-16">
                                                                 <input type="radio" name="is_using_radius" value="1"
                                                                     {{$edit->is_using_radius == 1 ? 'checked':''}}><span></span>
@@ -135,7 +139,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon bg-transparent">
+                                                        <span class="input-group-append bg-transparent">
                                                             <label class="rdiobox wd-16">
                                                                 <input type="radio" name="is_using_radius" value="0"
                                                                     {{$edit->is_using_radius == 0 ? 'checked':''}}><span></span>
@@ -153,7 +157,7 @@
                                     <div class="col-12 col-md-4">
                                         <label class="form-control-label">Aktifkan batas toleransi keterlambatan presensi masuk harian ?</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon bg-transparent">
+                                            <span class="input-group-append bg-transparent">
                                                 <label class="ckbox wd-16">
                                                     <input type="checkbox" name="is_tolerance" value="1"
                                                         {{$edit->is_attendace_daily_tolerance_limit == 1 ? 'checked="checked"':''}}><span></span>
@@ -165,7 +169,7 @@
                                         <label class="form-control-label"> Batas waktu toleransi keterlambatan</label>
                                         <div class="input-group">
                                             <input type="number" name="time_tolerance" class="form-control" value="{{old('time_tolerance') ?? $edit->time_minute_attendance_tolerance_limit_daily}}" >
-                                            <div class="input-group-addon bg-info text-light" >
+                                            <div class="input-group-append bg-info text-light" >
                                               Menit
                                             </div>
                                           </div>
@@ -175,7 +179,7 @@
                                     <div class="col-12 col-md-4">
                                         <label class="form-control-label">Aktifkan auto check-out presensi pulang harian ?</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon bg-transparent">
+                                            <span class="input-group-append bg-transparent">
                                                 <label class="ckbox wd-16">
                                                     <input type="checkbox" name="is_auto_checkout_harian" value="1"
                                                         {{$edit->is_auto_checkout_attendance_daily == 1 ? 'checked="checked"':''}}><span></span>
@@ -187,7 +191,7 @@
                                         <label class="form-control-label"> Menit waktu auto check-out presensi harian</label>
                                         <div class="input-group">
                                             <input type="number" name="time_auto_checkout" class="form-control" value="{{old('time_auto_checkout') ?? $edit->time_minute_auto_checkout_attendance_daily}}" >
-                                            <div class="input-group-addon bg-info text-light" >
+                                            <div class="input-group-append bg-info text-light" >
                                               Menit
                                             </div>
                                           </div>

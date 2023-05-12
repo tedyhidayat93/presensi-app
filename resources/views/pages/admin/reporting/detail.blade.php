@@ -1,16 +1,16 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
-@section('dynamic-content')
+@section('content')
 <div class="br-pagebody mg-t-0 pd-x-20 pd-b-200">
     <div class="row">
         <div class="col-12 mb-3">
             <div class="card shadow-base bd-0">
                 <div class="card-header bg-transparent pd-x-10">
-                  <h6 class="card-title tx-teal tx-uppercase tx-12 mg-b-0">Informasi Karyawan</h6>
+                  <h6 class="card-title text-info text-uppercase text-12 mg-b-0">Informasi Karyawan</h6>
                 </div><!-- card-header -->
-                <table class="table table-responsive mg-b-0 tx-12">
+                <table class="table table-responsive mg-b-0 text-12">
                 <tbody>
-                      <tr class="tx-12">
+                      <tr class="text-12">
                         <th rowspan="2" class="pd-y-5">
                           @if ($user->photo_profile)
                           <img width="100" class="wd-75 rounded-circle" src="{{ asset('uploads/images/employee/'. $user->photo_profile) }}">
@@ -35,7 +35,7 @@
                         
                       </td> --}}
                       <td>
-                        <span class="tx-14 tx-inverse d-block">{{$user->full_name ?? '-'}}</span>
+                        <span class="text-14 text-inverse d-block">{{$user->full_name ?? '-'}}</span>
                       </td>
                       <td>
                         @php 
@@ -46,36 +46,36 @@
                                 $gender = 'Perempuan';
                             }
                         @endphp
-                        <span class="tx-11 d-block">
+                        <span class="text-11 d-block">
                             {{$gender}}
                         </span>
                       </td>
                       <td>
-                        <span class="tx-11 d-block">{{$user->email ?? '-'}}</span>
+                        <span class="text-11 d-block">{{$user->email ?? '-'}}</span>
                       </td>
                       <td>
-                        <span class="tx-11 d-block">{{$user->nik ?? '-'}}</span>
+                        <span class="text-11 d-block">{{$user->nik ?? '-'}}</span>
                       </td>
                       <td>
-                        <span class="tx-11 d-block">{{$user->nip ?? '-'}}</span>
+                        <span class="text-11 d-block">{{$user->nip ?? '-'}}</span>
                       </td>
                       <td>
-                        <span class="tx-11 d-block">{{$user->type == 'staff' ? 'Staff' : 'Non Staff'}}</span>
+                        <span class="text-11 d-block">{{$user->type == 'staff' ? 'Staff' : 'Non Staff'}}</span>
                       </td>
                       <td>
-                          <span class="tx-11 d-block">{{$user->status}}</span>
+                          <span class="text-11 d-block">{{$user->status}}</span>
                         </td>
                         <td>
-                            <span class="tx-11 d-block">{{$user->jabatan->type ?? "-"}}</span>
+                            <span class="text-11 d-block">{{$user->jabatan->type ?? "-"}}</span>
                         </td>
                         <td>
-                            <span class="tx-11 d-block">{{$user->education->education ?? "-"}}</span>
+                            <span class="text-11 d-block">{{$user->education->education ?? "-"}}</span>
                         </td>
                         <td>
-                            <span class="tx-11 d-block">{{date('d-M-Y', strtotime($user->tanggal_masuk ?? '0000-00-00'))}}</span>
+                            <span class="text-11 d-block">{{date('d-M-Y', strtotime($user->tanggal_masuk ?? '0000-00-00'))}}</span>
                         </td>
                         <td>
-                            <span class="tx-11 d-block">
+                            <span class="text-11 d-block">
                                 @php
                                 $startDate = \Carbon\Carbon::parse($user->tanggal_masuk);
                                 if($user->is_active == 1) {
@@ -100,7 +100,7 @@
             <div class="br-section-wrapper pd-15">
                 <div class="d-block d-md-flex align-item-center justify-content-between mb-3">
                     <div class="d-flex align-items-center ">
-                        <h6 class="card-title tx-teal tx-uppercase tx-12 mg-b-0">Riwayat Presensi</h6>
+                        <h6 class="card-title text-info text-uppercase text-12 mg-b-0">Riwayat Presensi</h6>
                     </div>
                     <div>
                         <a target="_blank" href="{{route('adm.report.export.detail', ['data' => 'excel', 'karyawan' => request()->query('karyawan'), 'from' => request()->query('from_date'), 'to' => request()->query('to_date')])}}" class="btn btn-sm btn-success">
@@ -117,7 +117,7 @@
                 
                 <div class="d-flex align-items-center my-3">
                     @if (request()->query('from_date') != '' || request()->query('to_date') != '')
-                    <h6 class="tx-13 text-dark"> 
+                    <h6 class="text-13 text-dark"> 
                         <b> Periode :  </b>
                         <b class="text-info">
                             {{ \Carbon\Carbon::createFromFormat('Y-m-d', request()->query('from_date'))->isoFormat('D MMMM Y'); }} 
@@ -130,10 +130,10 @@
                         </b>
                     </h6>
 
-                    <h6 class="tx-13 text-dark"> &nbsp;&nbsp;|&nbsp;&nbsp;</h6>
-                    <h6 class="tx-13 text-dark"><b> Jumlah Hari : </b> <b>( {{$total_days}} Hari )</b> </h6>
-                    <h6 class="tx-13 text-dark"> &nbsp;&nbsp;|&nbsp;&nbsp;</h6>
-                    <h6 class="tx-13 text-dark"><b> Hari Kerja : </b> <b>( {{$total_working_days}} Hari )</b> </h6>
+                    <h6 class="text-13 text-dark"> &nbsp;&nbsp;|&nbsp;&nbsp;</h6>
+                    <h6 class="text-13 text-dark"><b> Jumlah Hari : </b> <b>( {{$total_days}} Hari )</b> </h6>
+                    <h6 class="text-13 text-dark"> &nbsp;&nbsp;|&nbsp;&nbsp;</h6>
+                    <h6 class="text-13 text-dark"><b> Hari Kerja : </b> <b>( {{$total_working_days}} Hari )</b> </h6>
                     @endif
                 </div>
 
@@ -142,10 +142,10 @@
                         <div style="background-color: #FFDD7F" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Presensi Harian
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Presensi Harian
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_hari_hadir}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Kali</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_hari_hadir}}</p>
+                                    <span class="text-11 text-roboto text-dark">Kali</span>
                                 </div>
                             </div>
                         </div>
@@ -154,10 +154,10 @@
                         <div style="background-color: #FFDD7F" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Presensi Lembur
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Presensi Lembur
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_hari_lembur}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Kali</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_hari_lembur}}</p>
+                                    <span class="text-11 text-roboto text-dark">Kali</span>
                                 </div>
                             </div>
                         </div>
@@ -166,10 +166,10 @@
                         <div style="background-color: #FFDD7F" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Izin
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Izin
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_izin}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Kali</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_izin}}</p>
+                                    <span class="text-11 text-roboto text-dark">Kali</span>
                                 </div>
                             </div>
                         </div>
@@ -178,10 +178,10 @@
                         <div style="background-color: #FFDD7F" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Terlambat <br> (Presensi Harian)
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Terlambat <br> (Presensi Harian)
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_telat}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Kali</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_telat}}</p>
+                                    <span class="text-11 text-roboto text-dark">Kali</span>
                                 </div>
                             </div>
                         </div>
@@ -190,10 +190,10 @@
                         <div style="background-color: #FFDD7F" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Tidak Hadir <br> (Presensi Harian)
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Tidak Hadir <br> (Presensi Harian)
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_alfa}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Kali</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_alfa}}</p>
+                                    <span class="text-11 text-roboto text-dark">Kali</span>
                                 </div>
                             </div>
                         </div>
@@ -205,10 +205,10 @@
                         <div style="background-color: #B0FFDB" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Total Jam Kerja <br> Presensi Harian
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Total Jam Kerja <br> Presensi Harian
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_jam_kerja}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Jam : Menit : Detik</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_jam_kerja}}</p>
+                                    <span class="text-11 text-roboto text-dark">Jam : Menit : Detik</span>
                                 </div>
                             </div>
                         </div>
@@ -217,10 +217,10 @@
                         <div style="background-color: #B0FFDB" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Total Jam Kerja <br> Lemburan
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Total Jam Kerja <br> Lemburan
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_jam_lembur}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Jam : Menit : Detik</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_jam_lembur}}</p>
+                                    <span class="text-11 text-roboto text-dark">Jam : Menit : Detik</span>
                                 </div>
                             </div>
                         </div>
@@ -229,10 +229,10 @@
                         <div style="background-color: #B0FFDB" class=" rounded overflow-hidden">
                             <div class="pd-10 d-flex align-items-center">
                                 <div class="mg-l-20">
-                                    <p class="tx-12 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-dark mg-b-5">Total Jam <br> Keterlambatan Presensi Harian
+                                    <p class="text-12 text-spacing-1 text-mont text-medium text-uppercase text-dark mg-b-5">Total Jam <br> Keterlambatan Presensi Harian
                                     </p>
-                                    <p class="tx-20 tx-dark tx-lato tx-bold mg-b-2 lh-1">{{$total_jam_telat}}</p>
-                                    <span class="tx-11 tx-roboto tx-dark">Jam : Menit : Detik</span>
+                                    <p class="text-20 text-dark text-lato text-bold mg-b-2 lh-1">{{$total_jam_telat}}</p>
+                                    <span class="text-11 text-roboto text-dark">Jam : Menit : Detik</span>
                                 </div>
                             </div>
                         </div>
@@ -243,18 +243,18 @@
                     <table id="" class="table table-bordered table-striped table-hover mg-b-0">
                         <thead class="">
                             <tr>
-                                <th class="tx-center bg-dark text-light pb-4" rowspan="2"> <span class="tx-14 mb-5"> Hari Tanggal </span></th>
-                                <th class="tx-center bg-primary text-white" colspan="2">Presensi Harian</th>
+                                <th class="text-center bg-dark text-light pb-4" rowspan="2"> <span class="text-14 mb-5"> Hari Tanggal </span></th>
+                                <th class="text-center bg-primary text-white" colspan="2">Presensi Harian</th>
                                 @foreach ($jenis_lembur as $lembur)
-                                    <th class="bg-info text-white tx-center"  colspan="2">{{$lembur->type}}</th>
+                                    <th class="bg-info text-white text-center"  colspan="2">{{$lembur->type}}</th>
                                 @endforeach
                             </tr>
                             <tr>
-                                <th class="bg-success text-white tx-center">IN</th>
-                                <th class="bg-danger text-white tx-center">OUT</th>
+                                <th class="bg-success text-white text-center">IN</th>
+                                <th class="bg-danger text-white text-center">OUT</th>
                                 @foreach ($jenis_lembur as $lembur)
-                                    <th class="bg-success text-white tx-center">IN</th>
-                                    <th class="bg-danger text-white tx-center">OUT</th>
+                                    <th class="bg-success text-white text-center">IN</th>
+                                    <th class="bg-danger text-white text-center">OUT</th>
                                 @endforeach
                             </tr>
                         </thead>

@@ -1,9 +1,9 @@
 @extends('layouts.auth.app', $head)
 
-@section('dynamic-content')
+@section('content')
 <div class="login-wrapper bg-transparent h-full wd-400 wd-xs-750 pd-20 pd-xs-10 mg-0 rounded overflow-hidden shadow-none">
     <div class="row d-none d-md-block">
-        <div class="col tx-center d-flex align-items-center justify-content-center">
+        <div class="col text-center d-flex align-items-center justify-content-center">
             @if ($site->logo != null)
             <div class="text-center mg-b-30">
                 <img class="" src="{{asset('uploads/images/site') . '/' . $site->logo}}" width="40">
@@ -12,10 +12,10 @@
             &nbsp;
             @endif
             <div class="text-left">
-                <div class="signin-logo tx-20 tx-bold tx-inverse">
-                    <span class="tx-success"> {{$site->site_name}} </span>
+                <div class="signin-logo text-20 text-bold text-inverse">
+                    <span class="text-success"> {{$site->site_name}} </span>
                 </div>
-                <div class=" mg-b-30 tx-12 tx-white"> 
+                <div class=" mg-b-30 text-12 text-white"> 
                     <i> {{$tagline_app ?? 'Aplikasi Presensi Kehadiran Karyawan'}} </i>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="d-flex align-items-center justify-content-start">
-                    <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                    <i class="icon ion-ios-checkmark alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                     <span><strong>Well done!</strong> {{ $message }}</span>
                 </div><!-- d-flex -->
             </div><!-- alert -->
@@ -40,7 +40,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="d-flex align-items-center justify-content-start">
-                    <i class="icon ion-ios-close alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                    <i class="icon ion-ios-close alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                     <span><strong>Sorry,</strong> {{ $message }}</span>
                 </div><!-- d-flex -->
             </div><!-- alert -->
@@ -51,11 +51,11 @@
     <div class="card shadow-base bd-0 mg-t-10">
         <div class="card-header bg-transparent pd-x-25 pd-y-15 bd-b-0 d-flex justify-content-between align-items-start">
             <div class="">
-                <h6 class="card-title tx-uppercase tx-12 mg-b-0"><i class="fa fa-calendar"></i> {{$date_now}}</h6>
-                <a href="#" class="tx-gray-700 hover-info lh-0 tx-12"><i class="fa fa-clock-o"></i> JAM : <span
+                <h6 class="card-title text-uppercase text-12 mg-b-0"><i class="fa fa-calendar"></i> {{$date_now}}</h6>
+                <a href="#" class="text-gray-700 hover-info lh-0 text-12"><i class="fa fa-clock-o"></i> JAM : <span
                         class="font-weight-bold" id="clock"></span></a>
             </div>
-            <a href="{{route('logout')}}" class="btn btn-danger tx-10 pd-3"><i class="icon ion-power"></i> Sign Out</a>
+            <a href="{{route('logout')}}" class="btn btn-danger text-10 pd-3"><i class="icon ion-power"></i> Sign Out</a>
         </div><!-- card-header -->
         <div class="card-body pd-x-25 pd-b-25 pd-t-0">
             <div class="row no-gutters">
@@ -67,18 +67,18 @@
 
                 <div class="col-sm-6 col-lg-6 mg-t--1 mg-sm-t-0 mg-lg-l--1">
                     <div class="card card-body rounded-0 bd-lg-l-0">
-                        <div class="d-block d-md-flex justify-content-between tx-12">
+                        <div class="d-block d-md-flex justify-content-between text-12">
                             <div>
-                                <h6 class="tx-inverse tx-14 mg-b-5">{{auth()->user()->full_name ?? ''}}</h6>
-                                <span class="tx-12">Jabatan : <b> {{auth()->user()->jabatan->type ?? ''}}</span><br>
+                                <h6 class="text-inverse text-14 mg-b-5">{{auth()->user()->full_name ?? ''}}</h6>
+                                <span class="text-12">Jabatan : <b> {{auth()->user()->jabatan->type ?? ''}}</span><br>
                             </div>
                             <div>
-                                <span class="tx-12">NIK : <b> {{auth()->user()->nik ?? ''}}</span>
+                                <span class="text-12">NIK : <b> {{auth()->user()->nik ?? ''}}</span>
                                 <br>
-                                <span class="tx-12">NIP : <b> {{auth()->user()->nip ?? ''}}</span>
+                                <span class="text-12">NIP : <b> {{auth()->user()->nip ?? ''}}</span>
                             </div>
                         </div>
-                        <div class="tx-center mg-y-10">
+                        <div class="text-center mg-y-10">
                             @if (auth()->user()->photo_profile != null && auth()->user()->role == 'user')
                             <img class="wd-60 wd-md-90  rounded-circle"
                                 src="{{ asset('uploads/images/employee/'. auth()->user()->photo_profile) }}">
@@ -99,7 +99,7 @@
                                 <label for="" class="mt-2 ml-2 text-dark">Lembur</label>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between tx-12">
+                        <div class="d-flex justify-content-between text-12">
                             <div>
                                 <form action="{{route('user.absen.io')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -137,17 +137,17 @@
         </div><!-- card-body -->
         <div class="card-footer d-block bg- d-md-flex justify-content-between align-items-center">
             <div class="">
-                <a href="#" class="tx-gray-700 font-weight-bold mg-b-0  mg-t-0 hover-info lh-0 tx-12">
+                <a href="#" class="text-gray-700 font-weight-bold mg-b-0  mg-t-0 hover-info lh-0 text-12">
                     Jadwal : 
                     @foreach (auth()->user()->shifts as $shift)
-                    <span href="#" class="tx-info"> {{$shift->shift_name}}</span>,
+                    <span href="#" class="text-info"> {{$shift->shift_name}}</span>,
                     @endforeach
                 </a>
             </div>
             <div>
-                <span class="card-title tx-uppercase tx-10 mg-b-0">Masuk : <span class="tx-info tx-10">{{$absen->clock_in ?? '-'}}</span></span> 
+                <span class="card-title text-uppercase text-10 mg-b-0">Masuk : <span class="text-info text-10">{{$absen->clock_in ?? '-'}}</span></span> 
                 &nbsp; | &nbsp;
-                <span class="card-title tx-uppercase tx-10 mg-b-0">Pulang : <span class="tx-info tx-10">{{$absen->clock_out ?? '-'}}</span></span>
+                <span class="card-title text-uppercase text-10 mg-b-0">Pulang : <span class="text-info text-10">{{$absen->clock_out ?? '-'}}</span></span>
             </div>
         </div>
         <div class="card-footer bg-white overflow-y-auto pd-0 pd-b-0" style="max-height: 280px;">
@@ -156,7 +156,7 @@
                 <thead class="thead-light">
                     {{-- <tr>
                         <th class="bg-light" colspan="3">
-                            <h6 class="text-dark text-center mb-0 tx-13">Log Absensi</h6>
+                            <h6 class="text-dark text-center mb-0 text-13">Log Absensi</h6>
                         </th>
                     </tr> --}}
                     <tr>

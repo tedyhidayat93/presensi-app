@@ -13,18 +13,18 @@
         @role(['superadmin','admin'])
         <li class="menu-header">Dashboard</li>
         @can('admin-dashboard')
-        <li class="@stack('active-dashboardAdmin')"><a class="nav-link" href=""><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+        <li class="@stack('active-dashboardAdmin')"><a class="nav-link" href="{{route('adm.dashboard')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
         @endcan
         
         <li class="menu-header">Main Menu</li>
         
         @can('admin-log-presensi-sidebar-menu')
-        <li class="@stack('active-absen')"><a class="nav-link" href=""><i class="fas fa-history"></i> <span>Log Presensi</span></a></li>
+        <li class="@stack('active-absen')"><a class="nav-link" href="{{route('adm.absen')}}"><i class="fas fa-history"></i> <span>Log Presensi</span></a></li>
         @endcan
 
         @can('admin-izin-sidebar-menu')
         <li class="@stack('active-izin')">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="{{route('adm.izin')}}">
             <i class="fas fa-stamp"></i> <span>Validasi Izin</span>
             @if($total_izin_waiting != 0)
             <span class="badge badge-warning w-25 float-right">{{$total_izin_waiting ?? 0}}</span>
@@ -34,42 +34,42 @@
         @endcan
 
         @can('admin-waktu-kerja-sidebar-menu')
-        <li class="@stack('active-shift')"><a class="nav-link" href=""><i class="fas fa-clock"></i> <span>Waktu Kerja</span></a>
+        <li class="@stack('active-shift')"><a class="nav-link" href="{{route('adm.shift')}}"><i class="fas fa-clock"></i> <span>Waktu Kerja</span></a>
         @endcan
 
         @can('admin-karyawan-sidebar-menu')
-        <li class="@stack('active-employee')"><a class="nav-link" href=""><i class="fas fa-user"></i> <span>Data Pegawai</span></a>
+        <li class="@stack('active-employee')"><a class="nav-link" href="{{route('adm.employee')}}"><i class="fas fa-user"></i> <span>Data Pegawai</span></a>
         @endcan
 
         @can('admin-users-sidebar-menu')
-        <li class="@stack('active-users')"><a class="nav-link" href=""><i class="fas fa-users"></i> <span>Data Admin</span></a>
+        <li class="@stack('active-users')"><a class="nav-link" href="{{route('adm.users')}}"><i class="fas fa-users"></i> <span>Data Admin</span></a>
         @endcan
 
         @can('admin-laporan-sidebar-menu')
-        <li class="@stack('active-report')"><a class="nav-link" href=""><i class="fas fa-print"></i> <span>Laporan</span></a>
+        <li class="@stack('active-report')"><a class="nav-link" href="{{route('adm.report')}}"><i class="fas fa-print"></i> <span>Laporan</span></a>
         @endcan
         
         <li class="menu-header">Master Data</li>
 
         @can('admin-pendidikan-sidebar-menu')
-        <li class="@stack('active-masterPendidikan')"><a class="nav-link" href=""><i class="fas fa-folder"></i> <span>Pendidikan</span></a></li>
+        <li class="@stack('active-masterPendidikan')"><a class="nav-link" href="{{route('adm.master.pendidikan')}}"><i class="fas fa-folder"></i> <span>Pendidikan</span></a></li>
         @endcan
 
         @can('admin-jabatan-sidebar-menu')
-        <li class="@stack('active-masterAdminEmployeeType')"><a class="nav-link" href=""><i class="fas fa-folder"></i> <span>Jabatan</span></a></li>
+        <li class="@stack('active-masterAdminEmployeeType')"><a class="nav-link" href="{{route('adm.master.employee.type')}}"><i class="fas fa-folder"></i> <span>Jabatan</span></a></li>
         @endcan
 
         @can('admin-jenis-izin-sidebar-menu')
-        <li class="@stack('active-jenisIzin')"><a class="nav-link" href=""><i class="fas fa-folder"></i> <span>Jenis Izin</span></a></li>
+        <li class="@stack('active-jenisIzin')"><a class="nav-link" href="{{route('adm.master.jenis_izin')}}"><i class="fas fa-folder"></i> <span>Jenis Izin</span></a></li>
         @endcan
 
         @can('admin-jenis-lembur-sidebar-menu')
-        <li class="@stack('active-jenisLembur')"><a class="nav-link" href=""><i class="fas fa-folder"></i> <span>Jenis Lembur</span></a></li>
+        <li class="@stack('active-jenisLembur')"><a class="nav-link" href="{{route('adm.master.jenis_lembur')}}"><i class="fas fa-folder"></i> <span>Jenis Lembur</span></a></li>
         @endcan
         
         @can('admin-pengaturan-sidebar-menu')
         <li class="menu-header">Extras</li>            
-        <li class="@stack('active-setings')"><a class="nav-link" href=""><i class="fas fa-cog"></i> <span>Pengaturan</span></a></li>
+        <li class="@stack('active-setings')"><a class="nav-link" href="{{route('adm.site')}}"><i class="fas fa-cog"></i> <span>Pengaturan</span></a></li>
         @endcan
         
         @endrole
@@ -80,7 +80,7 @@
         <li class="menu-header">Dashboard</li>
 
         @can('user-dashboard')
-        <li class="@stack('active-dashboardUser')"><a class="nav-link" href=""><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+        <li class="@stack('active-dashboardUser')"><a class="nav-link" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
         @endcan
 
         <li class="menu-header">Main Menu</li>

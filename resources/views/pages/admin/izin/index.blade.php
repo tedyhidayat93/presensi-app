@@ -1,70 +1,52 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Permohonan Izin Pegawai</h1>
+    </div>
 
-    <div class="row row-sm mb-3">
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-dark rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-bookmark tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Total Semua
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_all}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Izin</span>
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-statistic-2">
+                <div class="card-stats">
+                  <div class="card-stats-title"></div>
+                  <div class="card-stats-items">
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-primary">{{$total_all}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Semua</div>
                     </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-warning">{{$total_menunggu}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Menunggu Validasi</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-success">{{$total_disetujui}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Disetujui</div>
+                    </div>
+                    <div class="card-stats-item">
+                      <div class="card-stats-item-count text-danger">{{$total_ditolak}}</div>
+                      <div class="card-stats-item-label"> <i style="font-size: 10px;" class="fas fa-user"></i>&nbsp; Ditolak</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                  </div>
                 </div>
             </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-warning rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-bookmark tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Menunggu Validasi
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_menunggu}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Izin</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-success rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-bookmark tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Disetujui
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_disetujui}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Izin</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        <div class="col-sm-6 col-xl-3">
-            <div class="bg-danger rounded overflow-hidden">
-                <div class="pd-10 d-flex align-items-center">
-                    <i class="ion ion-bookmark tx-30 lh-0 tx-white op-7"></i>
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Ditolak
-                        </p>
-                        <p class="tx-18 tx-white tx-lato tx-bold mg-b-2 lh-1">{{$total_ditolak}}</p>
-                        <span class="tx-11 tx-roboto tx-white-6">Izin</span>
-                    </div>
-                </div>
-            </div>
-        </div><!-- col-3 -->
-        
+        </div>
     </div><!-- row -->
 
     <div class="row">
         <div class="col">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
-                    <div class="card-header">
+                    <div class="card-body">
                         <div>
                             <form action="" method="get" class="d-block d-md-flex align-item-center">
                                 <div class="form-group mb-0 mr-1">
@@ -76,7 +58,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-0 mr-1">
-                                    <select name="jenis_izin_id" class="selecttu form-control" >
+                                    <select name="jenis_izin_id" class="select2 form-control" >
                                         <option value="" selected disabled>-- Jenis Izin --</option>
 
                                             @if ($jenis_izin)
@@ -87,7 +69,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-0 mr-1">
-                                    <select name="created_by" class="selecttu form-control" >
+                                    <select name="created_by" class="select2 form-control" >
                                         <option value="" selected disabled>-- Karyawan --</option>
                                         @if ($users)
                                         @foreach ($users as $j)
@@ -102,8 +84,8 @@
                                 <div class="form-group mb-0 mr-1">
                                     <input type="text" placeholder="Sampai Tanggal" onfocus="(this.type='date')" name="to" class="form-control" id="">
                                 </div>
-                                <button type="submit" class="btn btn-outline-teal text-teal btn-sm ht-40">
-                                    <span class="pd-x-5">Filter</span>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="">Filter</span>
                                 </button>
                                 
                             </form>
@@ -192,7 +174,7 @@
                                     </td>
                                     <td>
                                         @if ($row->is_approve == 1)
-                                        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
+                                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
                                             <div><i class="fa fa-check }} "></i></div>
                                         </a>
                                         @endif
@@ -214,19 +196,19 @@
 <!-- MODAL ALERT MESSAGE DELETE -->
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <i
-                    class="fa fa-question-circle tx-100  {{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="{{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} tx-semibold mg-b-20">Yakin Menyetujui Permohonan Izin ?
+                    class="fa fa-question-circle text-100  {{$row->is_active == 1 ? 'text-danger' : 'text-success'}} lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="{{$row->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold mg-b-20">Yakin Menyetujui Permohonan Izin ?
                 </h4>
                 <p class="mg-b-20 mg-x-20"><b>Alasan Izin : </b>  " {{$row->alasan ?? '-'}} "</p>
-                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 3])}}" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Tolak</a>
-                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 2])}}" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Setujui</a>
+                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 3])}}" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Tolak</a>
+                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 2])}}" class="btn btn-success text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Setujui</a>
             </div><!-- modal-body -->
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->

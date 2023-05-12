@@ -1,21 +1,23 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
-
+@section('content')
+<div class="section">
+    <div class="section-header">
+        <h1>Data Admin</h1>
+    </div>
     <div class="row">
         <div class="col">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
-                    <div class="card-header">
-                        <h6 class="card-title"></h6>
-                        <div>
+                    <div class="card-body d-md-flex justify-content-lg-between">
+                        <h6 class="card-title">List Data</h6>
+                        <div class="float-right">
                             <a href="{{$route_create}}"
-                                class="btn btn-teal btn-sm btn-with-icon">
+                                class="btn btn-primary btn-sm">
                                 <div class="ht-40">
                                     <span class="icon wd-40"><i class="fa fa-plus"></i></span>
-                                    <span class="pd-x-15">Tambah User Admin</span>
+                                    <span class="pd-x-15">Tambah Admin</span>
                                 </div>
                             </a>
                         </div>
@@ -43,9 +45,9 @@
                                         <td>{{$i++}}.</td>
                                         <td> 
                                             @if ($row->photo_profile) 
-                                            <img width="50" src="{{ asset('uploads/images/admin/'. $row->photo_profile) }}"> 
+                                            <img width="35" src="{{ asset('uploads/images/admin/'. $row->photo_profile) }}"> 
                                             @else
-                                            <img width="50" src="{{ asset('images/default-ava.jpg') }}"> 
+                                            <img width="35" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
                                             @endif 
                                         </td>
                                         <td>{{$row->full_name}}</td>
@@ -81,24 +83,24 @@
 <!-- MODAL ALERT MESSAGE DELETE -->
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="Close">
                     {{-- <span aria-hidden="true">&times;</span> --}}
                 </button>
-                <i class="fa fa-question-circle tx-100  {{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="{{$row->is_active == 1 ? 'tx-danger' : 'tx-success'}} tx-semibold mg-b-20">Yakin ingin {{$row->is_active == 1 ? 'me-nonaktifkan' : 'meng-aktifkan'}} User ?
+                <i class="fa fa-question-circle  {{$row->is_active == 1 ? 'text-danger' : 'text-success'}} d-inline-block mb-4" style="font-size: 35px;"></i>
+                <h4 class="{{$row->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold ">Yakin ingin {{$row->is_active == 1 ? 'me-nonaktifkan' : 'meng-aktifkan'}} User ?
                 </h4>
-                <p class="mg-b-20 mg-x-20">User <b> "{{$row->full_name}}" </b> akan  {{$row->is_active == 1 ? 'non-aktif' : 'aktif'}}.</p>
+                <p class="">User <b> "{{$row->full_name}}" </b> akan  {{$row->is_active == 1 ? 'non-aktif' : 'aktif'}}.</p>
                 <form action="{{$route_delete}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$row->id}}">
                     <input type="hidden" name="is_active" value="{{$row->is_active == 1 ? 0 : 1}}">
-                    <button type="button" class="btn btn-light tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">Batal</button>
-                    <button type="submit" class="btn {{$row->is_active == 1 ? 'btn-danger' : 'btn-success'}} tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">Ya, {{$row->is_active == 1 ? 'Non-Aktifkan' : 'Aktifkan'}}</button>
+                    <button type="button" class="btn btn-light text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium " data-dismiss="modal" aria-label="Close">Batal</button>
+                    <button type="submit" class="btn {{$row->is_active == 1 ? 'btn-danger' : 'btn-success'}} text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium ">Ya, {{$row->is_active == 1 ? 'Non-Aktifkan' : 'Aktifkan'}}</button>
                 </form>
             </div><!-- modal-body -->
         </div><!-- modal-content -->

@@ -56,7 +56,7 @@
                             <div class="text-center alert alert-success bd bd-success-400" role="alert">
                                 </button>
                                 <div class="d-flex align-items-center justify-content-start">
-                                <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                                <i class="icon ion-ios-checkmark alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                                 <span><strong>Well done!</strong> {{ $message }}</span>
                                 </div><!-- d-flex -->
                             </div><!-- alert -->
@@ -64,7 +64,7 @@
                             <div class="text-center alert alert-danger bd bd-danger-400" role="alert">
                                 </button>
                                 <div class="d-flex align-items-center justify-content-start">
-                                <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                                <i class="icon ion-ios-checkmark alert-icon text-32 mg-t-5 mg-xs-t-0"></i>
                                 <span><strong>Sorry,</strong> {{ $message }}</span>
                                 </div><!-- d-flex -->
                             </div><!-- alert -->

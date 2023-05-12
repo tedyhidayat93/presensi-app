@@ -4,8 +4,8 @@
     <div class="card-body">
         <input class="form-control" type="hidden" name="id" value="{{$edit->id}}">
         <div class="form-group">
-            <label class="form-control-label">Jenis <span class="tx-danger">*</span></label>
-            <input class="form-control" type="text" name="type" placeholder="Masukkan Jenis"
+            <label class="form-control-label">Jenis Lembur <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" name="type" placeholder="Masukkan Jenis Lembur"
                 value="{{old('type') ?? $edit->type}}" autocomplete="off">
             @if($errors->has('type'))
             <div class="text-danger mg-t-10 d-flex justify-content-between align-items-center" onclick="$(this).remove()">

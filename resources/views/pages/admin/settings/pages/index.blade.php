@@ -17,8 +17,8 @@
 ])
 
 
-@section('dynamic-content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-200">
+@section('content')
+<div class="section">
     <div class="pd-10 bd rounded bg-light">
         <ul class="nav nav-pills flex-column flex-md-row" role="tablist">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#general" role="tab">General

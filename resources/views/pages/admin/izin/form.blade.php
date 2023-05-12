@@ -1,7 +1,7 @@
-@extends('layouts.admin.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 
-@section('dynamic-content')
+@section('content')
 <div class="br-pagebody mg-t-5 pd-x-20 pd-b-100">
 
     <div class="row">
@@ -185,10 +185,10 @@
                             </div><!-- col-4 -->
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
-                                  <label class="form-control-label">Foto Karyawan (Maksimal: 5MB, Extensi: jpg-jpeg-gif-png.)</label>
+                                  <label class="form-control-label">Foto Karyawan (Maksimal: 5MB, Extensi: jpg-jpeg-png.)</label>
                                   <div class="input-group" id="elementfile">
                                     <input type="file" class="form-control" name="foto" accept="image/*">
-                                    <div class="input-group-addon bg-info text-light" id="btn-removefile">
+                                    <div class="input-group-append bg-info text-light" id="btn-removefile">
                                       <i class="fa fa-upload"></i>
                                     </div>
                                   </div>

@@ -1,6 +1,6 @@
 @extends('layouts.public.app', $head)
 
-@section('dynamic-content')
+@section('content')
 <div class="br-pagebody mg-t-5 pd-x-20  pd-b-200">
     
     <div class="card shadow-base bd-0">
@@ -19,7 +19,7 @@
 
                                 
                                 <div class="form-group">
-                                    <label class="tx-white" for="">Jenis Izin</label>
+                                    <label class="text-white" for="">Jenis Izin</label>
                                     <select class="form-control" name="type">
                                             @if ($jenis_izin)
                                             @foreach ($jenis_izin as $j)
@@ -31,12 +31,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="tx-white" for="">Dokumen</label>
+                                    <label class="text-white" for="">Dokumen</label>
                                     <input type="file" class="form-control" name="dokumen" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="tx-white">Alasan</label>
+                                    <label class="text-white">Alasan</label>
                                     <textarea class="form-control" placeholder="Isi alasan ..."
                                     name="alasan"
                                     id="note_absen"
@@ -59,7 +59,7 @@
                     <div class="card card-body rounded-0 bd-lg-l-0 border-0 overflow-auto">
 
 
-                            <div class="d-block d-md-flex justify-content-between tx-12">
+                            <div class="d-block d-md-flex justify-content-between text-12">
 
                                 <table class="table table-valign-middle mg-b-0 nowrap">
                                     <tbody>
@@ -75,30 +75,30 @@
                                                 </div>
                                             </td>
                                             <td colspan="2">
-                                                <h4 class="tx-teal tx-20 mg-b-0">{{auth()->user()->full_name}}</h4>
-                                                <span class="tx-12"><b>Jabatan : </b> {{auth()->user()->jabatan->type ?? '-'}}</span>
+                                                <h4 class="text-info text-20 mg-b-0">{{auth()->user()->full_name}}</h4>
+                                                <span class="text-12"><b>Jabatan : </b> {{auth()->user()->jabatan->type ?? '-'}}</span>
                                             </td>
                                             <td>
-                                                <span class="tx-12">Terdaftar Sejak</span>
-                                                <h4 class="tx-inverse tx-14 mg-b-0">{{ date('d-M-Y', strtotime(auth()->user()->registered_at))}}</h4>
+                                                <span class="text-12">Terdaftar Sejak</span>
+                                                <h4 class="text-inverse text-14 mg-b-0">{{ date('d-M-Y', strtotime(auth()->user()->registered_at))}}</h4>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <span class="tx-12">Shift</span>
-                                                <h4 class="tx-inverse tx-14 mg-b-0">{{auth()->user()->shifft->shift_name}}</h4>
+                                                <span class="text-12">Shift</span>
+                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->shifft->shift_name}}</h4>
                                             </td>
                                             <td>
-                                                <span class="tx-12">Email</span>
-                                                <h4 class="tx-inverse tx-14 mg-b-0">{{auth()->user()->email}}</h4>
+                                                <span class="text-12">Email</span>
+                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->email}}</h4>
                                             </td>
                                             <td>
-                                                <span class="tx-12">NIP</span>
-                                                <h4 class="tx-inverse tx-14 mg-b-0">{{auth()->user()->nip}}</h4>
+                                                <span class="text-12">NIP</span>
+                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->nip}}</h4>
                                             </td>
                                             <td>
-                                                <span class="tx-12">NIK</span>
-                                                <h4 class="tx-inverse tx-14 mg-b-0">{{auth()->user()->nik}}</h4>
+                                                <span class="text-12">NIK</span>
+                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->nik}}</h4>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -109,12 +109,12 @@
                             <table id="datatable1" class="table display nowrap">
                                 <thead class="thead-teal">
                                     <tr>
-                                        <th class="wd-5p"><span class="tx-white font-weight-bold">#</span></th>
-                                        <th class=""><span class="tx-white font-weight-bold">Tanggal </span></th>
-                                        <th class=""><span class="tx-white font-weight-bold">Jenis Izin </span></th>
-                                        <th class=""><span class="tx-white font-weight-bold">Alasan </span></th>
-                                        <th class=""><span class="tx-white font-weight-bold">Dokumen </span></th>
-                                        <th class=""><span class="tx-white font-weight-bold">Status </span></th>
+                                        <th class="wd-5p"><span class="text-white font-weight-bold">#</span></th>
+                                        <th class=""><span class="text-white font-weight-bold">Tanggal </span></th>
+                                        <th class=""><span class="text-white font-weight-bold">Jenis Izin </span></th>
+                                        <th class=""><span class="text-white font-weight-bold">Alasan </span></th>
+                                        <th class=""><span class="text-white font-weight-bold">Dokumen </span></th>
+                                        <th class=""><span class="text-white font-weight-bold">Status </span></th>
                                     </tr>
                                 </thead>
                                 <tbody>

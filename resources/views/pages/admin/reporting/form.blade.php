@@ -1,4 +1,4 @@
-<div class="card-body" style="background-color: #fafafa;">
+<div class="card-body" >
     <form action="" method="GET" id="filter_form">
         <div class="row">
             
@@ -14,7 +14,7 @@
             </div>
             <div class="col-12 col-md">
                 <div class="form-group mb-0 mr-1">
-                    <label class="form-control-label">Jenis Presensi <span class="tx-danger">*</span></label>
+                    <label class="form-control-label">Jenis Presensi <span class="text-danger">*</span></label>
                     <select name="jenis_presensi" class="form-control" >
                         <option {{ request()->query('jenis_presensi') == '' ? 'selected' : ''}} value="">-- Pilih Jenis Presensi --</option>
                         <option {{ request()->query('jenis_presensi') == 'absen_biasa' ? 'selected' : ''}} value="absen_biasa">Presensi Harian</option>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-12 col-md">
                 <div class="form-group">
-                    <label class="form-control-label">Dari Tanggal <span class="tx-danger">*</span></label>
+                    <label class="form-control-label">Dari Tanggal <span class="text-danger">*</span></label>
                     <input class="form-control" type="date" name="from" value="{{old('from') ?? request()->query('from')}}" autocomplete="off">
                     @if($errors->has('type'))
                     <div class="text-danger mg-t-10 d-flex justify-content-between align-items-center" onclick="$(this).remove()">
@@ -37,7 +37,7 @@
             </div>
             <div class="col-12 col-md">
                 <div class="form-group">
-                    <label class="form-control-label">Sampai Tanggal <span class="tx-danger">*</span></label>
+                    <label class="form-control-label">Sampai Tanggal <span class="text-danger">*</span></label>
                     <input class="form-control" type="date" name="to"
                     value="{{old('to') ?? request()->query('to')}}" autocomplete="off">
                     @if($errors->has('type'))
@@ -51,7 +51,7 @@
             <div class="col-12 col-md">
                 <label class="form-control-label">&nbsp;</label>
                 <br>
-                <button class="btn btn-teal btn-block" type="submit"><i class="fa fa-eye"></i> Tampilkan Laporan</button>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-eye"></i> Tampilkan Laporan</button>
             </div>
         </div>
     </form>
