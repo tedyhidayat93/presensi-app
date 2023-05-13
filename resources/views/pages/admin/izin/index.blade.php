@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Permohonan Izin Pegawai</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
 
 
@@ -173,12 +173,18 @@
                                         @endif
                                     </td>
                                     <td>
+
+                                        @canany(['admin-izin-validation'])
                                         @if ($row->is_approve == 1)
                                         <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
                                             <div><i class="fa fa-check }} "></i></div>
                                         </a>
                                         @endif
+                                        @endcanany
+
+                                        @canany(['admin-waktu-kerja-show','admin-waktu-kerja-edit'])
                                         <a href="{{route('adm.izin.detail', $row->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                        @endcanany
                                     </td>
                                 </tr>
                                 @endforeach

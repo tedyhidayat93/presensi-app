@@ -4,16 +4,22 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Pengaturan</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
       </div>
 
     <div class="pd-10 bd rounded bg-light">
         <ul class="nav nav-pills flex-column flex-md-row" role="tablist">
+
+            @can('admin-pengaturan-umum')
             <li class="nav-item"><a
                     class="nav-link {{session()->get('tab_active') == 'general' || empty(session()->get('tab_active')) ? 'active' : ''}}"
                     data-toggle="tab" href="#general" role="tab">UMUM</a></li>
+            @endcan
+
+            @can('admin-pengaturan-absensi')
             <li class="nav-item"><a class="nav-link {{session()->get('tab_active') == 'zonasi' ? 'active' : ''}}"
-                    data-toggle="tab" href="#zonasi" role="tab">ABSENSI</a></li>
+                    data-toggle="tab" href="#zonasi" role="tab">PRESENSI</a></li>
+            @endcan
         </ul>
     </div>
 
@@ -82,8 +88,10 @@
                                                 jpg-jpeg-gif-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="favico" accept="image/*">
-                                                <div class="input-group-append bg-info text-light">
-                                                    <i class="fa fa-upload"></i>
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text bg-info text-light">  
+                                                        <i class="fa fa-upload"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,11 +104,13 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Logo (Max Size: 5MB, Allowed Type:
-                                                jpg-jpeg-gif-png)</label>
+                                                jpg-jpeg-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="logo" accept="image/*">
-                                                <div class="input-group-append bg-info text-light">
-                                                    <i class="fa fa-upload"></i>
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text bg-info text-light">  
+                                                        <i class="fa fa-upload"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +121,10 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                @can('admin-pengaturan-update')
                                 <button type="submit" class="btn btn-info float-right">{{$button_value}}</button>
+                                @endcan
                             </form>
                         </div>
                         <div class="tab-pane fade show {{session()->get('tab_active') == 'zonasi' ? 'active' : ''}}"
@@ -191,8 +204,10 @@
                                         <label class="form-control-label"> Menit waktu auto check-out presensi harian</label>
                                         <div class="input-group">
                                             <input type="number" name="time_auto_checkout" class="form-control" value="{{old('time_auto_checkout') ?? $edit->time_minute_auto_checkout_attendance_daily}}" >
-                                            <div class="input-group-append bg-info text-light" >
-                                              Menit
+                                            <div class="input-group-append">
+                                                <div class="input-group-text bg-info text-light">  
+                                                    MENIT
+                                                </div>
                                             </div>
                                           </div>
                                     </div>
@@ -232,7 +247,9 @@
                                     </div><!-- col-4 -->
 
                                 </div> --}}
+                                @can('admin-pengaturan-update')
                                 <button type="submit" class="btn btn-info float-right">{{$button_value}}</button>
+                                @endcan
                             </form>
                         </div>
                     </div>

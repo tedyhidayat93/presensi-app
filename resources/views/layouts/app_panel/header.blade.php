@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{$head['title'] ?? ''}} - {{ config('app.name', 'Laravel') }}</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- General CSS Files -->
@@ -31,6 +31,41 @@
 
     @stack('styles')
 
+    <style>
+      .splash-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .splash-screen h1 {
+        font-size: 36px;
+        color: #333;
+      }
+
+      @keyframes bounce {
+      0% {
+          transform: translateY(0);
+      }
+      50% {
+          transform: translateY(-30px);
+      }
+      100% {
+          transform: translateY(0);
+      }
+      }
+
+      .bouncing-element {
+      animation: bounce 1s infinite;
+      }
+    </style>
+
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -44,5 +79,29 @@
 
 <body>
 
+  <div class="splash-screen bg-light">
+      @if ($site->logo != null)
+      <div class="text-center mg-b-35">
+          <img class="bouncing-element " src="{{asset('uploads/images/site') . '/' . $site->logo}}" width="100">
+      </div>
+      &nbsp;
+      &nbsp;
+      @else
+      <i class="fas fa-user-tie bouncing-element text-primary" style="font-size:50px;"></i>
+      &nbsp;
+      &nbsp;
+      @endif
+      <div class="text-left">
+          <div class="signin-logo">
+              <h4 class="text-primary font-weight-bolder"> {{$site->site_name}} </h4>
+          </div>
+          <div class="text-primary"> 
+              <i> {{'Aplikasi Presensi Pegawai'}} </i>
+          </div>
+      </div>
+  </div>
+
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
+
+

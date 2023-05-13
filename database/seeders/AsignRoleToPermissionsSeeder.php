@@ -179,6 +179,7 @@ class AsignRoleToPermissionsSeeder extends Seeder
             'admin-karyawan-list',
             'admin-karyawan-show',
             'admin-karyawan-edit',
+            'admin-karyawan-update',
             'admin-karyawan-is-active',
 
             'admin-laporan-sidebar-menu',

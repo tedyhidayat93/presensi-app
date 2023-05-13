@@ -3,7 +3,6 @@
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\Admin\AbsensiController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\IzinController;
 use App\Http\Controllers\Admin\LemburController;
@@ -13,7 +12,8 @@ use App\Http\Controllers\Admin\ReportingController;
 use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\IzinController as ControllersIzinController;
+use App\Http\Controllers\DashboardController as UserDashboardController;
+use App\Http\Controllers\IzinController as UserIzinController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return redirect('/login');});
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
@@ -176,7 +176,7 @@ Route::group(['prefix' => 'employee', 'middleware' => ['role:user','auth']], fun
 
     // IZIN
     Route::group(['prefix' => 'izin'], function () {
-        Route::get('', [ControllersIzinController::class, 'index'])->name('user.izin');
-        Route::post('/send', [ControllersIzinController::class, 'send'])->name('user.izin.send');
+        Route::get('', [UserIzinController::class, 'index'])->name('user.izin');
+        Route::post('/send', [UserIzinController::class, 'send'])->name('user.izin.send');
     });
 });

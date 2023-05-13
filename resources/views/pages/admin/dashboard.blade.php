@@ -3,584 +3,216 @@
 
 @section('content')
 <section class="section">
-  <div class="section-header">
-    <h1>Dashboard</h1>
+  <div class="section-header d-md-flex justify-content-between align-items-center">
+    <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
+    <span class="float-right">{{$head['sub_title_per_page'] ?? 'Sub Title'}}</span>
   </div>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="card card-statistic-1">
-        <div class="card-icon bg-primary">
-          <i class="far fa-user"></i>
-        </div>
-        <div class="card-wrap">
-          <div class="card-header">
-            <h4>Total Admin</h4>
-          </div>
-          <div class="card-body">
-            10
-          </div>
-        </div>
+
+
+<div class="row">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-primary">
+        <i class="fas fa-user-tie"></i>
       </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="card card-statistic-1">
-        <div class="card-icon bg-danger">
-          <i class="far fa-newspaper"></i>
-        </div>
-        <div class="card-wrap">
-          <div class="card-header">
-            <h4>News</h4>
-          </div>
-          <div class="card-body">
-            42
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="card card-statistic-1">
-        <div class="card-icon bg-warning">
-          <i class="far fa-file"></i>
-        </div>
-        <div class="card-wrap">
-          <div class="card-header">
-            <h4>Reports</h4>
-          </div>
-          <div class="card-body">
-            1,201
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="card card-statistic-1">
-        <div class="card-icon bg-success">
-          <i class="fas fa-circle"></i>
-        </div>
-        <div class="card-wrap">
-          <div class="card-header">
-            <h4>Online Users</h4>
-          </div>
-          <div class="card-body">
-            47
-          </div>
-        </div>
-      </div>
-    </div>                  
-  </div>
-  <div class="row">
-    <div class="col-lg-8 col-md-12 col-12 col-sm-12">
-      <div class="card">
+      <div class="card-wrap">
         <div class="card-header">
-          <h4>Statistics</h4>
-          <div class="card-header-action">
-            <div class="btn-group">
-              <a href="#" class="btn btn-primary">Week</a>
-              <a href="#" class="btn">Month</a>
-            </div>
-          </div>
+          <h4>Total Pegawai</h4>
         </div>
         <div class="card-body">
-          <canvas id="myChart" height="182"></canvas>
-          <div class="statistic-details mt-sm-4">
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 7%</span>
-              <div class="detail-value">$243</div>
-              <div class="detail-name">Today's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 23%</span>
-              <div class="detail-value">$2,902</div>
-              <div class="detail-name">This Week's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>9%</span>
-              <div class="detail-value">$12,821</div>
-              <div class="detail-name">This Month's Sales</div>
-            </div>
-            <div class="statistic-details-item">
-              <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 19%</span>
-              <div class="detail-value">$92,142</div>
-              <div class="detail-name">This Year's Sales</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-12 col-12 col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Recent Activities</h4>
-        </div>
-        <div class="card-body">             
-          <ul class="list-unstyled list-unstyled-border">
-            <li class="media">
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-1.png" alt="avatar">
-              <div class="media-body">
-                <div class="float-right text-primary">Now</div>
-                <div class="media-title">Farhan A Mujib</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-2.png" alt="avatar">
-              <div class="media-body">
-                <div class="float-right">12m</div>
-                <div class="media-title">Ujang Maman</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-3.png" alt="avatar">
-              <div class="media-body">
-                <div class="float-right">17m</div>
-                <div class="media-title">Rizal Fakhri</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-4.png" alt="avatar">
-              <div class="media-body">
-                <div class="float-right">21m</div>
-                <div class="media-title">Alfa Zulkarnain</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-          </ul>
-          <div class="text-center pt-1 pb-1">
-            <a href="#" class="btn btn-primary btn-lg btn-round">
-              View All
-            </a>
-          </div>
+          {{$total_employee}}
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-      <div class="card">
-        <div class="card-body pt-2 pb-2">
-          <div id="myWeather">Please wait</div>
-        </div>
+  <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-info">
+        <i class="fas fa-users"></i>
       </div>
-    </div>
-    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-      <div class="card">
+      <div class="card-wrap">
         <div class="card-header">
-          <h4>Authors</h4>
+          <h4>Total Admin</h4>
         </div>
         <div class="card-body">
-          <div class="row pb-2">
-            <div class="col-6 col-sm-3 col-lg-3 mb-4 mb-md-0">
-              <div class="avatar-item mb-0">
-                <img alt="image" src="assets/img/avatar/avatar-5.png" class="img-fluid" data-toggle="tooltip" title="Alfa Zulkarnain">
-                <div class="avatar-badge" title="Editor" data-toggle="tooltip"><i class="fas fa-wrench"></i></div>
-              </div>
-            </div>
-            <div class="col-6 col-sm-3 col-lg-3 mb-4 mb-md-0">
-              <div class="avatar-item mb-0">
-                <img alt="image" src="assets/img/avatar/avatar-4.png" class="img-fluid" data-toggle="tooltip" title="Egi Ferdian">
-                <div class="avatar-badge" title="Admin" data-toggle="tooltip"><i class="fas fa-cog"></i></div>
-              </div>
-            </div>
-            <div class="col-6 col-sm-3 col-lg-3 mb-4 mb-md-0">
-              <div class="avatar-item mb-0">
-                <img alt="image" src="assets/img/avatar/avatar-1.png" class="img-fluid" data-toggle="tooltip" title="Jaka Ramadhan">
-                <div class="avatar-badge" title="Author" data-toggle="tooltip"><i class="fas fa-pencil-alt"></i></div>
-              </div>
-            </div>
-            <div class="col-6 col-sm-3 col-lg-3 mb-4 mb-md-0">
-              <div class="avatar-item mb-0">
-                <img alt="image" src="assets/img/avatar/avatar-2.png" class="img-fluid" data-toggle="tooltip" title="Ryan">
-                <div class="avatar-badge" title="Admin" data-toggle="tooltip"><i class="fas fa-cog"></i></div>
-              </div>
-            </div>
-          </div>
+          {{$total_admin}}
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-12">
-      <div class="card">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-warning">
+        <i class="fas fa-globe"></i>
+      </div>
+      <div class="card-wrap">
         <div class="card-header">
-          <h4>Referral URL</h4>
+          <h4>Zona Waktu</h4>
         </div>
         <div class="card-body">
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-            <div class="font-weight-bold mb-1">Google</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>                          
-          </div>
-
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">1,880</div>
-            <div class="font-weight-bold mb-1">Facebook</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">1,521</div>
-            <div class="font-weight-bold mb-1">Bing</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">884</div>
-            <div class="font-weight-bold mb-1">Yahoo</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">473</div>
-            <div class="font-weight-bold mb-1">Kodinger</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="28%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-small float-right font-weight-bold text-muted">418</div>
-            <div class="font-weight-bold mb-1">Multinity</div>
-            <div class="progress" data-height="3">
-              <div class="progress-bar" role="progressbar" data-width="20%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h4>Popular Browser</h4>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col text-center">
-              <div class="browser browser-chrome"></div>
-              <div class="mt-2 font-weight-bold">Chrome</div>
-              <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 48%</div>
-            </div>
-            <div class="col text-center">
-              <div class="browser browser-firefox"></div>
-              <div class="mt-2 font-weight-bold">Firefox</div>
-              <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 26%</div>
-            </div>
-            <div class="col text-center">
-              <div class="browser browser-safari"></div>
-              <div class="mt-2 font-weight-bold">Safari</div>
-              <div class="text-muted text-small"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 14%</div>
-            </div>
-            <div class="col text-center">
-              <div class="browser browser-opera"></div>
-              <div class="mt-2 font-weight-bold">Opera</div>
-              <div class="text-muted text-small">7%</div>
-            </div>
-            <div class="col text-center">
-              <div class="browser browser-internet-explorer"></div>
-              <div class="mt-2 font-weight-bold">IE</div>
-              <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 5%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mt-sm-5 mt-md-0">
-        <div class="card-header">
-          <h4>Visitors</h4>
-        </div>
-        <div class="card-body">
-          <div id="visitorMap"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>This Week Stats</h4>
-          <div class="card-header-action">
-            <div class="dropdown">
-              <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown">Filter</a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> Electronic</a>
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> T-shirt</a>
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> Hat</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">View All</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="summary">
-            <div class="summary-info">
-              <h4>$1,053</h4>
-              <div class="text-muted">Sold 3 items on 2 customers</div>
-              <div class="d-block mt-2">                              
-                <a href="#">View All</a>
-              </div>
-            </div>
-            <div class="summary-item">
-              <h6>Item List <span class="text-muted">(3 Items)</span></h6>
-              <ul class="list-unstyled list-unstyled-border">
-                <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="assets/img/products/product-1-50.png" alt="product">
-                  </a>
-                  <div class="media-body">
-                    <div class="media-right">$405</div>
-                    <div class="media-title"><a href="#">PlayStation 9</a></div>
-                    <div class="text-muted text-small">by <a href="#">Hasan Basri</a> <div class="bullet"></div> Sunday</div>
-                  </div>
-                </li>
-                <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="assets/img/products/product-2-50.png" alt="product">
-                  </a>
-                  <div class="media-body">
-                    <div class="media-right">$499</div>
-                    <div class="media-title"><a href="#">RocketZ</a></div>
-                    <div class="text-muted text-small">by <a href="#">Hasan Basri</a> <div class="bullet"></div> Sunday
-                    </div>
-                  </div>
-                </li>
-                <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="assets/img/products/product-3-50.png" alt="product">
-                  </a>
-                  <div class="media-body">
-                    <div class="media-right">$149</div>
-                    <div class="media-title"><a href="#">Xiaomay Readme 4.0</a></div>
-                    <div class="text-muted text-small">by <a href="#">Kusnaedi</a> <div class="bullet"></div> Tuesday
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h4 class="d-inline">Tasks</h4>
-          <div class="card-header-action">
-            <a href="#" class="btn btn-primary">View All</a>
-          </div>
-        </div>
-        <div class="card-body">             
-          <ul class="list-unstyled list-unstyled-border">
-            <li class="media">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="cbx-1">
-                <label class="custom-control-label" for="cbx-1"></label>
-              </div>
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-4.png" alt="avatar">
-              <div class="media-body">
-                <div class="badge badge-pill badge-danger mb-1 float-right">Not Finished</div>
-                <h6 class="media-title"><a href="#">Redesign header</a></h6>
-                <div class="text-small text-muted">Alfa Zulkarnain <div class="bullet"></div> <span class="text-primary">Now</span></div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="cbx-2" checked="">
-                <label class="custom-control-label" for="cbx-2"></label>
-              </div>
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-5.png" alt="avatar">
-              <div class="media-body">
-                <div class="badge badge-pill badge-primary mb-1 float-right">Completed</div>
-                <h6 class="media-title"><a href="#">Add a new component</a></h6>
-                <div class="text-small text-muted">Serj Tankian <div class="bullet"></div> 4 Min</div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="cbx-3" >
-                <label class="custom-control-label" for="cbx-3"></label>
-              </div>
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-2.png" alt="avatar">
-              <div class="media-body">
-                <div class="badge badge-pill badge-warning mb-1 float-right">Progress</div>
-                <h6 class="media-title"><a href="#">Fix modal window</a></h6>
-                <div class="text-small text-muted">Ujang Maman <div class="bullet"></div> 8 Min</div>
-              </div>
-            </li>
-            <li class="media">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="cbx-4">
-                <label class="custom-control-label" for="cbx-4"></label>
-              </div>
-              <img class="mr-3 rounded-circle" width="50" src="assets/img/avatar/avatar-1.png" alt="avatar">
-              <div class="media-body">
-                <div class="badge badge-pill badge-danger mb-1 float-right">Not Finished</div>
-                <h6 class="media-title"><a href="#">Remove unwanted classes</a></h6>
-                <div class="text-small text-muted">Farhan A Mujib <div class="bullet"></div> 21 Min</div>
-              </div>
-            </li>
-          </ul>
+          <h6 class="m-0 mt-1">
+            {{$site->timezone}}
+          </h6>
+          <small class="text-secondary mt-0" style="font-size:10px;">{{$date_now}}</small>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-5 col-md-12 col-12 col-sm-12">
-      <form method="post" class="needs-validation" novalidate="">
+</div>
+
+
+<div class="row">
+
+    <div class="col-12 col-md-6">
+
         <div class="card">
-          <div class="card-header">
-            <h4>Quick Draft</h4>
-          </div>
-          <div class="card-body pb-0">
-            <div class="form-group">
-              <label>Title</label>
-              <input type="text" name="title" class="form-control" required>
-              <div class="invalid-feedback">
-                Please fill in the title
-              </div>
+          <div class="card-header d-md-flex justify-content-between align-items-center pb-0">
+            <div>
+                <h6 class="card-title mb-0">Pegawai yang Izin Per Hari
+                    Ini <b class="text-info">({{count($izin_waiting)}})</b></h6>
             </div>
-            <div class="form-group">
-              <label>Content</label>
-              <textarea class="summernote-simple"></textarea>
+            <a href="{{route('adm.izin')}}" class="text-info"> Selengkapnya</a>
+          </div>
+          <div class="card-body">
+            <div style="min-height: 280px; max-height: 280px; overflow-y: auto;">
+                <table class="table table-valign-middle mg-b-0">
+                    <tbody>
+                        @forelse ($izin_waiting as $row)
+                        <tr>
+                            <td class="">
+                                @if ($row->user->photo_profile)
+                                <div class="d-flex align-items-center justify-content-center"
+                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
+                                    <img width="50" height="50" class="img-fluid"
+                                        src="{{ asset('uploads/images/employee/'. $row->user->photo_profile) }}">
+                                </div>
+                                @else
+                                <div class="d-flex align-items-center justify-content-center"
+                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
+                                    <img width="50" height="50" class="img-fuild"
+                                        src="{{ asset('images/default-ava.jpg') }}">
+                                </div>
+                                @endif
+                            </td>
+                            <td>
+                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->user->full_name}}</h6>
+                                <span class="tx-12">{{$row->type == 'staff' ? 'STAFF' : 'NON STAFF'}}</span>
+                            </td>
+                            <td>
+                                <span class="tx-12">Tanggal</span>
+                                <h6 class="tx-inverse tx-14 mg-b-0">
+                                    {{$row->created_at != null ? date('d-M-Y H:i', strtotime($row->created_at)) : '-'}}
+                                </h6>
+                            </td>
+                            <td>
+                                <span class="tx-12">Jenis</span>
+                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->jenis->type ?? '-'}}</h6>
+                            </td>
+                            <td class="pd-r-0-force tx-center"><a href="{{route('adm.izin.detail', $row->id)}}"
+                                    class="tx-gray-600"><i class="fa fa-eye text-info tx-18 lh-0"></i></a></td>
+                        </tr>
+                        @empty
+                        <tr class="bg-light">
+                            <td><h6 class="text-center">Belum ada data</h6></td>
+                        </tr>
+                        @endforelse
+                        
+
+                    </tbody>
+                </table>
             </div>
           </div>
-          <div class="card-footer pt-0">
-            <button class="btn btn-primary">Save Draft</button>
+        </div><!-- card -->
+    </div><!-- col-3 -->
+
+    <div class="col-12 col-md-6">
+
+        <div class="card">
+          <div class="card-header d-md-flex justify-content-between align-items-center pb-0">
+            <h6 class="card-title mb-0">Pegawai Telat Per
+                Hari Ini <b class="text-info">({{count($absen_telat_today)}})</b> </h6>
+                <a href="{{route('adm.absen')}}" class="text-info"> Selengkapnya</a>
           </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-lg-7 col-md-12 col-12 col-sm-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Latest Posts</h4>
-          <div class="card-header-action">
-            <a href="#" class="btn btn-primary">View All</a>
+          <div class="card-body">
+            <div style="min-height: 280px; max-height: 280px; overflow-y: auto;">
+                <table class="table table-valign-middle mg-b-0">
+                    <tbody>
+                        @forelse ($absen_telat_today as $row)
+                        <tr>
+                            <td class="">
+                                @if ($row->karyawan->photo_profile)
+                                <div class="d-flex align-items-center justify-content-center"
+                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
+                                    <img width="50" height="50" class="img-fluid"
+                                        src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
+                                </div>
+                                @else
+                                <div class="d-flex align-items-center justify-content-center"
+                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
+                                    <img width="50" height="50" class="img-fuild"
+                                        src="{{ asset('images/default-ava.jpg') }}">
+                                </div>
+                                @endif
+                            </td>
+                            <td>
+                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->karyawan->full_name}}</h6>
+                                <span class="tx-12">{{$row->type === 'staff' ? 'STAFF' : 'NON STAFF'}}</span>
+                            </td>
+                            <td>
+                                <span class="tx-12">Jam Masuk</span>
+                                <h6 class="tx-inverse tx-14 mg-b-0">
+                                    {{$row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}}</h6>
+                            </td>
+                            <td>
+                                <span class="tx-12">Terlambat</span>
+                                <h6 class="tx-inverse tx-14 mg-b-0">{{\Carbon\Carbon::createFromTimestampUTC($row->late)->format('H:i:s')}}</h6>
+                            </td>
+                            <td class="pd-r-0-force tx-center"><a href="{{route('adm.absen.detail', $row->id)}}"
+                                    class="tx-gray-600"><i class="fa fa-eye text-info tx-18 lh-0"></i></a></td>
+                        </tr>
+                        @empty
+                        <tr class="bg-light">
+                            <td><h6 class="text-center">Belum ada data</h6></td>
+                        </tr>
+                        @endforelse
+
+                    </tbody>
+                </table>
+            </div>
           </div>
-        </div>
-        <div class="card-body p-0">
-          <div class="table-responsive">
-            <table class="table table-striped mb-0">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>                         
-                <tr>
-                  <td>
-                    Introduction Laravel 5
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Laravel 5 Tutorial - Installation
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Laravel 5 Tutorial - MVC
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Laravel 5 Tutorial - Migration
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Laravel 5 Tutorial - Deploy
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Laravel 5 Tutorial - Closing
-                    <div class="table-links">
-                      in <a href="#">Web Development</a>
-                      <div class="bullet"></div>
-                      <a href="#">View</a>
-                    </div>
-                  </td>
-                  <td>
-                    <a href="#" class="font-weight-600"><img src="assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                  </td>
-                  <td>
-                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        </div><!-- card -->
+
+    </div><!-- col-3 -->
+</div><!-- row -->
+
+<div class="row">
+    <div class="col-12 col-md-6 col-xl-6">
+        <div class="card">
+          <div class="card-header d-md-flex justify-content-between align-items-center pb-0">
+            <h6 class="card-title mb-0">Grafik Permohonan Izin</h6>
+            <b class="text-info"> Per Tahun : {{date('Y')}} </b>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="card-body">
+            <div class="bd pd-t-30 pd-b-20 pd-x-20"><canvas id="chartBar2" height="150"></canvas></div>
+          </div>
+        </div><!-- card -->
+    </div><!-- col-6 -->
+
+    <div class="col-12 col-md-6 col-xl-6">
+        <div class="card">
+          <div class="card-header d-md-flex justify-content-between align-items-center pb-0">
+            <h6 class="card-title mb-0">Grafik Kedisiplinan Pegawai
+                (Datang Terlambat)</h6>
+              <b class="text-info">Per Tahun : {{date('Y')}} </b>
+          </div>
+          <div class="card-body">
+            <div class="bd pd-t-30 pd-b-20 pd-x-20"><canvas id="chartBar1" height="150"></canvas></div>
+          </div>
+        </div><!-- card -->
+
+    </div><!-- col-6 -->
+</div>
+  
 </section>
 @endsection
 
@@ -598,5 +230,159 @@ active
 @endpush
 
 @push('scripts')
+<script src="{{asset('template/backend')}}/lib/chart.js/Chart.js"></script>
+<script>
+    $(function () {
+        'use strict';
 
+        var ctx1 = document.getElementById('chartBar1').getContext('2d');
+        var myChart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: [{!!$grafik_disiplin['bulan'] !!}],
+                datasets: [{
+                    label: 'Total',
+                    data: [{!! $grafik_disiplin['progres'] !!}],
+                    backgroundColor: '#27AAC8'
+                }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                    labels: {
+                        display: false
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 10
+                            // max: 80
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 11
+                        }
+                    }]
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('chartBar2').getContext('2d');
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: [{!!$grafik_izin['bulan'] !!}],
+                datasets: [{
+                    label: 'Total',
+                    data: [{!! $grafik_izin['progres'] !!}],
+                    backgroundColor: '#fcba03'
+                }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                    labels: {
+                        display: false
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 10
+                            // max: 80
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 11
+                        }
+                    }]
+                }
+            }
+        });
+    });
+    
+
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script>
+    $(document).ready(function () {
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            // let lat = parseFloat(position.coords.latitude.toFixed(4)) ;
+            // let long = parseFloat(position.coords.longitude.toFixed(4));
+            // let lat = position.coords.latitude.toFixed(4);
+            // let long =position.coords.longitude.toFixed(2);
+
+            $('#latText').html({
+                {
+                    $zona - > lat_loc ? ? -6.331146,
+                }
+            });
+            $('#longText').html({
+                {
+                    $zona - > long_loc ? ? 107.002307
+                }
+            });
+
+            // -6.331146, 107.002307
+            var map = L.map('mapid').setView([{
+                {
+                    $zona - > lat_loc ? ? -6.331146,
+                }
+            }, {
+                {
+                    $zona - > long_loc ? ? 107.002307
+                }
+            }], 19);
+            var marker = L.marker([{
+                {
+                    $zona - > lat_loc ? ? -6.331146,
+                }
+            }, {
+                {
+                    $zona - > long_loc ? ? 107.002307
+                }
+            }]).addTo(map);
+
+            // Disable dragging when user's cursor enters the element
+            // map.getContainer().addEventListener('mouseover', function () {
+            //     map.dragging.disable();
+            // });        
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            L.circle([{
+                {
+                    $zona - > lat_loc ? ? -6.331146,
+                }
+            }, {
+                {
+                    $zona - > long_loc ? ? 107.002307
+                }
+            }], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: {
+                    {
+                        $zona - > radius ? ? 10
+                    }
+                }
+            }).addTo(map);
+        });
+
+    })
+
+</script>
 @endpush

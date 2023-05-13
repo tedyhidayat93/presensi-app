@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Log Presensi</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
 
     <div class="row">
@@ -124,7 +124,7 @@
                         @endif
                         
                         <table id="customDatatble" class="table display nowrap">
-                            <thead class="table-primary">
+                            <thead class="">
                                 <tr>
                                     <th class="wd-5p">#</th>
                                     <th class="">Karyawan</th>
@@ -198,12 +198,17 @@
                                         <td> <span class="{{$row->late != null ? 'text-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
                                         <td>{{ $total_kerja ?? '-'}}</td>
                                         <td>
+                                            @canany(['admin-log-presensi-show'])
                                             <a href="{{route('adm.absen.detail', $row->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Detail</a>
+                                            @endcanany
+
+                                            @canany(['admin-log-presensi-checkout'])
                                             @if ($row->clock_out == null)
                                             <a href="#" title="Untuk mencheckout karyawan yang lupa checkout presensinya." class="btn btn-warning text-dark btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-sign-out "></i> Checkout</div> 
                                             </a>
                                             @endif
+                                            @endcanany
                                         </td>
                                     </tr>
                                 @endif

@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Data Pegawai</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
     
     
@@ -118,6 +118,7 @@
                             </form>
                         </div>
                         <div>
+                            @canany(['admin-karyawan-create'])
                             <a href="#" data-toggle="modal" data-target="#modaldemoImport" class="btn btn-light btn-sm btn-with-icon mr-1">
                                 <div class="ht-40">
                                     <span class="icon wd-40"><i class="fa fa-upload"></i></span>
@@ -133,9 +134,10 @@
                             <a href="{{$route_create}}" class="btn btn-primary btn-sm">
                                 <div class="ht-40">
                                     <span class="icon wd-40"><i class="fa fa-plus"></i></span>
-                                    <span class="pd-x-15">Tambah Karyawan</span>
+                                    <span class="pd-x-15">Tambah Pegawai</span>
                                 </div>
                             </a>
+                            @endcanany
                         </div>
                     </div><!-- card-header -->
                     <div class="card-body pd-15 bd-color-gray-lighter table-responsive overflow-auto">
@@ -174,15 +176,15 @@
                                     <th class="">Nama Lengkap</th>
                                     <th class="">Jenis Kelamin</th>
                                     <th class="">NIP & NIK</th>
-                                    <th class="">Pendidikan</th>
+                                    {{-- <th class="">Pendidikan</th> --}}
                                     <th class="">Email</th>
                                     <th class="">Status</th>
-                                    <th class="">Tipe</th>
+                                    {{-- <th class="">Tipe</th>
                                     <th class="">Jabatan</th>
                                     <th class="">Shift</th>
-                                    <th class="">Tanggal Masuk</th>
+                                    <th class="">Tanggal Masuk</th> --}}
                                     <th class="">Masa Kerja</th>
-                                    <th class="">Tanggal Register</th>
+                                    {{-- <th class="">Tanggal Register</th> --}}
                                     {{-- <th class="">Shift</th> --}}
                                     <th class="">Status</th>
                                     <th class="wd-5p">Aksi</th>
@@ -197,10 +199,10 @@
                                     <td>{{$i++}}.</td>
                                     <td>
                                         @if ($row->photo_profile)
-                                        <img width="50"
+                                        <img width="35" class="rounded-circle"
                                             src="{{ asset('uploads/images/employee/'. $row->photo_profile) }}">
                                         @else
-                                        <img width="50" src="{{ asset('images/default-ava.jpg') }}"> 
+                                        <img width="35" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
                                         @endif
                                     </td>
                                     <td>{{$row->full_name ?? '-'}}</td>
@@ -220,13 +222,13 @@
                                          <br>
                                         NIP : <b>{{$row->nip ?? '-'}} </b>
                                     </td>
-                                    <td>{{$row->education->education ?? '-'}}</td>
+                                    {{-- <td>{{$row->education->education ?? '-'}}</td> --}}
                                     <td>{{$row->email ?? '-'}}</td>
                                     <td class="text-capitalize">{{$row->status}}</td>
-                                    <td>{{$row->type == 'staff' ? 'Staff' : 'Non Staff'}}</td>
-                                    <td>{{$row->jabatan->type ?? "-"}}</td>
-                                    <td>{{$row->shifft->shift_name ?? '-'}}</td>
-                                    <td>{{ date('d-M-Y', strtotime($row->tanggal_masuk ?? '0000-00-00'))}}</td>
+                                    {{-- <td>{{$row->type == 'staff' ? 'Staff' : 'Non Staff'}}</td> --}}
+                                    {{-- <td>{{$row->jabatan->type ?? "-"}}</td> --}}
+                                    {{-- <td>{{$row->shifft->shift_name ?? '-'}}</td> --}}
+                                    {{-- <td>{{ date('d-M-Y', strtotime($row->tanggal_masuk ?? '0000-00-00'))}}</td> --}}
                                     <td>
                                     @php
                                         $startDate = \Carbon\Carbon::parse($row->tanggal_masuk);
@@ -239,12 +241,13 @@
                                         echo $duration->format('%y tahun %m bulan')
                                     @endphp
                                     </td>
-                                    <td>{{ date('d-M-Y', strtotime($row->registered_at ?? '0000-00-00'))}}</td>
+                                    {{-- <td>{{ date('d-M-Y', strtotime($row->registered_at ?? '0000-00-00'))}}</td> --}}
                                     <td>{!!$row->is_active == 1 ? '<span
                                             class="badge badge-success">Aktif</span>':'<span
                                             class="badge badge-danger">Non Aktif</span>' !!}</td>
                                     <td>
 
+                                        @canany(['admin-karyawan-is-active'])
                                         <a href="#"
                                             class="btn btn-{{$row->is_active == 1 ? 'danger':'success' }} btn-icon wd-35 ht-35"
                                             data-toggle="modal" data-target="#modaldemo{{$row->id}}">
@@ -252,12 +255,14 @@
                                                     class="fa {{$row->is_active == 1 ? 'fa-toggle-on':'fa-toggle-off' }} "></i>
                                             </div>
                                         </a>
+                                        @endcanany
 
+                                        @canany(['admin-karyawan-edit'])
                                         <a href="{{route('adm.employee.edit', $row->id)}}"
                                             class="btn btn-info btn-icon wd-35 ht-35 ">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
-
+                                        @endcanany
                                     </td>
                                 </tr>
                                 @endforeach

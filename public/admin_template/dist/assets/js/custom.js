@@ -76,19 +76,10 @@ $('#select2-a').on('select2:closing', function (e) {
     $(this).closest('.form-group').removeClass('form-group-active');
 });
 
-setTimeout(function() {
-    $('.alert').fadeOut('fast');
-}, 6500); // <-- time in milliseconds
-
-$(document).ready(function() {
-    setTimeout(function() {
-        $('.splash-screen').fadeOut();
-    }, 1100);
-});
 
 $(".submit_form").submit(function(event){
     $('button[type=submit]').prop('disabled', true);
     $('button[type=submit]').prepend('<i class="fa fa-clock-o"></i>&nbsp;');
     $('button[type=submit]').removeClass("btn-success");
-    $('button[type=submit]').addClass("btn-seconadry");
+    $('button[type=submit]').addClass("btn-secondary");
 });

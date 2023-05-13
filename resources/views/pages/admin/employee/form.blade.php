@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Tambah Pegawai</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
     <div class="row">
         <div class="col-12">
@@ -81,7 +81,7 @@
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label class="form-control-label">Pendidikan Terakhir</label>
-                                    <select class="form-control" name="last_education">
+                                    <select class="form-control select2" name="last_education">
                                         <option value="" {{$edit->employee_type == null ? 'selected':''}}>-- Pilih Pendidikan --</option>
 
                                             @if ($educations)
@@ -174,7 +174,7 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Jabatan</label>
-                                    <select class="form-control" name="jabatan">
+                                    <select class="form-control select2" name="jabatan">
                                         <option value="" {{$edit->employee_type == null ? 'selected':''}}>-- Pilih
                                             Jabatan --</option>
 
@@ -314,7 +314,9 @@
                     <div class="card-footer d-flex justify-content-end">
                         <a href="{{$route_back}}" class="btn btn-light">Kembali</a>
                         &nbsp;&nbsp;&nbsp;
+                        @canany(['admin-karyawan-store','admin-karyawan-update'])
                         <button type="submit" class="btn btn-info">{{$button_value}}</button>
+                        @endcanany
                     </div>
                 </form>
             </div>

@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Pendidikan</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
     <div class="row">
         

@@ -2,8 +2,10 @@
 
 
 @section('content')
-<div class="br-pagebody mg-t-5 pd-x-20 pd-b-100">
-
+<div class="section">
+    <div class="section-header">
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">

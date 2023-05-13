@@ -3,9 +3,9 @@
     {{ $method ?? method_field('PUT') }}
     
     <div class="card-body">
-        <div class="row mg-b-10">
+        <div class="row">
             <div class="col-12">
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-dismissible alert-info" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -31,7 +31,7 @@
 
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Senin</label>
+                <label for="" class="font-weight-bold">Senin</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -45,20 +45,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="senin_in" value="{{old('senin_in') ?? $edit->senin_in}}" {{$edit->senin_in == null && $edit->senin_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="senin_out" value="{{old('senin_out') ?? $edit->senin_out}}" {{$edit->senin_in == null && $edit->senin_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Selasa</label>
+                <label for="" class="font-weight-bold">Selasa</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -72,20 +72,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="selasa_in" value="{{old('selasa_in') ?? $edit->selasa_in}}" {{$edit->selasa_in == null && $edit->selasa_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="selasa_out" value="{{old('selasa_out') ?? $edit->selasa_out}}" {{$edit->selasa_in == null && $edit->selasa_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Rabu</label>
+                <label for="" class="font-weight-bold">Rabu</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -99,20 +99,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="rabu_in" value="{{old('rabu_in') ?? $edit->rabu_in}}" {{$edit->rabu_in == null && $edit->rabu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="rabu_out" value="{{old('rabu_out') ?? $edit->rabu_out}}" {{$edit->rabu_in == null && $edit->rabu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Kamis</label>
+                <label for="" class="font-weight-bold">Kamis</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -126,20 +126,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="kamis_in" value="{{old('kamis_in') ?? $edit->kamis_in}}" {{$edit->kamis_in == null && $edit->kamis_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="kamis_out" value="{{old('kamis_out') ?? $edit->kamis_out}}" {{$edit->kamis_in == null && $edit->kamis_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Jumat</label>
+                <label for="" class="font-weight-bold">Jumat</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -153,20 +153,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="jumat_in" value="{{old('jumat_in') ?? $edit->jumat_in}}" {{$edit->jumat_in == null && $edit->jumat_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="jumat_out" value="{{old('jumat_out') ?? $edit->jumat_out}}" {{$edit->jumat_in == null && $edit->jumat_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Sabtu</label>
+                <label for="" class="font-weight-bold">Sabtu</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -180,20 +180,20 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="sabtu_in" value="{{old('sabtu_in') ?? $edit->sabtu_in}}" {{$edit->sabtu_in == null && $edit->sabtu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="sabtu_out" value="{{old('sabtu_out') ?? $edit->sabtu_out}}" {{$edit->sabtu_in == null && $edit->sabtu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
         </div>
         <div class="row mg-t-10">
             <div class="col-12">
-                <label for="">Minggu</label>
+                <label for="" class="font-weight-bold">Minggu</label>
             </div>
             <div class="col-12 col-md d-flex align-items-center">
                 <div class="form-group d-flex align-items-center">
@@ -207,13 +207,13 @@
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">IN</span>
+                    <span class="input-group-append text-small mr-3 mt-2">IN</span>
                     <input type="time" name="minggu_in" value="{{old('minggu_in') ?? $edit->minggu_in}}" {{$edit->minggu_in == null && $edit->minggu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 <div class="input-group">
-                    <span class="input-group-append">OUT</span>
+                    <span class="input-group-append text-small mr-3 mt-2">OUT</span>
                     <input type="time" name="minggu_out" value="{{old('minggu_out') ?? $edit->minggu_out}}" {{$edit->minggu_in == null && $edit->minggu_out == null ? 'disabled="disabled"' : ''}} class="form-control">
                 </div>
             </div>

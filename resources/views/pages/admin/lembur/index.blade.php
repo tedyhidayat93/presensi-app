@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Jadwal Lembur</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
 <div id="accordion" class="accordion" role="tablist" aria-multiselectable="true">
     <div class="card">

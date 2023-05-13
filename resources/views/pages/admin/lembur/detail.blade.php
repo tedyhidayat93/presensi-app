@@ -3,7 +3,9 @@
 
 @section('content')
 <div class="section">
-
+    <div class="section-header">
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
+    </div>
 
     <form action="{{route('adm.lembur.update.detail')}}" method="POST">
         @csrf

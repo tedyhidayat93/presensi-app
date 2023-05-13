@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-      Copyright &copy; {{date('Y')}} <div class="bullet"></div> Template By <a href="https://nauval.in/">Stisla</a> <div class="bullet"></div> PRESENSI APP
+      Copyright &copy; {{date('Y')}} <div class="bullet"></div> Template By <a href="https://nauval.in/">Stisla</a> <div class="bullet"></div> {{$site->site_name ?? 'TheightDev | E-KEHADIRAN.'}}
     </div>
     <div class="footer-right">
       Version 0.0.1
@@ -49,6 +49,16 @@
 <script src="{{asset('admin_template/dist')}}/assets/js/scripts.js"></script>
 <script src="{{asset('admin_template/dist')}}/assets/js/custom.js"></script>
 
+<script>
+  $(document).ready(function() {
+    setTimeout(function() {
+        $('.splash-screen').fadeOut();
+    }, 900);
+    setTimeout(function() {
+        $('.alert').fadeOut('fast');
+    }, 5500); // <-- time in milliseconds
+  });
+</script>
 @stack('scripts')
 </body>
 </html>

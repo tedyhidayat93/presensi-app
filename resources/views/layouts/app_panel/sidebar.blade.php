@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="{{asset('admin_template/dist')}}/index.html">PRESENSI APP</a>
+        <a href="{{asset('admin_template/dist')}}/index.html">{{$site->site_name ?? 'C-PANEL'}}</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="{{asset('admin_template/dist')}}/index.html">PA</a>

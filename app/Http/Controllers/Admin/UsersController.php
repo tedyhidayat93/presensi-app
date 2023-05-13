@@ -46,7 +46,7 @@ class UsersController extends Controller
 
         $head = [
             'title' => 'User Admin',
-            'head_title_per_page' => 'Edit User Admin',
+            'head_title_per_page' => 'Tambah Admin',
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -121,7 +121,7 @@ class UsersController extends Controller
     public function editUser ($id = null) {
         $head = [
             'title' => 'User Admin',
-            'head_title_per_page' => 'Edit User',
+            'head_title_per_page' => 'Edit Admin',
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [

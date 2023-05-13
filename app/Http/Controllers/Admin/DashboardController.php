@@ -49,7 +49,7 @@ class DashboardController extends Controller
         $head = [
             'title' => 'Dashboard ',
             'head_title_per_page' => "Dashboard",
-            'sub_title_per_page' => "Hello, ". $ucapan . " " . auth()->user()->full_name,
+            'sub_title_per_page' => "Hello, ". $ucapan ,
             'breadcrumbs' => [
                 [
                     'title' => 'Dashboard',

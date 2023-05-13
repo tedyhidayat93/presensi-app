@@ -103,6 +103,8 @@
                         <h6 class="card-title text-info text-uppercase text-12 mg-b-0">Riwayat Presensi</h6>
                     </div>
                     <div>
+
+                        @canany(['admin-laporan-download'])
                         <a target="_blank" href="{{route('adm.report.export.detail', ['data' => 'excel', 'karyawan' => request()->query('karyawan'), 'from' => request()->query('from_date'), 'to' => request()->query('to_date')])}}" class="btn btn-sm btn-success">
                             <i class="fa fa-download"></i>
                             Ekspor Excel
@@ -111,6 +113,7 @@
                             <i class="fa fa-download"></i>
                             Ekspor PDF
                         </a>
+                        @endcanany
                     </div>
                 </div>
                 <hr>

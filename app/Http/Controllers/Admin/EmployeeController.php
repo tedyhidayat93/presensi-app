@@ -25,8 +25,8 @@ class EmployeeController extends Controller
     // Employees Admin
     public function indexEmployee (Request $request, $id = null) {
         $head = [
-            'title' => 'Karyawan',
-            'head_title_per_page' => "Karyawan",
+            'title' => 'Pegawai',
+            'head_title_per_page' => "Pegawai",
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -35,7 +35,7 @@ class EmployeeController extends Controller
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Karyawan',
+                    'title' => 'Pegawai',
                     'link' => '#',
                     'is_active' => true,
                 ]
@@ -93,8 +93,8 @@ class EmployeeController extends Controller
     public function createEmployee () {
 
         $head = [
-            'title' => 'Karyawan',
-            'head_title_per_page' => 'Tambah Karyawan',
+            'title' => 'Pegawai',
+            'head_title_per_page' => 'Tambah Pegawai',
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -103,12 +103,12 @@ class EmployeeController extends Controller
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Karyawan',
+                    'title' => 'Pegawai',
                     'link' => route('adm.employee'),
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Tambah Karyawan',
+                    'title' => 'Tambah Pegawai',
                     'link' => '#',
                     'is_active' => true,
                 ],
@@ -191,8 +191,8 @@ class EmployeeController extends Controller
     }
     public function editEmployee ($id = null) {
         $head = [
-            'title' => 'Karyawan',
-            'head_title_per_page' => 'Edit Karyawan',
+            'title' => 'Pegawai',
+            'head_title_per_page' => 'Edit Pegawai',
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -201,12 +201,12 @@ class EmployeeController extends Controller
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Karyawan',
+                    'title' => 'Pegawai',
                     'link' => route('adm.employee'),
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Edit Karyawan',
+                    'title' => 'Edit Pegawai',
                     'link' => '#',
                     'is_active' => true,
                 ],
@@ -287,7 +287,7 @@ class EmployeeController extends Controller
 
                 if($request->file('foto')) {
                     $path = public_path('uploads/images/employee');
-                    if (!File::exists($path)) File::makeDirectory($path, 00);
+                    if (!File::exists($path)) File::makeDirectory($path, 0775, true, true);
                     $file = $request->file('foto');
                     // $foto_name = time() . '_' . Str::slug($request->full_name) . '_' . trim($file->getClientOriginalName());
                     $foto_name = time() . '-' . Str::slug($request->full_name) . '-' .date('YmdHis'). $file->getClientOriginalExtension();

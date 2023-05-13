@@ -5,7 +5,7 @@
 <div class="section">
     
     <div class="section-header">
-        <h1>Laporan</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
 
     <div class="row">
@@ -133,10 +133,13 @@
                     </div>
                     <div class="col-md-8 d-flex justify-content-end align-items-start">
                         {{-- <a href="#"  data-toggle="modal" class="btn btn-success" data-target="#modalEkspor"> --}}
+
+                        @canany(['admin-laporan-download'])
                         <a href="{{route('adm.report.export', ['file_type' => 'excel', 'jenis_presensi' => request()->query('jenis_presensi'), 'type' => request()->query('type'), 'from' => request()->query('from'), 'to' => request()->query('to')])}}" class="download-loading btn btn-success">
-                            <i class="fa fa-download"></i>
-                            Download Laporan Kehadiran
+                            <i class="fas fa-download"></i>
+                            Download Laporan
                         </a>
+                        @endcanany
                     </div>
                 </form>
                 <div class=" bd-gray-300 rounded table-responsive p-0 overflow-auto">
@@ -214,14 +217,19 @@
                                 <td>{{$i++}}.</td>
 
                                 <td class="text-center" >
+                                    @canany(['admin-laporan-show'])
                                     <a href="{{route('adm.report.detail', ['karyawan' => $row['usr_id'], 'from_date' => request()->query('from'), 'to_date' => request()->query('to')])}}" target="_blank" class="btn btn-sm btn-outline-info">
                                        <i class="fa fa-eye"></i>
                                        Detail
                                    </a>
-                                   <a target="_blank" href="{{route('adm.report.export.detail', ['data' => 'excel', 'karyawan' => $row['usr_id'], 'from' => request()->query('from'), 'to' => request()->query('to')])}}" class="btn btn-sm btn-outline-success">
-                                       <i class="fa fa-download"></i>
-                                       Ekspor
-                                   </a>
+                                    @endcanany
+
+                                    @canany(['admin-laporan-download'])
+                                    <a target="_blank" href="{{route('adm.report.export.detail', ['data' => 'excel', 'karyawan' => $row['usr_id'], 'from' => request()->query('from'), 'to' => request()->query('to')])}}" class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-download"></i>
+                                        Download
+                                    </a>
+                                    @endcanany
                                 </td>
                                 <td class="d-flex flex-column">
                                     <span class="text-dark font-weight-bold mb-1"> {{$row['full_name']}} </span>
@@ -314,6 +322,8 @@
     
 </div>
 
+
+@canany(['admin-laporan-download'])
 <div id="modalEkspor" class="modal fade">
     <div class="modal-dialog modal-dialog-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -359,6 +369,7 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div><!-- modal -->
+@endcanany
 
 
 @endsection

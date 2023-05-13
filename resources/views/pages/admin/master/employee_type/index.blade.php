@@ -4,7 +4,7 @@
 @section('content')
 <div class="section">
     <div class="section-header">
-        <h1>Jabatan</h1>
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
     <div class="row">
         
@@ -33,14 +33,18 @@
                                         <td>{{$row->type}}</td>
                                         <td>
 
+                                            @can('admin-jabatan-delete')
                                             <a href="#" class="btn btn-danger btn-icon wd-35 ht-35" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a>
+                                            @endcan
                                             
+                                            @can('admin-jabatan-edit')
                                             <a href="{{route('adm.master.edit.employee.type', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
+                                            @endcan
 
                                         </td>
                                     </tr>

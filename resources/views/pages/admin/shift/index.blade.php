@@ -10,7 +10,7 @@
         
         <div class="col-12 col-md-6">
             <div class="card">
-                <div class="card-header bg-white pd-b-10">
+                <div class="card-header bg-white">
                     <h6>Form Jam Kerja</h6>
                 </div>
                 @include('pages.admin.shift.form')
@@ -102,9 +102,11 @@
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a> --}}
                                             
+                                            @canany(['admin-waktu-kerja-edit'])
                                             <a href="{{route('adm.edit.shift', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
+                                            @endcanany
 
                                         </td>
                                     </tr>

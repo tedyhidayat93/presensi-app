@@ -11,7 +11,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4 class="text-center">MASUK {{ config('app.name', 'Laravel') }}</h4>
+                    <h4 class="text-center">Login</h4>
                 </div>
 
                 <div class="card-body">
@@ -64,7 +64,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                Masuk
+                                Login
                             </button>
                         </div>
                     </form>

@@ -2,8 +2,10 @@
 
 
 @section('content')
-<div class="br-pagebody mg-t-5 pd-x-30">
-
+<div class="section">
+    <div class="section-header">
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
+    </div>
     <div class="row mb-3">
         <div class="col">
             <div class="card bd-0 shadow-base">
@@ -83,10 +85,13 @@
                             </div>
                             <div class="row">
                                 <div class="col d-flex align-items-center justify-content-between">
+                                    @canany(['admin-izin-validation'])
                                     @if ($data->validation_by === null)
                                     <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo">
                                         <div><i class="fa fa-check"></i> Validasi Izin</div>
                                     </a>
+                                    @endcanany
+                                    
                                     @else
                                         <span> 
                                             <b> Status : </b> 

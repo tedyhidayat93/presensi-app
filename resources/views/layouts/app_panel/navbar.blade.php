@@ -5,6 +5,11 @@
         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"> <i class="fas fa-bars"></i></a></li>
       </ul>
     </form>
+
+    @can('admin-karyawan-create')
+    <a href="{{route('adm.employee.create')}}" class="ml-auto shadow-none btn btn-info" type="submit"><i class="fas fa-user-plus"></i> Tambah Pegawai</a>
+    @endcan
+    
     <ul class="navbar-nav navbar-right">
       <li class="dropdown dropdown-list-toggle">
         <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg d-flex  message-toggle beep">

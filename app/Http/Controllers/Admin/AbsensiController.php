@@ -23,8 +23,8 @@ class AbsensiController extends Controller
 
         // dd($request->all());
         $head = [
-            'title' => 'Data Kehadiran',
-            'head_title_per_page' => "Data Kehadiran",
+            'title' => 'Data Log Presensi',
+            'head_title_per_page' => "Data Log Presensi",
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -33,7 +33,7 @@ class AbsensiController extends Controller
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Data Kehadiran',
+                    'title' => 'Data Log Presensi',
                     'link' => '#',
                     'is_active' => true,
                 ]

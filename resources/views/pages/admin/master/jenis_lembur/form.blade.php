@@ -16,8 +16,10 @@
         </div>
     </div>
     <div class="card-footer d-flex justify-content-end">
+        @canany(['admin-jenis-lembur-create','admin-jenis-lembur-edit'])
         <a href="{{route('adm.master.jenis_lembur')}}" class="btn btn-light">Batal</a>
         &nbsp;&nbsp;&nbsp;
         <button type="submit" class="btn btn-info">{{$button_value}}</button>
+        @endcanany
     </div>
 </form>

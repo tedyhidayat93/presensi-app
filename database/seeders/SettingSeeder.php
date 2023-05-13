@@ -18,7 +18,7 @@ class SettingSeeder extends Seeder
     {
         $data = [
                 [
-                    'site_name' => 'E-KEHADIRAN',
+                    'site_name' => 'PRESENSI APP',
                     'favico' => null,
                     'logo' => null,
                     'email' => 'mail@company.com',
@@ -29,7 +29,7 @@ class SettingSeeder extends Seeder
                     'radius' => null,
                     'lat_loc' => null,
                     'long_loc' => null,
-                    'copyright_footer' =>'Copyright &copy; 2023. E-KEHADIRAN By TheightDev.',
+                    'copyright_footer' =>'PRESENSI-APP By Tedy Hidayat.',
                     'status' => 1,
                 ]
             ];
