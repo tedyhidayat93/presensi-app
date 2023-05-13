@@ -6,7 +6,7 @@
     <div class="section-header">
         <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
-    <div class="row mb-3">
+    <div class="row">
         <div class="col">
             <div class="card bd-0 shadow-base">
                 <div class="card-header">
@@ -15,58 +15,41 @@
                 <div class="card-body p-3">
                     <div class="row">
                         <div class="col-12 col-md-7 table-responsive overflow-auto">
-                            <table class="table table-valign-middle mg-b-0 nowrap">
-                                <tbody>
-                                    <tr>
-                                        <td class=" bg-light" width="100">
-                                            @if ($data->user->photo_profile)
-                                            <img class="w-100 h-100 rounded img-fluid" src="{{ asset('uploads/images/employee/'. $data->user->photo_profile) }}">
-                                            @else
-                                            <img class="w-100 h-100 rounded img-fluid" src="{{ asset('images/default-ava.jpg') }}"> 
-                                            @endif
-                                        </td>
-                                        <td colspan="2">
-                                            <h4 class="text-info text-25 mg-b-0">{{$data->user->full_name}}</h4>
-                                            <span class="text-12"><b>Jabatan : </b> {{$data->user->jabatan->type ?? '-'}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-12">Terdaftar Sejak</span>
-                                            <h4 class="text-inverse text-14 mg-b-0">{{ date('d-M-Y', strtotime($data->user->registered_at))}}</h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="text-12">Shift</span>
-                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->shifft->shift_name}}</h4>
-                                        </td>
-                                        <td>
-                                            <span class="text-12">Email</span>
-                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->email}}</h4>
-                                        </td>
-                                        <td>
-                                            <span class="text-12">NIP</span>
-                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->nip}}</h4>
-                                        </td>
-                                        <td>
-                                            <span class="text-12">NIK</span>
-                                            <h4 class="text-inverse text-14 mg-b-0">{{$data->user->nik}}</h4>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr>
     
                             <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="card mb-3">
+                                <div class="col-12 col-md-12">
+                                    <div class="card mb-3 border">
                                         <div class="card-body">
-                                            <small class="mb-3">Jenis Izin </small>
-                                            <h5 class=" mg-b-0">{{$data->jenis->type ?? '-'}}</h5>
+
+                                            <small class="mb-0">Pemohon Izin </small>
+                                            
+                                            <div class="mt-3 d-md-flex align-items-center">
+                                                <div class="mr-3">
+                                                    @if ($data->user->photo_profile)
+                                                    <img width="50" class="rounded-circle img-fluid" src="{{ asset('uploads/images/employee/'. $data->user->photo_profile) }}">
+                                                    @else
+                                                    <img width="50" class="rounded-circle img-fluid" src="{{ asset('images/default-ava.jpg') }}"> 
+                                                    @endif
+                                                </div>
+                                                <div>
+                                                    <h6 class="text-dark mb-0">{{$data->user->full_name}}</h6>
+                                                    <span class="mt-0"><b>Jabatan : </b> {{$data->user->jabatan->type ?? '-'}}</span>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="card mb-3">
+                                    <div class="card mb-3 border">
+                                        <div class="card-body">
+                                            <small class="mb-3">Jenis Izin </small>
+                                            <h6 class="">{{$data->jenis->type ?? '-'}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="card mb-3 border">
                                         <div class="card-body">
                                             <small class="mb-2">Tanggal Izin</small>
                                             <h6 class="mb-2">{{ date('d-M-Y H:i', strtotime($data->created_at))}}</h6>
@@ -75,10 +58,10 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="card mb-3">
+                                    <div class="card mb-3 border">
                                         <div class="card-body" style="min-height: 130px;">
                                             <small class="mb-3">Alasan Izin</small>
-                                            <p class="mb-0">{{ $data->alasan ?? '-' }}</p>
+                                            <h6 class="mb-0">{{ $data->alasan ?? '-' }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +70,8 @@
                                 <div class="col d-flex align-items-center justify-content-between">
                                     @canany(['admin-izin-validation'])
                                     @if ($data->validation_by === null)
-                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo">
-                                        <div><i class="fa fa-check"></i> Validasi Izin</div>
+                                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaldemo">
+                                        <div><i class="fa fa-stamp"></i> Validasi Izin</div>
                                     </a>
                                     @endcanany
                                     
@@ -112,11 +95,11 @@
                         <div class="col-12 col-md-5 d-block align-items-start justify-content-end">
                             @if ($data->dokumen != null)
                                 <div class="card">
-                                    <div class="card-header text-center d-flex align-items-center justify-content-between p-2 font-weight-bold text-success">
-                                        <h6 class="card-title mb-0">
-                                            Dokumen Terlampir
+                                    <div class="card-header d-flex align-items-center justify-content-between p-2">
+                                        <h6 class="card-title mb-0 font-weight-bold text-primary">
+                                            <i class="fas fa-file"></i> Dokumen Terlampir
                                         </h6>
-                                        <a href="{{ asset('uploads/izin/'. $data->dokumen) }}" class="text-underline" target="_blank">Buka Dkumen</a>
+                                        <a href="{{ asset('uploads/izin/'. $data->dokumen) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Buka</a>
                                     </div>
                                     <div class="card-body d-flex p-1 justify-content-center bg-secondary">
                                         <iframe style="height: 420px;" src="{{ asset('uploads/izin/'. $data->dokumen) }}" frameborder="0"></iframe>
@@ -140,25 +123,29 @@
         </div>
     </div>
 
-    <div class="row row-sm mg-t-20">
+    <div class="row">
         <div class="col-12">
             <div class="card pd-0 bd-0 shadow-base">
-                <div class="pd-x-30 pd-t-30 pd-b-10">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Realtime Saat Mengajukan Izin
+                            <h6 class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Saat Mengajukan Permohonan Izin
                             </h6>
                             <small>Tanggal : <b> {{ date('d-M-Y', strtotime($data->created_at))}} </b></small>
                         </div>
                         <div class="text-13">
-                            <p class="mg-b-0"><span class="square-8 rounded-circle bg-purple mg-r-10"></span> Koordinat
-                                : <b> {{$data->latlong ?? '-'}} </b></p>
-                            <p class="mg-b-0"><span class="square-8 rounded-circle bg-pink mg-r-10"></span> Waktu :
-                                <b>{{ $data->created_at != null ? date('H:i:s', strtotime($data->created_at)) : '-'}}</b></p>
+                            <p class="mb-0">
+                                <i class="fas fa-map"></i> Koordinat
+                                : <b> {{$data->latlong ?? '-'}} </b>
+                            </p>
+                            <p class="mt-0">
+                                <i class="fas fa-clock"></i> Waktu 
+                                :<b>{{ $data->created_at != null ? date('H:i:s', strtotime($data->created_at)) : '-'}}</b>
+                            </p>
                         </div>
                     </div><!-- d-flex -->
                 </div>
-                <div class="pd-x-15 pd-b-15">
+                <div class="card-body">
                     {{-- <div id="mapid" class="ht-200 ht-sm-200 ht-md-350 bd bg-gray-100"></div> --}}
 
                     @if ($site->is_using_radius != 0)
@@ -190,8 +177,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <i
-                    class="fa fa-question-circle text-100  {{$data->is_active == 1 ? 'text-danger' : 'text-success'}} lh-1 mg-t-20 d-inline-block"></i>
+                <i class="fa fa-question-circle my-4 {{$data->is_active == 1 ? 'text-danger' : 'text-success'}} d-inline-block" style="font-size: 40px;"></i>
                 <h4 class="{{$data->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold mg-b-20">Yakin Menyetujui Permohonan Izin ?
                 </h4>
                 <p class="mg-b-20 mg-x-20"><b>Alasan Izin : </b>  " {{$data->alasan ?? '-'}} "</p>

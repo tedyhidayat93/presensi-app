@@ -1,7 +1,12 @@
-@extends('layouts.public.app', $head)
+@extends('layouts.app_panel.app', $head)
 
 @section('content')
-<div class="br-pagebody mg-t-5 pd-x-20  pd-b-200">
+<div class="section">
+
+    <div class="section-header d-md-flex justify-content-between align-items-center">
+        <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
+        <span class="float-right">{{$head['sub_title_per_page'] ?? 'Sub Title'}}</span>
+    </div>
     
     <div class="card shadow-base bd-0">
         <div class="card-body pd-x-10 pd-b-10 pd-t-0">

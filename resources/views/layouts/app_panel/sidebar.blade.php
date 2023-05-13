@@ -1,10 +1,13 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="{{asset('admin_template/dist')}}/index.html">{{$site->site_name ?? 'C-PANEL'}}</a>
+        @if ($site->logo != null)
+          <img width="30" class="mr-2" src="{{asset('uploads/images/site') . '/' . $site->logo}}">
+        @endif
+        <a href="">{{$site->site_name ?? 'C-PANEL'}}</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="{{asset('admin_template/dist')}}/index.html">PA</a>
+        <a href="">PA</a>
       </div>
       <ul class="sidebar-menu">
 
@@ -86,16 +89,16 @@
         <li class="menu-header">Main Menu</li>
         
         @can('user-presensi-sidebar-menu')
-        <li class="@stack('active-absen')"><a class="nav-link" href=""><i class="fas fa-history"></i> <span>Riwayat Presensi</span></a></li>
+        <li class="@stack('active-absen')"><a class="nav-link" href="{{route('user.absen')}}"><i class="fas fa-print"></i> <span>Absensi IN/OUT</span></a></li>
         @endcan
 
         @can('user-izin-sidebar-menu')
-        <li class="@stack('active-izin')"><a class="nav-link" href=""><i class="fas fa-history"></i> <span>Riwayat Izin</span></a></li>
+        <li class="@stack('active-izin')"><a class="nav-link" href="{{route('user.izin')}}"><i class="fas fa-envelope"></i> <span>Permohonan Izin</span></a></li>
         @endcan
 
-        @can('user-profile-sidebar-menu')
-        <li class="@stack('active-izin')"><a class="nav-link" href=""><i class="fas fa-user"></i> <span>Profil</span></a></li>
-        @endcan
+        {{-- @can('user-profile-sidebar-menu')
+        <li class="@stack('active-izin')"><a class="nav-link" href="{{route('user.dashboard')}}"><i class="fas fa-user"></i> <span>Profil</span></a></li>
+        @endcan --}}
         @endrole
         {{-- .END SIDEBAR UNTUK ROLE USER --}}
 

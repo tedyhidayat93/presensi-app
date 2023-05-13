@@ -127,7 +127,7 @@
                             <thead class="">
                                 <tr>
                                     <th class="wd-5p">#</th>
-                                    <th class="">Karyawan</th>
+                                    <th class="">Pegawai</th>
                                     <th class="">Jenis</th>
                                     <th class="">Tanggal Masuk</th>
                                     <th class="">Check In</th>
@@ -149,9 +149,9 @@
                                         <td>{{$i++}}.</td>
                                         <td>
                                             @if ($row->karyawan->photo_profile)
-                                            <img width="32" src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
+                                            <img width="30" class="rounded-circle" src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
                                             @else
-                                            <img width="32" src="{{ asset('images/default-ava.jpg') }}"> 
+                                            <img width="30" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
                                             @endif
                                             {{$row->karyawan->full_name}}
                                         </td>
@@ -204,8 +204,8 @@
 
                                             @canany(['admin-log-presensi-checkout'])
                                             @if ($row->clock_out == null)
-                                            <a href="#" title="Untuk mencheckout karyawan yang lupa checkout presensinya." class="btn btn-warning text-dark btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
-                                                <div><i class="fa fa-sign-out "></i> Checkout</div> 
+                                            <a href="#" title="Untuk pegawai yang lupa checkout." class="btn btn-warning text-dark btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
+                                                <div><i class="fas fa-sign"></i> Check Out</div> 
                                             </a>
                                             @endif
                                             @endcanany
@@ -237,12 +237,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="d-flex align-items-center justify-content-start mg-b-20">
-                        <i class="fa fa-sign-out text-40  text-warning lh-1 d-inline-block"></i>
+                        <i class="fas fa-sign-out text-40  text-warning lh-1 d-inline-block"></i>
                         <h4 class="text-warning font-weight-bold">Checkout Presensi</h4>
                     </div>
     
-                    <p class="text-info">Fitur ini hanya untuk karyawan yang lupa melakukan presensi cehckout.</p>
-                    <p class="">Lakukan checkout jika karyawan tidak dapat melakukan presensi (harian/lembur) dikarenakan belum checkout presensi (harian/lembur) sebelumnya.</p>
+                    <p class="text-info">Fitur ini hanya untuk pegawai yang lupa melakukan presensi cehckout.</p>
+                    <p class="">Lakukan checkout jika pegawai tidak dapat melakukan presensi (harian/lembur) dikarenakan belum checkout presensi (harian/lembur) sebelumnya.</p>
     
                     <table class="table table-striped table-borderless mt-4">
                         <tr>

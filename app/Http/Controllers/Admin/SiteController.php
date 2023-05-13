@@ -50,7 +50,7 @@ class SiteController extends Controller
             'site_name' => 'min:2',
             'copyright_footer' => 'min:2',
             'logo' => 'mimes:jpg,jpeg,png,gif|max:2048', //2 MB
-            'favico' => 'mimes:ico,png|max:2048', //2 MB
+            'favico' => 'mimes:ico,jpg,jpeg,png,gif|max:2048', //2 MB
         ]);
 
         if ($validator->fails()) {
@@ -109,7 +109,7 @@ class SiteController extends Controller
                 return redirect()->back()->with('success', 'Successfully updating data.');  
             } catch (\Exception $e) {
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failure Update !');  
+                return redirect()->back()->with('error', 'Failure Update !'. $e);  
             }
         }
     }
@@ -120,7 +120,7 @@ class SiteController extends Controller
         } else if($type == 'document') {
             $path = public_path('uploads/documents/site');
         }
-        if (!File::exists($path)) File::makeDirectory($path, 775);
+        if (!File::exists($path)) File::makeDirectory($path, 0775, true, true, true);
 
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move($path, $name);

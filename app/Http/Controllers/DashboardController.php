@@ -18,6 +18,18 @@ class DashboardController extends Controller
 
     public function index()
     {     
-        return view('pages.employee.dashboard');
+        $head = [
+            'title' => 'Dashboard',
+            'head_title_per_page' => "Dashboard",
+            'sub_title_per_page' => "",
+            'breadcrumbs' => [
+                [
+                    'title' => 'Dashboard',
+                    'link' => route('adm.dashboard'),
+                    'is_active' => false,
+                ]
+            ]
+        ];
+        return view('pages.employee.dashboard', compact('head'));
     }
 }

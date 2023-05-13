@@ -44,12 +44,12 @@
                                         </td>
                                         <td>
 
-                                            <a href="#" class="btn btn-danger btn-icon wd-35 ht-35" data-toggle="modal"
+                                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a>
                                             
-                                            <a href="{{route('adm.location.edit', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
+                                            <a href="{{route('adm.location.edit', $row->id)}}" class="btn btn-info btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
 

@@ -93,17 +93,17 @@
                                         {{-- <td> <span class="text-18 font-weight-bold"> {{ count( $row->karyawan ) }} </span> Karyawan</td> --}}
                                         <td>
 
-                                            {{-- <a href="{{route('adm.setting.shift', $row->id)}}" class="btn btn-dark btn-icon wd-35 ht-35 ">
+                                            {{-- <a href="{{route('adm.setting.shift', $row->id)}}" class="btn btn-dark btn-sm ">
                                                 <div><i class="icon ion-person-stalker"></i></div>
                                             </a> --}}
 
-                                            {{-- <a href="#" class="btn btn-danger btn-icon wd-35 ht-35" data-toggle="modal"
+                                            {{-- <a href="#" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a> --}}
                                             
                                             @canany(['admin-waktu-kerja-edit'])
-                                            <a href="{{route('adm.edit.shift', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
+                                            <a href="{{route('adm.edit.shift', $row->id)}}" class="btn btn-info btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
                                             @endcanany

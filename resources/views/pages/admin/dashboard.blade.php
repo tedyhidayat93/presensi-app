@@ -75,41 +75,54 @@
           </div>
           <div class="card-body">
             <div style="min-height: 280px; max-height: 280px; overflow-y: auto;">
-                <table class="table table-valign-middle mg-b-0">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Jenis</th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @forelse ($izin_waiting as $row)
                         <tr>
                             <td class="">
                                 @if ($row->user->photo_profile)
                                 <div class="d-flex align-items-center justify-content-center"
-                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
-                                    <img width="50" height="50" class="img-fluid"
+                                    style="width:30px; height:30px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
+                                    <img width="40" height="40" class="img-fluid"
                                         src="{{ asset('uploads/images/employee/'. $row->user->photo_profile) }}">
                                 </div>
                                 @else
                                 <div class="d-flex align-items-center justify-content-center"
-                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
-                                    <img width="50" height="50" class="img-fuild"
+                                    style="width:30px; height:30px; overflow:hidden; border-radius: 50%; border: 2px solid #0000ff;">
+                                    <img width="40" height="40" class="img-fuild"
                                         src="{{ asset('images/default-ava.jpg') }}">
                                 </div>
                                 @endif
                             </td>
                             <td>
-                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->user->full_name}}</h6>
-                                <span class="tx-12">{{$row->type == 'staff' ? 'STAFF' : 'NON STAFF'}}</span>
+                                <span style="font-size:13px;">{{$row->user->full_name}}</span>
+                                {{-- <span class="tx-12">{{$row->type == 'staff' ? 'STAFF' : 'NON STAFF'}}</span> --}}
                             </td>
                             <td>
-                                <span class="tx-12">Tanggal</span>
-                                <h6 class="tx-inverse tx-14 mg-b-0">
+                                {{-- <span class="tx-12">Tanggal</span> --}}
+                                <span style="font-size:13px;">
                                     {{$row->created_at != null ? date('d-M-Y H:i', strtotime($row->created_at)) : '-'}}
-                                </h6>
+                                </span>
                             </td>
                             <td>
-                                <span class="tx-12">Jenis</span>
-                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->jenis->type ?? '-'}}</h6>
+                                {{-- <span class="tx-12">Jenis</span> --}}
+                                <span style="font-size:13px;">{{$row->jenis->type ?? '-'}}</span>
                             </td>
-                            <td class="pd-r-0-force tx-center"><a href="{{route('adm.izin.detail', $row->id)}}"
-                                    class="tx-gray-600"><i class="fa fa-eye text-info tx-18 lh-0"></i></a></td>
+                            <td class="pd-r-0-force tx-center">
+                                @canany(['admin-izin-show'])
+                                <a href="{{route('adm.izin.detail', $row->id)}}"
+                                    class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                @endcanany
+                            </td>
                         </tr>
                         @empty
                         <tr class="bg-light">
@@ -135,40 +148,53 @@
           </div>
           <div class="card-body">
             <div style="min-height: 280px; max-height: 280px; overflow-y: auto;">
-                <table class="table table-valign-middle mg-b-0">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nama</th>
+                            <th>Check In</th>
+                            <th>Telat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody>
                         @forelse ($absen_telat_today as $row)
                         <tr>
                             <td class="">
                                 @if ($row->karyawan->photo_profile)
                                 <div class="d-flex align-items-center justify-content-center"
-                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
-                                    <img width="50" height="50" class="img-fluid"
+                                    style="width:30px; height:30px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
+                                    <img width="40" height="40" class="img-fluid"
                                         src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
                                 </div>
                                 @else
                                 <div class="d-flex align-items-center justify-content-center"
-                                    style="width:40px; height:40px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
-                                    <img width="50" height="50" class="img-fuild"
+                                    style="width:30px; height:30px; overflow:hidden; border-radius: 50%; border: 2px solid red;">
+                                    <img width="40" height="40" class="img-fuild"
                                         src="{{ asset('images/default-ava.jpg') }}">
                                 </div>
                                 @endif
                             </td>
                             <td>
-                                <h6 class="tx-inverse tx-14 mg-b-0">{{$row->karyawan->full_name}}</h6>
-                                <span class="tx-12">{{$row->type === 'staff' ? 'STAFF' : 'NON STAFF'}}</span>
+                                <span style="font-size:13px;">{{$row->karyawan->full_name}}</span>
+                                {{-- <span class="tx-12">{{$row->type === 'staff' ? 'STAFF' : 'NON STAFF'}}</span> --}}
                             </td>
                             <td>
-                                <span class="tx-12">Jam Masuk</span>
-                                <h6 class="tx-inverse tx-14 mg-b-0">
-                                    {{$row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}}</h6>
+                                {{-- <span class="tx-12">Jam Masuk</span> --}}
+                                <span style="font-size:13px;">
+                                    {{$row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}}</span>
                             </td>
                             <td>
-                                <span class="tx-12">Terlambat</span>
-                                <h6 class="tx-inverse tx-14 mg-b-0">{{\Carbon\Carbon::createFromTimestampUTC($row->late)->format('H:i:s')}}</h6>
+                                {{-- <span class="tx-12">Terlambat</span> --}}
+                                <span style="font-size:13px;">{{\Carbon\Carbon::createFromTimestampUTC($row->late)->format('H:i:s')}}</span>
                             </td>
-                            <td class="pd-r-0-force tx-center"><a href="{{route('adm.absen.detail', $row->id)}}"
-                                    class="tx-gray-600"><i class="fa fa-eye text-info tx-18 lh-0"></i></a></td>
+                            <td class="pd-r-0-force tx-center">
+                                @canany(['admin-log-presensi-show'])
+                                <a href="{{route('adm.absen.detail', $row->id)}}"
+                                    class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                @endcanany
+                            </td>
                         </tr>
                         @empty
                         <tr class="bg-light">

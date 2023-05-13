@@ -84,7 +84,7 @@
                                     </div><!-- col-12 -->
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-control-label">Favico (Max Size: 5MB, Allowed Type:
+                                            <label class="form-control-label">Favico (Max Size: 2 Mb, Allowed Type:
                                                 jpg-jpeg-gif-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="favico" accept="image/*">
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="form-control-label">Logo (Max Size: 5MB, Allowed Type:
+                                            <label class="form-control-label">Logo (Max Size: 2 Mb, Allowed Type:
                                                 jpg-jpeg-png)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="logo" accept="image/*">

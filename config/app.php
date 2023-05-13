@@ -170,6 +170,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,
+
+        Intervention\Image\ImageServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -185,6 +190,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'Image' => Intervention\Image\Facades\Image::class,
+
+        'Image' => Intervention\Image\ImageManager::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

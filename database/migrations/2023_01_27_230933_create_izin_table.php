@@ -17,10 +17,10 @@ class CreateIzinTable extends Migration
         Schema::create('izin', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jenis_izin_id');
-            $table->text('alasan');
-            $table->string('foto');
+            $table->text('alasan')->nullable();
+            $table->string('foto')->nullable();
             $table->string('dokumen')->nullable();
-            $table->string('latlong');
+            $table->string('latlong')->nullable();
             $table->boolean('is_approve')->default(null)->nullable();
             $table->boolean('is_active')->default(false);
             $table->unsignedBigInteger('validation_by')->nullable();

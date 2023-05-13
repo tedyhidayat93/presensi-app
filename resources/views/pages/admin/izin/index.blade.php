@@ -146,10 +146,10 @@
                                     <td>{{$i++}}.</td>
                                     <td>
                                         @if ($row->photo_profile)
-                                        <img width="50"
+                                        <img width="40" class="rounded-circle"
                                             src="{{ asset('uploads/images/employee/'. $row->user->photo_profile) }}">
                                         @else
-                                        <img width="50" src="{{ asset('images/default-ava.jpg') }}"> 
+                                        <img width="40" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
                                         @endif
                                     </td>
                                     <td>{{$row->user->full_name ?? '-'}}</td>
@@ -162,7 +162,7 @@
                                         -
                                         @endif
                                     </td>
-                                    <td>{{ date('d-M-Y | H:i', strtotime($row->created_at ?? '0000-00-00'))}}</td>
+                                    <td>{{ date('d-M-Y', strtotime($row->created_at ?? '0000-00-00'))}}</td>
                                     <td>
                                         @if($row->is_approve == 2)
                                         <span class="badge badge-success">Disetujui</span>
@@ -177,7 +177,7 @@
                                         @canany(['admin-izin-validation'])
                                         @if ($row->is_approve == 1)
                                         <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldemo{{$row->id}}">
-                                            <div><i class="fa fa-check }} "></i></div>
+                                            <div><i class="fa fa-stamp }} "></i></div>
                                         </a>
                                         @endif
                                         @endcanany
@@ -208,13 +208,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <i
-                    class="fa fa-question-circle text-100  {{$row->is_active == 1 ? 'text-danger' : 'text-success'}} lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="{{$row->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold mg-b-20">Yakin Menyetujui Permohonan Izin ?
+                <i class="fa fa-question-circle my-4 {{$row->is_active == 1 ? 'text-danger' : 'text-success'}} d-inline-block" style="font-size: 40px;"></i>
+                <h4 class="{{$row->is_active == 1 ? 'text-danger' : 'text-success'}} font-weight-bold ">Yakin Menyetujui Permohonan Izin ?
                 </h4>
-                <p class="mg-b-20 mg-x-20"><b>Alasan Izin : </b>  " {{$row->alasan ?? '-'}} "</p>
-                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 3])}}" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Tolak</a>
-                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 2])}}" class="btn btn-success text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium mg-b-20">Setujui</a>
+                <p class=" mg-x-20"><b>Alasan Izin : </b>  " {{$row->alasan ?? '-'}} "</p>
+                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 3])}}" class="btn btn-danger text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium ">Tolak</a>
+                <a href="{{route('adm.izin.acc', ['id' => $row->id, 'act' => 2])}}" class="btn btn-success text-11 text-uppercase pd-y-12 pd-x-25 text-mont text-medium ">Setujui</a>
             </div><!-- modal-body -->
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->

@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>{{$head['title'] ?? ''}} - {{ config('app.name', 'Laravel') }}</title>
+  <title>{{$head['title'] != '' ? $head['title'].' - ' : ''}} {{ config('app.name', 'Laravel') }}</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <meta name="image" content="{{asset('uploads/images/site') . '/' . $site->favico ?? '-' }}">
+  <link rel="icon" type="image/png" href="{{asset('uploads/images/site') . '/' . $site->favico ?? '-' }}">
+  
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/fontawesome/css/all.min.css">

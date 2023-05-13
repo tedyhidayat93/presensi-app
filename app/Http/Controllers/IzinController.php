@@ -42,7 +42,7 @@ class IzinController extends Controller
     {
 
         if(auth()->user()->is_web == 0) {
-            return redirect()->back()->with('error', 'anda tidak punya akses kesini. silakan hubungi admin untuk dapat melakukan absensi via website.');
+            return redirect()->back()->with('error', 'anda tidak punya akses kesini. Silakan hubungi admin untuk dapat melakukan permohonan izin via web app.');
         }
 
         $waktu = gmdate("H:i", time() + 7 * 3600);
@@ -71,7 +71,23 @@ class IzinController extends Controller
             $ucapan = "Error";
         }
 
-        $head = ['title' => 'IZIN'];
+        $head = [
+            'title' => 'Permohonan Izin',
+            'head_title_per_page' => "Permohonan Izin",
+            'sub_title_per_page' => "",
+            'breadcrumbs' => [
+                [
+                    'title' => 'Dashboard',
+                    'link' => route('adm.dashboard'),
+                    'is_active' => false,
+                ],
+                [
+                    'title' => 'Permohonan Izin',
+                    'link' => '#',
+                    'is_active' => true,
+                ]
+            ]
+        ];
 
 
         $data = Izin::where([
@@ -84,7 +100,7 @@ class IzinController extends Controller
         $check_shift = General::cekShift(auth()->user()->shift);
         $jam_pulang = date( 'H:i:s', strtotime($check_shift['jam_pulang']));
 
-        return view('pages.public.izin', compact('head', 'ucapan', 'data', 'jam_pulang', 'jenis_izin'));
+        return view('pages.employee.izin', compact('head', 'ucapan', 'data', 'jam_pulang', 'jenis_izin'));
     }
 
     public function send(Request $request)

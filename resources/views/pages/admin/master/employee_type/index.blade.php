@@ -34,14 +34,14 @@
                                         <td>
 
                                             @can('admin-jabatan-delete')
-                                            <a href="#" class="btn btn-danger btn-icon wd-35 ht-35" data-toggle="modal"
+                                            <a href="#" class="btn btn-danger btn-icon btn-sm" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a>
                                             @endcan
                                             
                                             @can('admin-jabatan-edit')
-                                            <a href="{{route('adm.master.edit.employee.type', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
+                                            <a href="{{route('adm.master.edit.employee.type', $row->id)}}" class="btn btn-info btn-icon btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
                                             @endcan

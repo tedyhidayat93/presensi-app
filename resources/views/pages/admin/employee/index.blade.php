@@ -259,7 +259,7 @@
 
                                         @canany(['admin-karyawan-edit'])
                                         <a href="{{route('adm.employee.edit', $row->id)}}"
-                                            class="btn btn-info btn-icon wd-35 ht-35 ">
+                                            class="btn btn-info btn-sm btn-icon wd-35 ht-35 ">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                         @endcanany

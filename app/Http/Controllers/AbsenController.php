@@ -65,8 +65,26 @@ class AbsenController extends Controller
     public function index()
     {
 
+        $head = [
+            'title' => 'Presensi IN/OUT',
+            'head_title_per_page' => "Presensi IN/OUT",
+            'sub_title_per_page' => "",
+            'breadcrumbs' => [
+                [
+                    'title' => 'Dashboard',
+                    'link' => route('adm.dashboard'),
+                    'is_active' => false,
+                ],
+                [
+                    'title' => 'Presensi IN/OUT',
+                    'link' => '#',
+                    'is_active' => true,
+                ]
+            ]
+        ];
+
         if(auth()->user()->is_web == 0) {
-            return redirect()->back()->with('error', 'anda tidak punya akses kesini. silakan hubungi admin untuk dapat melakukan absensi via website.');
+            return redirect()->back()->with('error', 'Anda tidak punya akses kesini. Silakan hubungi admin untuk dapat melakukan absensi via web app.');
         }
 
         $waktu = gmdate("H:i", time() + 7 * 3600);
@@ -95,8 +113,6 @@ class AbsenController extends Controller
             $ucapan = "Error";
         }
 
-        $head = ['title' => 'PRESENSI'];
-
         $absen = InOut::where([
             'employee_id' => auth()->user()->id,
             'date' => Carbon::now()->toDateString(),
@@ -124,7 +140,7 @@ class AbsenController extends Controller
         $check_shift = General::cekShift(auth()->user()->shift);
         $jam_pulang = date( 'H:i:s', strtotime($check_shift['jam_pulang']));
 
-        return view('pages.public.absen', compact('head', 'ucapan', 'absen', 'logAbsen', 'jam_pulang','jenis_lembur'));
+        return view('pages.employee.absen', compact('head', 'ucapan', 'absen', 'logAbsen', 'jam_pulang','jenis_lembur'));
     }
 
     public function checkInOut(Request $request)

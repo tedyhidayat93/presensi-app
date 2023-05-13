@@ -57,12 +57,12 @@
                                         <td>{!!$row->is_active == 1 ? '<span class="badge badge-success">Aktif</span>':'<span class="badge badge-danger">Non Aktif</span>' !!}</td>
                                         <td>
 
-                                            <a href="#" class="btn btn-{{$row->is_active == 1 ? 'danger':'success' }} btn-icon wd-35 ht-35" data-toggle="modal"
+                                            <a href="#" class="btn btn-{{$row->is_active == 1 ? 'danger':'success' }} btn-sm" data-toggle="modal"
                                             data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa {{$row->is_active == 1 ? 'fa-toggle-on':'fa-toggle-off' }} "></i></div>
                                             </a>
                                             
-                                            <a href="{{route('adm.users.edit', $row->id)}}" class="btn btn-info btn-icon wd-35 ht-35 ">
+                                            <a href="{{route('adm.users.edit', $row->id)}}" class="btn btn-info btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
 
