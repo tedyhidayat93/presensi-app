@@ -126,7 +126,7 @@
                         </tr>
                         @empty
                         <tr class="bg-light">
-                            <td><h6 class="text-center">Belum ada data</h6></td>
+                            <td colspan="5"><h6 class="text-center">Belum ada data</h6></td>
                         </tr>
                         @endforelse
                         
@@ -198,7 +198,7 @@
                         </tr>
                         @empty
                         <tr class="bg-light">
-                            <td><h6 class="text-center">Belum ada data</h6></td>
+                            <td colspan="5"><h6 class="text-center">Belum ada data</h6></td>
                         </tr>
                         @endforelse
 

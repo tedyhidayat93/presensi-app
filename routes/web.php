@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\ReportingController;
 use App\Http\Controllers\Admin\ShiftController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\DashboardController as UserDashboardController;
 use App\Http\Controllers\IzinController as UserIzinController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -164,9 +163,6 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['role:superadmin|adm
 // *Role: User
 Route::group(['prefix' => 'employee', 'middleware' => ['role:user','auth']], function () {
     Route::get('/tes-user', function () {return "ADMIN";});
-    
-    // DASHBOARD
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
     
     // PROFILE
     Route::get('/my-profile', [ProfileController::class, 'index'])->name('user.profile');
