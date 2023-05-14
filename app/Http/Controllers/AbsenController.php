@@ -29,7 +29,13 @@ class AbsenController extends Controller
     public function __construct()
     {
         if(auth()->user() == null) {
-            return redirect()->route('logout');
+            Auth::logout(); // Hapus session pengguna
+            session()->invalidate();
+            session()->regenerateToken();
+    
+            return redirect('/login')->withErrors([
+                'expired' => 'Sesi Anda telah berakhir. Silakan login kembali.'
+            ]);
         }
         
         $cek_shift = General::cekShift(auth()->user()->shift);
@@ -44,21 +50,18 @@ class AbsenController extends Controller
         $kemarin->hour = $hour;
         $kemarin->minute = $minute;
         $kemarin = $kemarin->toDateTimeString();
-        // $this->yesterday_date = date('Y-m-d H:i:s',strtotime($kemarin));
         $this->yesterday_date = $kemarin;
 
         $hari_ini = Carbon::today();
         $hari_ini->hour = $hour;
         $hari_ini->minute = $minute;
         $hari_ini = $hari_ini->toDateTimeString();
-        // $this->today_date = date('Y-m-d H:i:s',strtotime($hari_ini));
         $this->today_date = $hari_ini;
         
         $besok = Carbon::tomorrow();
         $besok->hour = $hour;
         $besok->minute = $minute;
         $besok = $besok->toDateTimeString();
-        // $this->tomorrow_date = date('Y-m-d H:i:s',strtotime($besok));
         $this->tomorrow_date = $besok;
     }
 
@@ -127,7 +130,6 @@ class AbsenController extends Controller
         ->orWhere('type', 'absen_lembur')
         ->orderBy('created_at', 'DESC')->get();
 
-        // dd($logAbsen);
 
         if($absen) {
             $absen = $absen;
@@ -151,7 +153,6 @@ class AbsenController extends Controller
         ->latest('id')
         ->first() ?? null;
 
-        // dd($absensi_terakhir);
                         
 
         return view('pages.employee.absen', compact('head', 'ucapan', 'absen', 'absensi_terakhir', 'logAbsen', 'jam_pulang','jenis_lembur'));
@@ -162,7 +163,6 @@ class AbsenController extends Controller
 
         $type_absen = $request->type;
 
-        // return $request->all();
 
         if(strtolower($type_absen) == 'absen_lembur_masuk') {
             $validator =  Validator::make($request->all(), [
@@ -190,7 +190,6 @@ class AbsenController extends Controller
             ]);
         }
 
-        // return $type_absen;
         
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
@@ -216,9 +215,6 @@ class AbsenController extends Controller
                 // cek user harus terdaftar di shift yang sudah dibuat
                 if(auth()->user()->shift != null) {
                     if (strtolower($type_absen) == 'absen_biasa_masuk' || strtolower($type_absen) == 'absen_lembur_masuk') {
-
-
-                        
                         
                         $total_terlambat = null;
                         if($type_absen == 'absen_biasa_masuk') {
@@ -227,7 +223,6 @@ class AbsenController extends Controller
                             $cek_absen_lembur_hari_ini = InOut::where([
                                 'employee_id' => auth()->user()->id,
                                 'is_active' => 1,
-                                // 'created_at' => Carbon::today()
                             ])->where('type', 'absen_lembur')->orderBy('created_at', 'DESC')->first() ?? null;
 
                             if($cek_absen_lembur_hari_ini != null) {
@@ -236,15 +231,11 @@ class AbsenController extends Controller
                                 } 
                             }
 
-                            // return 'absen_biasa_masuk';
-                            // cek jika pernah presensi sebelumnya maka presensi kedua ditolak
-                            // $clock_in = InOut::where(['type' => 'absen_biasa', 'employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->first()->clock_in ?? null;
                             $cek_today = InOut::where([
                                 'type' => 'absen_biasa',
                                 'date' => Carbon::now()->format('Y-m-d'),
                                  'employee_id' => auth()->user()->id
                                  ])
-                                //  ->whereBetween('created_at', [$this->yesterday_date, $this->tomorrow_date])
                                  ->orderBy('created_at', 'DESC')
                                  ->first() ?? null;
 
@@ -289,7 +280,6 @@ class AbsenController extends Controller
                                     // menetukan total waktu keterlambatan
                                     $jam_tentuan = Carbon::createFromFormat('H:i:s', $hari_ini);
                                     $jam_masuk = Carbon::createFromFormat('H:i:s', date('H:i:s'));
-                                    // $jam_masuk = Carbon::createFromFormat('H:i:s', $request->in);
 
                                     if ($jam_masuk->gt($jam_tentuan)) {
                                         $total_terlambat = $jam_masuk->diffInSeconds($jam_tentuan);
@@ -364,17 +354,13 @@ class AbsenController extends Controller
                         // cek jika karyawan belum presensi masuk maka tidak bisa presensi pulang
                         $history = null;
                         if($type_absen == 'absen_biasa_pulang') { 
-                            // return 'absen_biasa_pulang';
-                            // $history = InOut::where(['type' => 'absen_biasa','employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->first();
                             $history = InOut::where(['type' => 'absen_biasa',
                                 'date' => Carbon::now()->format('Y-m-d'),
                                 'employee_id' => auth()->user()->id
                             ])
-                            // ->whereBetween('created_at', [$this->yesterday_date, $this->tomorrow_date])
                             ->orderBy('created_at', 'DESC')
                             ->first();
 
-                            // return $history;
                             if($history) {
                                 if($history->clock_in == null) {
                                     return redirect()->back()->with('error', 'Anda belum melakukan presensi masuk.');
@@ -389,17 +375,12 @@ class AbsenController extends Controller
                         }
                         
                         if($type_absen == 'absen_lembur_pulang') {
-                            // return 'absen_lembur_pulang';
-                            // $history = InOut::where(['type' => 'absen_lembur', 'employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->first();
                             $history = InOut::where([
                                 'type' => 'absen_lembur',
-                                // 'date' => Carbon::now()->format('Y-m-d'),
                                  'employee_id' => auth()->user()->id
                                  ])
-                            // ->whereBetween('created_at', [$this->yesterday_date, $this->tomorrow_date])
                             ->orderBy('created_at', 'DESC')
                             ->first();
-                            // return $history;
                             
 
                             if($history) {
@@ -438,9 +419,6 @@ class AbsenController extends Controller
                             
                         $jenis = $type_absen == 'absen_biasa_pulang' ? 'absen_biasa' : 'absen_lembur';
                         
-                        // if($type_absen == 'absen_biasa_pulang') {
-                        //     $data['note'] = $request->note ?? null;
-                        // }
 
                         // cek pulang cepat harian
                         $pulang_cepat = null;
@@ -463,15 +441,11 @@ class AbsenController extends Controller
                             'updated_by' => auth()->user()->id,
                             'updated_at' => Carbon::now()->toDateTimeString(),
                         ];
-                        // $user = InOut::where(['type' => $type_absen == 'absen_biasa_pulang' ? 'absen_biasa' : 'absen_lembur', 'employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->update([
 
                         $last_IO = InOut::where([
-                            // 'type' => $jenis,
                             'type' => $type_data_record,
-                            // 'date' => Carbon::now()->format('Y-m-d'),
                              'employee_id' => auth()->user()->id
                              ])
-                            //  ->whereBetween('created_at', [$this->yesterday_date, $this->tomorrow_date])
                              ->orderBy('created_at', 'DESC')
                              ->first();
 

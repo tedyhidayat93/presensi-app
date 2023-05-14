@@ -12,9 +12,23 @@ use Carbon\Carbon;
 use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+
+    public function  __construct()
+    {
+        if(auth()->user() == null) {
+            Auth::logout(); // Hapus session pengguna
+            session()->invalidate();
+            session()->regenerateToken();
+    
+            return redirect('/login')->withErrors([
+                'expired' => 'Sesi Anda telah berakhir. Silakan login kembali.'
+            ]);
+        }
+    }
 
     public function index()
     {

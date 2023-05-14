@@ -22,9 +22,7 @@ class IzinController extends Controller
 {
 
     // Izins Admin
-    // public function indexIzin ($id = null, Request $request) {
     public function indexIzin (Request $request) {
-        // dd($request->query('status'));
         $head = [
             'title' => 'Data Izin',
             'head_title_per_page' => "Data Izin",
