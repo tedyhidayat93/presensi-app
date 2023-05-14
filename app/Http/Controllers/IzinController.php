@@ -28,7 +28,13 @@ class IzinController extends Controller
     public function __construct()
     {
         if(auth()->user() == null) {
-            return redirect()->route('logout');
+            Auth::logout(); // Hapus session pengguna
+            session()->invalidate();
+            session()->regenerateToken();
+    
+            return redirect('/login')->withErrors([
+                'expired' => 'Sesi Anda telah berakhir. Silakan login kembali.'
+            ]);
         }
         
         $cek_shift = General::cekShift(auth()->user()->shift);
