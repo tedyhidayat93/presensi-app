@@ -23,8 +23,8 @@
             <div class="br-section-wrapper pd-15">
                 <div class="d-block d-md-flex align-item-center justify-content-between mb-3">
                     <div>
-                        <h4 class="text-dark mb-1 card-title">Laporan Kehadiran Karyawan</h4>
-                        <h6 class="text-dark">PT. Maggiollini Indonesia</h6>
+                        <h4 class="text-dark mb-1 card-title">Laporan Presensi Pegawai</h4>
+                        <h6 class="text-primary">{{$site->site_name ?? 'C-PANEL'}}</h6>
                     </div>
                     <div>
                     </div>
@@ -128,7 +128,7 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group d-flex">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Cari Karyawan">
-                            <button type="submit" class="ml-2 btn btn-info"><i class="fa fa-search"></i> Cari</button>
+                            <button type="submit" class="ml-2 btn btn-dark"><i class="fa fa-search"></i> Cari</button>
                         </div>
                     </div>
                     <div class="col-md-8 d-flex justify-content-end align-items-start">
@@ -468,7 +468,7 @@ show-sub
 
         if(from_date !== "" || to_date !== "" || jenis_presensi !== "") {
             Swal.fire({
-                title: 'Proses Genereate Laporan',
+                title: 'Proses Data Laporan',
                 html: 'Harap tunggu beberapa saat ...',
                 allowEscapeKey: false,
                 allowOutsideClick: false,

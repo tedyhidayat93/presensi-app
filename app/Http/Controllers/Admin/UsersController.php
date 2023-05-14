@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Helpers\General;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use App\Models\{User};
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -103,7 +103,7 @@ class UsersController extends Controller
                     'full_name' => $request->full_name,
                     'photo_profile' => $foto_name ?? null,
                     'email' => $request->email,
-                    'password' => bcrypt($request->password),
+                    'password' => Hash::make($request->password),
                     'role' => 'admin',
                     'is_active' => $request->is_active,
                     'registered_at' => Carbon::now()->toDateTimeString(),
@@ -171,7 +171,7 @@ class UsersController extends Controller
                     'updated_at' => Carbon::now()->toDateTimeString(),
                 ];
                 if($request->password) {
-                    $data['password'] = bcrypt($request->password);
+                    $data['password'] = Hash::make($request->password);
                 }
 
                 if($request->file('foto')) {

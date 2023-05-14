@@ -10,11 +10,12 @@
         <div class="col">
             <div class="card bd-0 shadow-base ">
                 <div class="card-header">
-                    <a href="{{route('adm.absen')}}" class="btn btn-light btn-sm"><i class="fa fa-arrow-left"></i> Kembali </a>
+                    <a href="{{route('user.absen')}}" class="btn btn-light btn-sm"><i class="fa fa-arrow-left"></i> Kembali </a>
                 </div>
                 <div class="card-body p-3">
                     <div class="row">
                         <div class="col-12 col-md-7 table-responsive overflow-auto">
+    
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <div class="card mb-3 border border">

@@ -2,13 +2,13 @@
 <table>
     <thead>
         <tr>
-            <th colspan="3" style="font-size: 20pt; font-weight:bold;">LAPORAN KEHADIRAN KARYAWAN</th>
+            <th colspan="3" style="font-size: 20pt; font-weight:bold;">LAPORAN PRESENSI KARYAWAN</th>
         </tr>
         <tr>
-            <th colspan="3">PT. MAGGIOLLINI INDONESIA</th>
+            <th colspan="3">{{$site->site_name ?? 'C-PANEL'}}</th>
         </tr>
         <tr>
-            <td colspan="3" style="text-align: right; color:gray;">Generate By System: <i> E-Kehadiran https://absensi.maggioapps.com </i></td>
+            <td colspan="3" style="text-align: right; color:gray;">Generate By System: <i> {{$site->site_name ?? 'C-PANEL'}} </i></td>
         </tr>
         <tr>
             <th style="color:#000000;">Jenis</th>

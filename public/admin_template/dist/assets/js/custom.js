@@ -37,7 +37,7 @@ $(document).ready(function () {
 
 
 $('#datatable1').DataTable({
-    // responsive: true,
+    responsive: false,
     aLengthMenu: [
         [5, 10, 30, 50, 100, 200, 300, -1],
         [5, 10, 30, 50, 100, 200, 300, "Semua"]

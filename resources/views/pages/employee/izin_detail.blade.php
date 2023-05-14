@@ -10,7 +10,7 @@
         <div class="col">
             <div class="card bd-0 shadow-base">
                 <div class="card-header">
-                    <a href="{{route('adm.izin')}}" class="btn btn-light btn-sm"><i class="fa fa-arrow-left"></i> Kembali </a>
+                    <a href="{{route('user.izin')}}" class="btn btn-light btn-sm"><i class="fa fa-arrow-left"></i> Kembali </a>
                 </div>
                 <div class="card-body p-3">
                     <div class="row">
@@ -68,27 +68,18 @@
                             </div>
                             <div class="row">
                                 <div class="col d-flex align-items-center justify-content-between">
-                                    @if ($data->validation_by === null)
-                                    @canany(['admin-izin-validation'])
-                                    <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modaldemo">
-                                        <div><i class="fa fa-stamp"></i> Validasi Izin</div>
-                                    </a>
-                                    @endcanany
-                                    
-                                    @else
-                                        <span> 
-                                            <b> Status : </b> 
-                                            @if($data->is_approve == 2)
-                                            <span class="badge badge-success">Disetujui</span>
-                                            @elseif($data->is_approve == 3)
-                                            <span class="badge badge-danger">Ditolak</span>
-                                            @elseif($data->is_approve == 1)
-                                            <span class="badge badge-warning text-white">Menuggu</span>
-                                            @endif
-                                        </span>
-                                        <span> <b> Divalidasi Oleh : </b> {{$data->validator->full_name}}</span>
-                                        <span> <b> Tanggal : </b> {{ date('d-M-Y H:i', strtotime($data->validation_at)) }}</span>
-                                    @endif
+                                    <span> 
+                                        <b> Status : </b> 
+                                        @if($data->is_approve == 2)
+                                        <span class="badge badge-success">Disetujui</span>
+                                        @elseif($data->is_approve == 3)
+                                        <span class="badge badge-danger">Ditolak</span>
+                                        @elseif($data->is_approve == 1)
+                                        <span class="badge badge-warning text-white">Menuggu</span>
+                                        @endif
+                                    </span>
+                                    <span> <b> Divalidasi Oleh : </b> {{$data->validator->full_name ?? '-'}}</span>
+                                    <span> <b> Tanggal Validasi: </b> {{ $data->validation_at != null ? date('d-M-Y H:i', strtotime($data->validation_at)) : '-' }}</span>
                                 </div>
                             </div>
                         </div>

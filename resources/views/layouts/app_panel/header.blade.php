@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/jquery-selectric/selectric.css">
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/modules/chocolat/dist/css/chocolat.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('admin_template/dist')}}/assets/css/style.css">

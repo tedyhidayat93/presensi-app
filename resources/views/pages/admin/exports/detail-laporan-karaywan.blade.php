@@ -1,10 +1,10 @@
 <table>
     <thead>
         <tr>
-            <th colspan="9" style="font-weight:bold; font-size: 20pt;"> Detail Riwayat Presensi Per Karyawan</th>
+            <th colspan="9" style="font-weight:bold; font-size: 20pt;"> Detail Riwayat Presensi Per Pegawai</th>
         </tr>
         <tr>
-            <td colspan="9" style="text-align: right; color:gray;">Generate By System: <i> E-Kehadiran https://absensi.maggioapps.com </i></td>
+            <td colspan="9" style="text-align: right; color:gray;">Generate By System: <i> {{$site->site_name ?? 'C-PANEL'}} </i></td>
         </tr>
     </thead>
 </table>

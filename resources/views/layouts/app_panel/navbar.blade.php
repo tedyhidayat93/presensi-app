@@ -11,7 +11,7 @@
     @endcan
     
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle">
+      <li class="dropdown dropdown-list-toggle d-none d-md-block">
         <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg d-flex  message-toggle beep">
           <i class="far fa-clock" style="font-size: 13px;"></i>
           &nbsp;
@@ -32,7 +32,7 @@
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-title">{{date('d F Y')}}</div>
           @role(['user'])
-          <a href="{{asset('admin_template/dist')}}/features-profile.html" class="dropdown-item has-icon">
+          <a href="{{route('user.profile')}}" class="dropdown-item has-icon">
             <i class="far fa-user"></i> Profil
           </a>
           @endrole

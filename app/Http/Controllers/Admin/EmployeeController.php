@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\{Education, EmployeeType, Shift, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -172,7 +173,7 @@ class EmployeeController extends Controller
                     'email' => $request->email,
                     'shift' => $request->shift,
                     'employee_type' => $request->jabatan,
-                    'password' => bcrypt($request->password ?? 123456789),
+                    'password' => Hash::make($request->password ?? 123456789),
                     'role' => 'user',
                     'is_active' => $request->is_active,
                     'is_web' => $request->is_web != '' ? 1 : 0,
@@ -282,7 +283,7 @@ class EmployeeController extends Controller
                 }
 
                 if($request->password) {
-                    $data['password'] = bcrypt($request->password);
+                    $data['password'] = Hash::make($request->password);
                 }
 
                 if($request->file('foto')) {

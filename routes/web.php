@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\DashboardController as UserDashboardController;
 use App\Http\Controllers\IzinController as UserIzinController;
-
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -167,16 +167,24 @@ Route::group(['prefix' => 'employee', 'middleware' => ['role:user','auth']], fun
     
     // DASHBOARD
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    
+    // PROFILE
+    Route::get('/my-profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/update-password', [ProfileController::class, 'changePassword'])->name('user.profile.update_password');
 
     // ABSENSI
     Route::group(['prefix' => 'absen'], function () {
         Route::get('', [AbsenController::class, 'index'])->name('user.absen');
         Route::post('/attendance', [AbsenController::class, 'checkInOut'])->name('user.absen.io');
+        Route::get('/detail/{id}', [AbsenController::class, 'detail'])->name('user.absen.detail');
+
     });
 
     // IZIN
     Route::group(['prefix' => 'izin'], function () {
         Route::get('', [UserIzinController::class, 'index'])->name('user.izin');
         Route::post('/send', [UserIzinController::class, 'send'])->name('user.izin.send');
+        Route::get('/detail/{id}', [UserIzinController::class, 'detail'])->name('user.izin.detail');
+
     });
 });

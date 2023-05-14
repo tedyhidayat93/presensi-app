@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
             'nik' => Str::upper(Str::random(16)),
             'nip' => Str::upper(Str::random(12)),
             'email' => 'superadmin@mail.com',
-            'password' => bcrypt('secret'),
+            'password' => Hash::make('secret'),
             'gender' => 'NA',
             'phone' => null,
             'address' => null,
@@ -50,7 +51,7 @@ class UserSeeder extends Seeder
             'nik' => Str::upper(Str::random(16)),
             'nip' => Str::upper(Str::random(12)),
             'email' => 'admin@mail.com',
-            'password' => bcrypt('secret'),
+            'password' => Hash::make('secret'),
             'gender' => 'NA',
             'phone' => null,
             'address' => null,
@@ -73,7 +74,7 @@ class UserSeeder extends Seeder
             'nik' => Str::upper(Str::random(16)),
             'nip' => Str::upper(Str::random(12)),
             'email' => 'user@mail.com',
-            'password' => bcrypt('secret'),
+            'password' => Hash::make('secret'),
             'gender' => 'L',
             'phone' => '081280252634',
             'address' => 'Bekasi',

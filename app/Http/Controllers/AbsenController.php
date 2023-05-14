@@ -84,7 +84,7 @@ class AbsenController extends Controller
         ];
 
         if(auth()->user()->is_web == 0) {
-            return redirect()->back()->with('error', 'Anda tidak punya akses kesini. Silakan hubungi admin untuk dapat melakukan absensi via web app.');
+            return redirect()->back()->with('error', 'Anda tidak punya akses kesini. Silakan hubungi admin untuk dapat melakukan Presensi via web app.');
         }
 
         $waktu = gmdate("H:i", time() + 7 * 3600);
@@ -123,8 +123,8 @@ class AbsenController extends Controller
             'employee_id' => auth()->user()->id,
             'is_active' => 1
         ])
-        // ->where('type', 'absen_biasa')
-        // ->where('type', 'absen_lembur')
+        ->where('type', 'absen_biasa')
+        ->orWhere('type', 'absen_lembur')
         ->orderBy('created_at', 'DESC')->get();
 
         // dd($logAbsen);
@@ -140,7 +140,21 @@ class AbsenController extends Controller
         $check_shift = General::cekShift(auth()->user()->shift);
         $jam_pulang = date( 'H:i:s', strtotime($check_shift['jam_pulang']));
 
-        return view('pages.employee.absen', compact('head', 'ucapan', 'absen', 'logAbsen', 'jam_pulang','jenis_lembur'));
+        // get last attendance yang belum checkout
+        $absensi_terakhir = InOut::whereIn('type', ['absen_biasa','absen_lembur'])
+        ->where([
+            'employee_id' => auth()->user()->id, 
+            'date' => Carbon::now()->toDateString()
+        ])
+        ->whereNotNull('clock_in')
+        ->whereNull('clock_out')
+        ->latest('id')
+        ->first() ?? null;
+
+        // dd($absensi_terakhir);
+                        
+
+        return view('pages.employee.absen', compact('head', 'ucapan', 'absen', 'absensi_terakhir', 'logAbsen', 'jam_pulang','jenis_lembur'));
     }
 
     public function checkInOut(Request $request)
@@ -293,18 +307,9 @@ class AbsenController extends Controller
 
                             // cek jika presensi lembur tapi belum presensi harian hari ini
                             $cek_harian = InOut::where(['type' => 'absen_biasa','employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->first() ?? null;
-                            // $cek_harian = InOut::where([
-                            //     'type' => 'absen_biasa',
-                            //     'date' => Carbon::now()->format('Y-m-d'),
-                            //     'employee_id' => auth()->user()->id
-                            // ])
-                            // // ->where('created_at', '>=',  $this->yesterday_date)
-                            // // ->where('created_at', '<=', $this->tomorrow_date)
-                            // ->orderBy('created_at', 'DESC')->first() ?? null;
-                            // // return $cek_harian;
-
-                             // absen lembur di hari minggu tetap bisa aktif tanpa absen harian terlebih dahulu
-                             if (date("D") != "Sun") {
+                        
+                            // absen lembur di hari minggu tetap bisa aktif tanpa absen harian terlebih dahulu
+                            if (date("D") != "Sun") {
                                 //  return 1;
                                 if( $cek_harian != null ) {
                                     if($cek_harian->clock_in != null && $cek_harian->clock_out == null) {
@@ -312,21 +317,6 @@ class AbsenController extends Controller
                                     }
                                 } 
                             }
-
-                            // cek masuk waktu lembur
-                            // $cek_shift = General::cekShift(auth()->user()->shift);
-                            // if( strtotime($cek_shift['jam_pulang']) > strtotime(date('H:i:s')) ) {
-                            //     return redirect()->back()->with('error', 'Belum masuk waktu lembur.');
-                            // }
-
-                            // cek jika sudah klik tomobol presensi lembur 
-                            // $clock_in = InOut::where(['type' => 'absen_lembur','employee_id' => auth()->user()->id, 'date' => Carbon::now()->toDateString()])->first()->clock_in ?? null;
-                            // $clock_in = InOut::where(['type' => 'absen_lembur','employee_id' => auth()->user()->id])->whereBetween('created_at', [$this->yesterday_date, $this->tomorrow_date])->orderBy('created_at', 'DESC')->first()->clock_in ?? null;
-                            // $clock_in = InOut::where(['type' => 'absen_lembur','employee_id' => auth()->user()->id])->orderBy('created_at', 'DESC')->first()->clock_in ?? null;
-                            // // return 1;
-                            // if($clock_in != null) {
-                            //     return redirect()->back()->with('error', 'Anda sudah presensi lembur masuk sebelumnya. Silakan checkout terlebih dahulu untuk dapat melakukan presensi lembur sealnjutnya.');
-                            // } 
                         }
     
                         
@@ -506,176 +496,19 @@ class AbsenController extends Controller
                 }
             } catch (\Exception $e) {
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failure !' . $e);
+                return redirect()->back()->with('error', 'Failure !');
             }
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function checkInOut(Request $request)
-    // {
-
-    //     $validator =  Validator::make($request->all(), [
-    //         'typ' => ['required'],
-    //         'usr' => ['required', 'integer'],
-    //         'latlong' => ['required']
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withInput()->withErrors($validator);
-    //     } else {
-
-    //         DB::beginTransaction();
-
-    //         $type_absen = $request->typ;
-    //         $jenis =$request->jenis_absen;
-
-            
-            
-    //         // $shifts = Shift::where('is_active', 1)->pluck('id')->toArray();
-    //         // $shifts = Shift::where('is_active', 1)->get();
-    //         // $user_shifts = auth()->user()->shifts;            
-    //         // $shifts_user = [];
-    //         // foreach($user_shifts as $r) {
-    //         //     array_push($shifts_user, $r->id);
-    //         // }
-
-    //         // $result = 1;
-    //         // foreach($shifts as $collection)
-    //         // {
-    //         //     if(!array_key_exists($collection->id, $user_shifts))
-    //         //     {
-    //         //         $result = 0; // doesn't find the question id in array key input
-    //         //     } 
-    //         // }
-
-
-    //         try {
-
-    //             $msg = '';
-    //             if (strtolower($type_absen) == 'i') {
-    //                 $img = $request->image;
-    //                 if($img) {
-    //                     $path = public_path('uploads/images/attendance');
-    //                     if (!File::exists($path)) File::makeDirectory($path, 0775,true,true,true);
-                        
-    //                     $image_parts = explode(";base64,", $img);
-    //                     $image_type_aux = explode("image/", $image_parts[0]);
-    //                     $image_type = $image_type_aux[1];
-                        
-    //                     $image_base64 = base64_decode($image_parts[1]);
-    //                     $fileName = 'in-' . 'attendance-' . date('dmYHis') . '.png';
-                        
-    //                     $file = $path .'/'. $fileName;
-    //                     // Storage::put($file);
-    //                     file_put_contents($file, $image_base64);
-    //                 }
-    //                 $user = InOut::create([
-    //                     'shift_id' => 1,
-    //                     'type' => $jenis,
-    //                     'employee_id' => $request->usr,
-    //                     'date' => Carbon::now()->toDateString(),
-    //                     'clock_in' => date('H:i:s'),
-    //                     'latlong_in' => $request->latlong,
-    //                     'foto_masuk' => $fileName ?? null,
-    //                     'is_active' => 1,
-    //                     'created_by' => auth()->user()->id,
-    //                     'created_at' => Carbon::now()->toDateTimeString(),
-    //                     'updated_by' => auth()->user()->id,
-    //                     'updated_at' => Carbon::now()->toDateTimeString(),
-    //                 ]);
-    //                 $msg = 'masuk';
-    //             } elseif (strtolower($type_absen) == 'o') {
-    //                 $img = $request->image;
-    //                 if($img) {
-    //                     $path = public_path('uploads/images/attendance');
-    //                     if (!File::exists($path)) File::makeDirectory($path, 0775,true,true,true);
-                        
-    //                     $image_parts = explode(";base64,", $img);
-    //                     $image_type_aux = explode("image/", $image_parts[0]);
-    //                     $image_type = $image_type_aux[1];
-                        
-    //                     $image_base64 = base64_decode($image_parts[1]);
-    //                     $fileName = 'out-' . 'attendance-' . date('dmYHis') . '.png';
-                        
-    //                     $file = $path .'/'. $fileName;
-    //                     // Storage::put($file);
-    //                     file_put_contents($file, $image_base64);
-    //                 }
-    //                 $clock_in = InOut::where(['employee_id' => $request->usr, 'date' => Carbon::now()->toDateString()])->first()->clock_in;
-    //                 $datetime1 = new DateTime($clock_in);//start time
-    //                 $datetime2 = new DateTime(date('H:i:s'));//end time
-    //                 $durasi = $datetime1->diff($datetime2);
-    //                 $totalWork = $durasi->format('%H:%i:%s');
-    //                 // $totalWork = $durasi->format('%Y tahun %m bulan %d hari %H jam %i menit %s detik');
-
-    //                 $user = InOut::where(['employee_id' => $request->usr, 'date' => Carbon::now()->toDateString()])->update([
-    //                     // 'shift_id' => 1,
-    //                     'clock_out' => date('H:i:s'),
-    //                     'latlong_out' => $request->latlong,
-    //                     'foto_keluar' => $fileName ?? null,
-    //                     'total_work' => $totalWork ?? null,
-    //                     'updated_by' => auth()->user()->id,
-    //                     'updated_at' => Carbon::now()->toDateTimeString(),
-    //                 ]);
-    //                 $msg = 'pulang';
-    //             } else {
-    //                 return back()->with('error', 'Gagal !');
-    //             }
-
-    //             DB::commit();
-    //             if ($user) {
-    //                 return back()->with('success', 'Berhasil ' . $msg);
-    //             } else {
-    //                 return back()->with('error', 'Gagal !');
-    //             }
-    //         } catch (\Exception $e) {
-    //             DB::rollback();
-    //             return redirect(route('adm.employee.create'))->with('error', 'Failure !' . $e);
-    //         }
-    //     }
-    // }
+    public function detail(Request $request, $id=null) {
+        $head = [
+            'title' => 'Detail Presensi',
+            'head_title_per_page' => "Detail Presensi",
+            'sub_title_per_page' => "",
+        ];
+        $data = InOut::where('is_active', 1)->where('id', $id)->first();
+        $route_back = route('adm.lembur.delete');
+        return view('pages.employee.absen_detail', compact('head','data','route_back'));
+    }
 }

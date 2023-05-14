@@ -205,4 +205,16 @@ class IzinController extends Controller
             }
         }
     }
+
+    public function detail ($id = null) {
+        $head = [
+            'title' => 'Detail Izin',
+            'head_title_per_page' => 'Detail Izin',
+            'sub_title_per_page' => ""
+        ];
+
+        $data = Izin::where(['id' => $id, 'is_active' => 1])->first();
+
+        return view('pages.employee.izin_detail', compact('head','data'));
+    }
 }

@@ -8,228 +8,235 @@
         <span class="float-right">{{$head['sub_title_per_page'] ?? 'Sub Title'}}</span>
     </div>
     
-    <div class="card shadow-base bd-0">
-        <div class="card-body pd-x-10 pd-b-10 pd-t-0">
-            
-            <div class="row no-gutters mt-4">
+    <div class="row">
 
-                <div class="col-sm-12 col-lg-3">
-                    <form action="{{route('user.absen.io')}}" method="POST" enctype="multipart/form-data">
-                        <div class="card">
-                            <div class="card-body overflow-hidden px-2 pd-t-5  bg-dark rounded">
+        <div class="col-sm-12 col-lg-5">
+            <form action="{{route('user.absen.io')}}" method="POST" enctype="multipart/form-data">
+                <div class="card p-0 bg-transparent shadow-none">
+                    <div class="card-body bg-transparent p-0 overflow-hidden rounded">
+                        <div class="row">
+                            <div class="col-12 m-auto col-md-12">
                                 @csrf
-                                <div id="my_camera" class="rounded"></div>
-                                <div id="resultFoto"></div>
-        
-                                <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <button type="button" id="btnCapture" class="btn mb-4 btn-info rounded-circle" onclick="take_snapshot()"><i class="fa fa-camera"></i></button>
-                                    <a href="" id="btnReCapture" class="btn mb-4 mt-3 btn-light"><i class="fa fa-history"></i> Foto Ulang</a>
-                                </div>
 
-                                <input type="hidden" name="usr" id="usr_in" value="{{auth()->user()->id}}">
-                                <input type="hidden" name="latlong" id="latlong1" value="">
+                                @if ($absensi_terakhir != null)
+                                <div class="card card-statistic-1 border border-warning">
+                                    <div class="card-icon bg-warning w-50 p-0" style="width: 40%; overflow:hidden;">
+                                      {{-- <i class="fas fa-clock"></i> --}}
+                                      {{-- <img alt="image" class="rounded img-fluid w-full h-full m-0" src="{{ asset('uploads/images/attendance/'.$absensi_terakhir->foto_masuk) }}"> --}}
 
-                                <div id="results"></div>
-                                
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <select name="type" class="form-control" id="type_absen">
-                                                <option value="" selected>-- Pilih Presensi --</option>
-                                                <option value="absen_biasa_masuk">Presensi Masuk</option>
-                                                <option value="absen_biasa_pulang">Presensi Pulang</option>
-                                                <option value="absen_lembur_masuk">Presensi Lembur Masuk</option>
-                                                <option value="absen_lembur_pulang">Presensi Lembur Pulang</option>
-                                            </select>
+
+                                      <div class="gallery gallery-fw" data-item-height="100">
+                                        <div class="gallery-item" data-image="{{ asset('uploads/images/attendance/'.$absensi_terakhir->foto_masuk) }}" data-title="Foto Check In"></div>
+                                      </div>
+
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4 class="mt-0 text-primary" style="font-size: 10px;">Data Check In Terkahir</small>
                                         </div>
-
-                                        <div class="form-group" id="jenis_lembur">
-                                            <select class="form-control" name="jenis_lembur">
-                                                <option value="" selected disabled>-- Pilih Jenis Lembur --</option>
-        
-                                                    @if ($jenis_lembur)
-                                                    @foreach ($jenis_lembur as $j)
-                                                    <option value="{{$j->id}}">
-                                                        {{$j->type}}</option>
-                                                    @endforeach
-                                                    @endif
-                                            </select>
-                                            @if($errors->has('jenis_lembur'))
-                                            <div class="text-danger mg-t-10 d-flex justify-content-between align-items-center"
-                                                onclick="$(this).remove()">
-                                                <small>{{ $errors->first('jenis_lembur') }}</small>
-                                                <small aria-hidden="true" class="fa fa-times" style="cursor:pointer;"></small>
+                                        <div class="card-body">
+                                            <div class="mb-0 text-warning" style="font-size: 15px;">
+                                                <span class="">{{ date('d-m-Y', strtotime($absensi_terakhir->date))}}</span>
+                                                |
+                                                <span class="">{{$absensi_terakhir->clock_in}}</span>
                                             </div>
-                                            @endif
                                         </div>
-
-                                        <div class="form-group">
-                                            
-                                            <textarea class="form-control" placeholder="Catatan"
-                                            name="note"
-                                            id="note_absen"
-                                            cols="5"
-                                            rows="4"></textarea>
-                                        </div>
-                                        
-                                        <button type="submit" class="tbl-absen-in btn-block btn btn-md mt-2 btn-success btn-with-icon">
-                                            <div class="ht-40 justify-content-center">
-                                                <span class="pd-x-15">KIRIM PRESENSI</span>
-                                            </div>
-                                        </button>
+                                        @if ($absensi_terakhir->type == 'absen_lembur')
+                                            <span style="font-size:9px;" class="py-1 px-3 badge badge-dark">{{$absensi_terakhir->jenisLembur->type ?? ''}}</span>
+                                        @elseif ($absensi_terakhir->type == 'absen_biasa')
+                                            <span style="font-size:9px;" class="py-1 px-3 badge badge-info">Presensi Harian</span>
+                                        @else
+                                            -
+                                        @endif
                                     </div>
                                 </div>
-                            </div><!-- card -->
-                        </div>
-                    </form>
-                </div><!-- col-3 -->
+                                
+                                @endif  
 
-                <div class="col-sm-12 col-lg-9 ">
-                    <div class="card card-body rounded-0 bd-lg-l-0 border-0 overflow-auto">
+                                <div class="card border">
+                                    <div class="card-body p-1">
+                                        <div id="my_camera" class="rounded"></div>
+                                        <div id="resultFoto"></div>
+                                    </div>
+                                    <div class="card-footer border-bottom px-3 pt-0 pb-2">
+                                        <div class="d-flex align-items-center justify-content-center mt-1">
+                                            <button type="button" id="btnCapture" class="btn btn-block btn-light shadow-none" onclick="take_snapshot()">
+                                                <i class="fa fa-camera"></i>
+                                                Ambil Gambar
+                                            </button>
+                                            
+                                            <a href="" id="btnReCapture" class="btn mt-3 btn-light shadow-none btn-block">
+                                                <i class="fa fa-history"></i> 
+                                                Foto Ulang
+                                            </a>
+                                        </div>
+                                    </div>
 
-
-                            <div class="d-block d-md-flex justify-content-between text-12">
-
-                                <table class="table table-valign-middle mg-b-0 nowrap">
-                                    <tbody>
-                                        <tr>
-                                            <td class=" bg-light" width="100">
-                                                <div class="w-100 h-100 overflow-hidden d-flex align-items-center justify-content-center rounded">
-                                                    
-                                                    @if (auth()->user()->photo_profile)
-                                                    <img class="w-100 h-100 rounded img-fluid" src="{{ asset('uploads/images/employee/'. auth()->user()->photo_profile) }}">
-                                                    @else
-                                                    <img class="w-100 h-100 rounded img-fluid" src="{{ asset('images/default-ava.jpg') }}"> 
+                                    <div class="card-footer px-3">
+                                        <input type="hidden" name="usr" id="usr_in" value="{{auth()->user()->id}}">
+                                        <input type="hidden" name="latlong" id="latlong1" value="">
+                
+                                        <div id="results"></div>
+                                        
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <select name="type" class="form-control" id="type_absen">
+                                                        <option value="" selected>-- Pilih Presensi --</option>
+                                                        @if($absensi_terakhir == null)
+                                                        <option value="absen_biasa_masuk">Check In Harian</option>
+                                                        <option value="absen_lembur_masuk">Check In Lembur</option>
+                                                        @else
+                                                        <option value="absen_biasa_pulang">Checkout Harian</option>
+                                                        <option value="absen_lembur_pulang">Checkout Lembur</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                
+                                                <div class="form-group" id="jenis_lembur">
+                                                    <select class="form-control" name="jenis_lembur">
+                                                        <option value="" selected disabled>-- Pilih Jenis Lembur --</option>
+                
+                                                            @if ($jenis_lembur)
+                                                            @foreach ($jenis_lembur as $j)
+                                                            <option value="{{$j->id}}">
+                                                                {{$j->type}}</option>
+                                                            @endforeach
+                                                            @endif
+                                                    </select>
+                                                    @if($errors->has('jenis_lembur'))
+                                                    <div class="text-danger mg-t-10 d-flex justify-content-between align-items-center"
+                                                        onclick="$(this).remove()">
+                                                        <small>{{ $errors->first('jenis_lembur') }}</small>
+                                                        <small aria-hidden="true" class="fa fa-times" style="cursor:pointer;"></small>
+                                                    </div>
                                                     @endif
                                                 </div>
-                                            </td>
-                                            <td colspan="2">
-                                                <h4 class="text-info text-20 mg-b-0">{{auth()->user()->full_name}}</h4>
-                                                <span class="text-12"><b>Jabatan : </b> {{auth()->user()->jabatan->type ?? '-'}}</span>
-                                            </td>
-                                            <td>
-                                                <span class="text-12">Terdaftar Sejak</span>
-                                                <h4 class="text-inverse text-14 mg-b-0">{{ date('d-M-Y', strtotime(auth()->user()->registered_at))}}</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="text-12">Shift</span>
-                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->shifft->shift_name}}</h4>
-                                            </td>
-                                            <td>
-                                                <span class="text-12">Email</span>
-                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->email}}</h4>
-                                            </td>
-                                            <td>
-                                                <span class="text-12">NIP</span>
-                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->nip}}</h4>
-                                            </td>
-                                            <td>
-                                                <span class="text-12">NIK</span>
-                                                <h4 class="text-inverse text-14 mg-b-0">{{auth()->user()->nik}}</h4>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                
+                                                <div class="form-group">
+                                                    
+                                                    <textarea class="form-control" placeholder="Catatan"
+                                                    name="note"
+                                                    id="note_absen"
+                                                    cols="5"
+                                                    rows="4"></textarea>
+                                                </div>
+                                                
+                                                <button type="submit" class="tbl-absen-in btn-block btn btn-md mt-2 btn-primary btn-with-icon">
+                                                    <div class="ht-40 justify-content-center">
+                                                        <span class="pd-x-15"><i class="fas fa-paper-plane"></i> KIRIM</span>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>        
+
                             </div>
+                        </div>
+                    </div><!-- card -->
+                </div>
+            </form>
+        </div><!-- col-3 -->
 
-                            <hr>
-                            <table id="datatable1" class="table display nowrap table-hover table-bordered">
-                                <thead class="thead-teal">
-                                    <tr>
-                                        <th ><span class="text-white">#</span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Tanggal Masuk </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Jam Masuk </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Tanggal pulang </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Jam Pulang </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Terlambat </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Total </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Foto </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Catatan Masuk </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Catatan Keluar </span></th>
-                                        <th class=""> <span class="text-white font-weight-bold"> Jenis</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i=1;
-                                        $total_kerja = '-';
-                                    @endphp
-                                    @foreach ($logAbsen as $log)
-                                    <tr>
-                                        <td>{{$i++}}.</td>
-                                        {{-- <td> <span> {{date('d F Y', strtotime($log->date))}} </span></td> --}}
-                                        <td> {{ date('d-M-Y', strtotime($log->date))}} </td>
-                                        <td> {{$log->clock_in}} </td>
-                                        <td>{{ $log->date_out == null ? date('d-M-Y', strtotime($log->updated_at)) : date('d-M-Y', strtotime($log->date_out))}}</td>
-                                        <td> {{$log->clock_out ?? '-'}}</td>
-                                        <td> {{$log->late != null ? \App\Helpers\General::convertSecondToStringTime($log->late) : '-' }} </td>
+        <div class="col-sm-12 col-lg-7">
+            <div class="card border ">
+                <div class="card-header">
+                    <h4 class="card-title text-primary"><i class="fas fa-history"></i> Riwayat Presensi</h4>
+                </div>
+                <div class="card-body overflow-auto table-responsive">
+                    <table id="datatable1" class="table table-striped nowrap w-full">
+                        <thead class="">
+                            <tr>
+                                <th class="wd-5p">#</th>
+                                <th class="">Pegawai</th>
+                                <th class="">Jenis</th>
+                                <th class="">Tanggal Check In</th>
+                                <th class="">Jam Check In</th>
+                                <th class="">Tanggal Check Out</th>
+                                <th class="">Jam Check Out</th>
+                                <th class="">Terlambat</th>
+                                <th class="">Total Jam Kerja</th>
+                                <th class="wd-5p">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $i=1;
+                            @endphp
+                            @foreach ($logAbsen as $row)
 
-                                        @if ($log->type == 'absen_lembur')
+                            @if($row->type == 'absen_biasa' || $row->type == 'absen_lembur')
+                                <tr>
+                                    <td>{{$i++}}.</td>
+                                    <td>
+                                        @if ($row->karyawan->photo_profile)
+                                        <img width="30" class="rounded-circle" src="{{ asset('uploads/images/employee/'. $row->karyawan->photo_profile) }}">
+                                        @else
+                                        <img width="30" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
+                                        @endif
+                                        {{$row->karyawan->full_name}}
+                                    </td>
+                                    <td>
+                                        @if ($row->type == 'absen_lembur')
+                                            {{-- <span style="font-size:9px;" class="badge badge-dark">Presensi Lembur</span><br> --}}
+                                            <span style="font-size:9px;" class="badge badge-dark">{{$row->jenisLembur->type ?? ''}}</span>
                                             @php
-                                                $total_kerja = $log->overtime != null ? \App\Helpers\General::convertSecondToStringTime($log->overtime) : '-';
+                                                // $total_kerja = $row->overtime != null ? \Carbon\Carbon::createFromTimestampUTC($row->overtime)->format('H:i:s') : '-';
+                                                $total_kerja = $row->overtime != null ? \App\Helpers\General::convertSecondToStringTime($row->overtime) : '-';
                                             @endphp
-                                        @elseif ($log->type == 'absen_biasa')
+                                        @elseif ($row->type == 'absen_biasa')
+                                            <span style="font-size:9px;" class="badge badge-info">Presensi Harian</span>
                                             @php
-                                                $total_kerja = $log->total_work != null ? \App\Helpers\General::convertSecondToStringTime($log->total_work) : '-';
+                                                // $total_kerja = $row->total_work != null ? \Carbon\Carbon::createFromTimestampUTC($row->total_work)->format('H:i:s') : '-';
+                                                $total_kerja = $row->total_work != null ? \App\Helpers\General::convertSecondToStringTime($row->total_work) : '-';
                                             @endphp
                                         @else
                                             -
                                         @endif
+                                    </td>
+                                    <td>{{ date('d-M-Y', strtotime($row->date))}}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <i title="Perangkat" class="mr-1 text-success fa {{$row->device == 'web' ? 'fa-globe' : 'fa-mobile'}}"></i>
+                                            <i title="Status Foto Chcek In" class="mr-1  {{ $row->foto_masuk != null ? 'text-success' : '' }} fa fa-image"></i>
+                                            <i title="Status Lokasi" class="mr-1 {{$row->latlong_in != null ? 'text-success' : ''}} fa fa-map-marker"></i>
+                                        </div>
+                                        <span class="text-18 mt-1 font-weight-bold {{$row->late != null ? 'text-danger':'text-dark'}}">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span>
 
+                                    </td>
+                                    <td>{{ $row->date_out == null ? date('d-M-Y', strtotime($row->updated_at)) : date('d-M-Y', strtotime($row->date_out))}}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <i title="Perangkat" class="mr-1 text-success fa {{ $row->device == 'web' ? 'fa-globe' : 'fa-mobile'}}"></i>
+                                            <i title="Status Foto Chcek In" class="mr-1  {{ $row->foto_keluar != null ? 'text-success' : '' }} fa fa-image"></i>
+                                            <i title="Status Lokasi" class="mr-1 {{$row->latlong_out != null ? 'text-success' : ''}} fa fa-map-marker"></i>
+                                            @if ($row->is_auto_checkout_daily == 1) 
+                                                <i title="Otomatis Cehck-out oleh Sistem" class="text-warning fa fa-sign-out"></i> 
+                                            @endif 
+                                        </div>
+                                        <span class="text-18 mt-1 font-weight-bold text-dark">  {{ $row->clock_out != null ? date('H:i:s', strtotime($row->clock_out)) : '-'}} </span>
+                                    </td>
+                                    <td> <span class="{{$row->late != null ? 'text-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
+                                    <td>{{ $total_kerja ?? '-'}}</td>
+                                    <td>
 
-                                        <td> {{$total_kerja}}</td>
-                                        <td>
-                                            @if ($log->foto_masuk != null)
-                                                <a href="{{asset('uploads/images/attendance/'.$log->foto_masuk) }}" target="_blank">
-                                                    <img width="30" src="{{ asset('uploads/images/attendance/'.$log->foto_masuk) }}">
-                                                </a>
-                                            @else
-                                            -
-                                            @endif
+                                        @canany(['user-presensi-show'])
+                                        <a href="{{route('user.absen.detail', $row->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Detail</a>
+                                        @endcanany
 
-                                            @if ($log->foto_keluar != null)
-                                                <a href="{{asset('uploads/images/attendance/'.$log->foto_keluar) }}" target="_blank">
-                                                    <img width="30" src="{{ asset('uploads/images/attendance/'.$log->foto_keluar) }}">
-                                                </a>
-                                            @else
-                                            -
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{$log->note_in ?? '-'}}
-                                        </td>
-                                        <td>
-                                            {{$log->note_out ?? '-'}}
-                                        </td>
-                                        <td> 
-                                            <span>
-                                                @if ($log->type == 'absen_lembur')
-                                                <span class="badge badge-dark">Presensi Lembur</span><br>
-                                                <span class="badge badge-light">{{$log->jenisLembur->type ?? ''}}</span>
-                                                
-                                            @elseif ($log->type == 'absen_biasa')
-                                                <span class="badge badge-info">Presensi Harian</span>
-                                               
-                                            @else
-                                                -
-                                            @endif
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                    </div><!-- card -->
-                </div><!-- col-3 -->
+                                    </td>
+                                </tr>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- card -->
+        </div><!-- col-3 -->
 
-                
-            </div><!-- log -->
         
-        </div><!-- card-body -->
-      
-    </div><!-- card -->
+    </div><!-- log -->
 </div><!-- login-wrapper -->
 @endsection
 
@@ -256,8 +263,10 @@ show-sub
 <script>
       // menampilkan kamera dengan menentukan ukuran, format dan kualitas 
       Webcam.set({
-        // width: 380,
-        height: 280,
+        // width: 320,
+        height: 328,
+        // dest_width: 640,
+        dest_height: 320,
         image_format: 'png',
         jpeg_quality: 90
     });

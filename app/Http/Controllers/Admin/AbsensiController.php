@@ -145,8 +145,8 @@ class AbsensiController extends Controller
 
     public function detail(Request $request, $id=null) {
         $head = [
-            'title' => 'Detail Informasi Absen',
-            'head_title_per_page' => "Detail Informasi Absen",
+            'title' => 'Detail Presensi',
+            'head_title_per_page' => "Detail Presensi",
             'sub_title_per_page' => "",
             'breadcrumbs' => [
                 [
@@ -155,7 +155,7 @@ class AbsensiController extends Controller
                     'is_active' => false,
                 ],
                 [
-                    'title' => 'Detail Informasi Absen',
+                    'title' => 'Detail Presensi',
                     'link' => '#',
                     'is_active' => true,
                 ]

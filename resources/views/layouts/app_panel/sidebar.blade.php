@@ -7,7 +7,11 @@
         <a href="">{{$site->site_name ?? 'C-PANEL'}}</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="">PA</a>
+        <a href="">
+          @if ($site->logo != null)
+            <img width="35" class="img-fluid mt-4" src="{{asset('uploads/images/site') . '/' . $site->logo}}">
+          @endif
+        </a>
       </div>
       <ul class="sidebar-menu">
 
@@ -80,16 +84,16 @@
 
         {{-- SIDEBAR UNTUK ROLE USER --}}
         @role(['user'])
-        <li class="menu-header">Dashboard</li>
+        {{-- <li class="menu-header">Dashboard</li>
 
         @can('user-dashboard')
         <li class="@stack('active-dashboardUser')"><a class="nav-link" href="{{route('user.dashboard')}}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
-        @endcan
+        @endcan --}}
 
         <li class="menu-header">Main Menu</li>
         
         @can('user-presensi-sidebar-menu')
-        <li class="@stack('active-absen')"><a class="nav-link" href="{{route('user.absen')}}"><i class="fas fa-print"></i> <span>Absensi IN/OUT</span></a></li>
+        <li class="@stack('active-absen')"><a class="nav-link" href="{{route('user.absen')}}"><i class="fas fa-print"></i> <span>Presensi IN/OUT</span></a></li>
         @endcan
 
         @can('user-izin-sidebar-menu')
