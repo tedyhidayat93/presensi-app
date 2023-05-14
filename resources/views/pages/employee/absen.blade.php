@@ -20,7 +20,7 @@
 
                                 @if ($absensi_terakhir != null)
                                 <div class="card card-statistic-1 border border-warning">
-                                    <div class="card-icon bg-warning w-50 p-0" style="width: 40%; overflow:hidden;">
+                                    <div class="card-icon bg-warning w-sm-25 w-md-50 p-0" style="width: 40%; overflow:hidden;">
                                       {{-- <i class="fas fa-clock"></i> --}}
                                       {{-- <img alt="image" class="rounded img-fluid w-full h-full m-0" src="{{ asset('uploads/images/attendance/'.$absensi_terakhir->foto_masuk) }}"> --}}
 
@@ -54,7 +54,7 @@
                                 @endif  
 
                                 <div class="card border">
-                                    <div class="card-body p-1">
+                                    <div class="card-body p-1" style="overflow:hidden;">
                                         <div id="my_camera" class="rounded"></div>
                                         <div id="resultFoto"></div>
                                     </div>
