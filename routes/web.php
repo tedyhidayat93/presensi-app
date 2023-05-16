@@ -34,7 +34,7 @@ Auth::routes();
 
 
 // *Role: Superadmin & Admin
-Route::group(['prefix' => 'administrator', 'middleware' => ['role:superadmin|admin','auth']], function () {
+Route::group(['prefix' => 'administrator', 'middleware' => ['auth','role:superadmin|admin']], function () {
     Route::get('/tes-admin', function () {return "ADMIN";});
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('adm.dashboard');
@@ -161,8 +161,8 @@ Route::group(['prefix' => 'administrator', 'middleware' => ['role:superadmin|adm
 });
 
 // *Role: User
-Route::group(['prefix' => 'employee', 'middleware' => ['role:user','auth']], function () {
-    Route::get('/tes-user', function () {return "ADMIN";});
+Route::group(['prefix' => 'employee', 'middleware' => ['auth','role:user']], function () {
+    Route::get('/tes-user', function () {return "USER";});
     
     // PROFILE
     Route::get('/my-profile', [ProfileController::class, 'index'])->name('user.profile');

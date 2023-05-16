@@ -17,22 +17,19 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
 
+    private $user;
+
     public function  __construct()
     {
-        if(auth()->user() == null) {
-            Auth::logout(); // Hapus session pengguna
-            session()->invalidate();
-            session()->regenerateToken();
-    
-            return redirect('/login')->withErrors([
-                'expired' => 'Sesi Anda telah berakhir. Silakan login kembali.'
-            ]);
-        }
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
     }
 
     public function index()
     {
-
     
         $waktu = gmdate("H:i", time() + 7 * 3600);
         $t = explode(":", $waktu);

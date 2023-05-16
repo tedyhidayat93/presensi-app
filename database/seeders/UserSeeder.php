@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Shift;
+use App\Models\ShiftsUsers;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -88,6 +90,7 @@ class UserSeeder extends Seeder
             'actived_at' => Carbon::now()->toDateTimeString(),
             'registered_at' => Carbon::now()->toDateTimeString(),
         ]);
+        $shift = ShiftsUsers::create(['shift_id' => 1, 'user_id' => $user->id])->first();
         $role_user = Role::where(['name' => 'user'])->first();
         $user->assignRole([$role_user->id]); 
     }

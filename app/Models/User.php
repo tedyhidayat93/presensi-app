@@ -52,9 +52,7 @@ class User extends Authenticatable
     
     public function shifts()
     {
-        // return $this->hasMany(User::class, 'id', 'shift');
         return $this->belongsToMany(Shift::class, 'shifts_users', 'user_id', 'shift_id');
-        // return $this->belongsToMany(ShiftsUsers::class)->withPivot('id','full_name');
     }
 
     public function jabatan()
