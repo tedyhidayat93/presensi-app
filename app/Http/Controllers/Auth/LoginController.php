@@ -44,6 +44,8 @@ class LoginController extends Controller
     {
         $credentials = $this->credentials($request);
 
+        // Auth::attempt($credentials)
+
         // parameter status loign
         $credentials['is_active'] = env('IS_ACTIVE_TRUE');
 

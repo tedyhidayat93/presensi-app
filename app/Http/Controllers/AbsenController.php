@@ -25,20 +25,16 @@ class AbsenController extends Controller
     private $yesterday_date;
     private $today_date;
     private $tomorrow_date;
+    private $user;
     
     public function __construct()
     {
-        if(auth()->user() == null) {
-            Auth::logout(); // Hapus session pengguna
-            session()->invalidate();
-            session()->regenerateToken();
-    
-            return redirect('/login')->withErrors([
-                'expired' => 'Sesi Anda telah berakhir. Silakan login kembali.'
-            ]);
+        if (!Auth::check()) {
+            // rest of the constructor code
+            return redirect('/login');
         }
         
-        $cek_shift = General::cekShift(auth()->user()->shift);
+        $cek_shift = General::cekShift(Auth::user()->shift);
         $time = Carbon::createFromFormat('H:i', $cek_shift['jam_masuk']);
         $hour = intval($time->format('H'));
         $minute = intval($time->format('i'));
