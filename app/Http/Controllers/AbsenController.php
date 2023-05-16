@@ -122,8 +122,7 @@ class AbsenController extends Controller
             'employee_id' => auth()->user()->id,
             'is_active' => 1
         ])
-        ->where('type', 'absen_biasa')
-        ->orWhere('type', 'absen_lembur')
+        ->whereIn('type', ['absen_lembur','absen_biasa'])
         ->orderBy('created_at', 'DESC')->get();
 
 

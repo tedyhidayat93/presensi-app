@@ -54,7 +54,7 @@
                                 @endif  
 
                                 <div class="card border">
-                                    <div class="card-body p-1" style="overflow:hidden;">
+                                    <div class="card-body d-flex justify-content-center bg-dark p-1" style="overflow:hidden;">
                                         <div id="my_camera" class="rounded"></div>
                                         <div id="resultFoto"></div>
                                     </div>
@@ -261,30 +261,69 @@ show-sub
 
 
 <script>
-      // menampilkan kamera dengan menentukan ukuran, format dan kualitas 
-      Webcam.set({
-        // width: 320,
-        height: 328,
-        // dest_width: 640,
-        dest_height: 320,
-        image_format: 'png',
-        jpeg_quality: 90
+
+    $(document).ready(function() {
+        let initCam = {};
+    
+        // Cek apakah user mengakses website dari perangkat mobile
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+    
+        // Cek ukuran lebar layar browser
+        function getBrowserWidth() {
+            return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        }
+    
+        // Cek ukuran tinggi layar browser
+        function getBrowserHeight() {
+            return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        }
+    
+        if (isMobileDevice()) {
+            initCam = {
+                width: 300,
+                height: 400,
+                // dest_width: 640,
+                // dest_height: 400,
+                image_format: 'png',
+                jpeg_quality: 90,
+                flip_horiz: true
+            }
+        } else {
+            initCam = {
+                // width: 320,
+                height: 328,
+                // dest_width: 640,
+                dest_height: 320,
+                image_format: 'png',
+                jpeg_quality: 90,
+                flip_horiz: true
+            }
+        }
+    
+        console.log("Lebar browser: " + getBrowserWidth());
+        console.log("Tinggi browser: " + getBrowserHeight());
+    
+        // menampilkan kamera dengan menentukan ukuran, format dan kualitas 
+        Webcam.set(initCam);
+    
+        $('#btnReCapture').hide();
+    
+        //menampilkan webcam di dalam file html dengan id my_camera
+        Webcam.attach('#my_camera');
+    
+        function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+                document.getElementById('results').innerHTML = '<input id="results" type="hidden" name="foto" value="' + data_uri + '">';
+                 document.getElementById('resultFoto').innerHTML ='<img id="resultFoto" src="' + data_uri + '"/>';
+            } );
+            $('#my_camera').css('display', 'none');
+            $('#btnCapture').css('display', 'none');
+            $('#btnReCapture').css('display', 'block');
+        }
     });
 
-    $('#btnReCapture').hide();
-
-    //menampilkan webcam di dalam file html dengan id my_camera
-    Webcam.attach('#my_camera');
-
-    function take_snapshot() {
-        Webcam.snap( function(data_uri) {
-            document.getElementById('results').innerHTML = '<input id="results" type="hidden" name="foto" value="' + data_uri + '">';
-             document.getElementById('resultFoto').innerHTML ='<img id="resultFoto" src="' + data_uri + '"/>';
-        } );
-        $('#my_camera').css('display', 'none');
-        $('#btnCapture').css('display', 'none');
-        $('#btnReCapture').css('display', 'block');
-    }
 </script>
 
 <script>
