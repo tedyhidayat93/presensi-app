@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
             'is_active' => 1,
             'is_web' => 1,
             'is_mobile' => 0,
-            'tanggal_masuk' => null,
+            'tanggal_masuk' => now(),
             'email_verified_at' => Carbon::now()->toDateTimeString(),
             'actived_at' => Carbon::now()->toDateTimeString(),
             'registered_at' => Carbon::now()->toDateTimeString(),

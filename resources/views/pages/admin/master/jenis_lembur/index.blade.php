@@ -8,12 +8,16 @@
     </div>
     <div class="row">
         
+        @canany(['admin-jenis-lembur-create','admin-jenis-lembur-edit'])
         <div class="col-12 col-md-5">
             <div class="card">
                 @include('pages.admin.master.jenis_lembur.form')
             </div>
         </div>
-        <div class="col-12 col-md-7">
+        @endcanany
+
+        @canany(['admin-jenis-lembur-list'])
+        <div class="col-12 @canany(['admin-jenis-lembur-create','admin-jenis-lembur-edit']) col-md-7 @endcanany">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
                     <div class="card-body pd-15 bd-color-gray-lighter">
@@ -22,7 +26,9 @@
                                 <tr>
                                     <th class="wd-10p">#</th>
                                     <th class="">Jenis Lembur</th>
+                                    @canany(['admin-jenis-lembur-create','admin-jenis-lembur-edit'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,6 +37,7 @@
                                     <tr>
                                         <td>{{$i++}}.</td>
                                         <td>{{$row->type}}</td>
+                                        @canany(['admin-jenis-lembur-delete','admin-jenis-lembur-edit'])
                                         <td>
                                             @canany(['admin-jenis-lembur-delete'])
                                             <a href="#" class="btn btn-danger btn-sm" data-toggle="modal"
@@ -45,6 +52,7 @@
                                             </a>
                                             @endcanany
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -53,12 +61,14 @@
                 </div>
             </div>
         </div>
+        @endcanany
     </div>
 
 </div>
 
 
 <!-- MODAL ALERT MESSAGE DELETE -->
+@canany(['admin-jenis-lembur-delete'])
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -84,6 +94,7 @@
     </div><!-- modal-dialog -->
 </div><!-- modal -->
 @endforeach
+@endcanany
 
 
 @endsection

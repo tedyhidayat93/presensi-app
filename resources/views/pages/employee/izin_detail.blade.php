@@ -67,8 +67,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col d-flex align-items-center justify-content-between">
-                                    <span> 
+                                <div class="col d-md-flex align-items-center justify-content-between">
+                                    <div class="w-full"> 
                                         <b> Status : </b> 
                                         @if($data->is_approve == 2)
                                         <span class="badge badge-success">Disetujui</span>
@@ -77,9 +77,9 @@
                                         @elseif($data->is_approve == 1)
                                         <span class="badge badge-warning text-white">Menuggu</span>
                                         @endif
-                                    </span>
-                                    <span> <b> Divalidasi Oleh : </b> {{$data->validator->full_name ?? '-'}}</span>
-                                    <span> <b> Tanggal Validasi: </b> {{ $data->validation_at != null ? date('d-M-Y H:i', strtotime($data->validation_at)) : '-' }}</span>
+                                    </div>
+                                    <div class="w-full"> <b> Divalidasi Oleh : </b> {{$data->validator->full_name ?? '-'}}</div>
+                                    <div class="w-full"> <b> Tgl/Jam Validasi: </b> {{ $data->validation_at != null ? date('d-M-Y H:i', strtotime($data->validation_at)) : '-' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
         <div class="col-12">
             <div class="card pd-0 bd-0 shadow-base">
                 <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-md-flex align-items-center justify-content-between">
                         <div>
                             <h6 class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Saat Mengajukan Permohonan Izin
                             </h6>
@@ -126,11 +126,11 @@
                         </div>
                         <div class="text-13">
                             <p class="mb-0">
-                                <i class="fas fa-map"></i> Koordinat
+                                Koordinat
                                 : <b> {{$data->latlong ?? '-'}} </b>
                             </p>
                             <p class="mt-0">
-                                <i class="fas fa-clock"></i> Waktu 
+                                Waktu 
                                 :<b>{{ $data->created_at != null ? date('H:i:s', strtotime($data->created_at)) : '-'}}</b>
                             </p>
                         </div>

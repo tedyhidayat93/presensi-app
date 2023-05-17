@@ -246,7 +246,7 @@
                         <div>
                             <h6 style="font-size: 14px;" class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Check Out
                             </h6>
-                            <small>Tanggal : <b> {{ date('d-M-Y', strtotime($data->date))}} </b></small>
+                            <small>Tanggal : <b> {{ $data->date_out != null ? date('d-M-Y', strtotime($data->date_out) : '-')}} </b></small>
                         </div>
                         <div class="text-13">
                             <p class="mb-0"><span class="square-8 rounded-circle bg-purple mg-r-10"></span> Koordinat

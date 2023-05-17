@@ -7,6 +7,7 @@
         <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
 
+    @canany(['admin-log-presensi-list'])
     <div class="row">
         <div class="col">
             <div class="card card-statistic-2">
@@ -129,13 +130,15 @@
                                     <th class="wd-5p">#</th>
                                     <th class="">Pegawai</th>
                                     <th class="">Jenis</th>
-                                    <th class="">Tanggal Masuk</th>
-                                    <th class="">Check In</th>
-                                    <th class="">Tanggal Pulang</th>
-                                    <th class="">Check Out</th>
-                                    <th class="">Terlambat</th>
+                                    <th class="">Tgl Check In</th>
+                                    <th class="">Jam Check In</th>
+                                    <th class="">Tgl Check Out</th>
+                                    <th class="">Jam Check Out</th>
+                                    <th class="">Telat</th>
                                     <th class="">Total Jam Kerja</th>
+                                    @canany(['admin-log-presensi-checkout','admin-log-presensi-show'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,7 +160,7 @@
                                         </td>
                                         <td>
                                             @if ($row->type == 'absen_lembur')
-                                                <span class="badge badge-dark">Presensi Lembur</span><br>
+                                                {{-- <span class="badge badge-dark">Presensi Lembur</span><br> --}}
                                                 <span class="badge badge-light">{{$row->jenisLembur->type ?? ''}}</span>
                                                 @php
                                                     // $total_kerja = $row->overtime != null ? \Carbon\Carbon::createFromTimestampUTC($row->overtime)->format('H:i:s') : '-';
@@ -183,7 +186,7 @@
                                             <span class="text-18 mt-1 font-weight-bold {{$row->late != null ? 'text-danger':'text-dark'}}">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span>
 
                                         </td>
-                                        <td>{{ $row->date_out == null ? date('d-M-Y', strtotime($row->updated_at)) : date('d-M-Y', strtotime($row->date_out))}}</td>
+                                        <td>{{ $row->date_out == null ? '-' : date('d-M-Y', strtotime($row->date_out))}}</td>
                                         <td>
                                             <div class="d-flex">
                                                 <i title="Perangkat" class="mr-1 text-success fa {{ $row->device == 'web' ? 'fa-globe' : 'fa-mobile'}}"></i>
@@ -197,6 +200,7 @@
                                         </td>
                                         <td> <span class="{{$row->late != null ? 'text-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
                                         <td>{{ $total_kerja ?? '-'}}</td>
+                                        @canany(['admin-log-presensi-checkout','admin-log-presensi-show'])
                                         <td>
                                             @canany(['admin-log-presensi-show'])
                                             <a href="{{route('adm.absen.detail', $row->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Detail</a>
@@ -210,6 +214,7 @@
                                             @endif
                                             @endcanany
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @endif
                                 @endforeach
@@ -220,6 +225,7 @@
             </div>
         </div>
     </div>
+    @endcanany
 
 </div>
 
