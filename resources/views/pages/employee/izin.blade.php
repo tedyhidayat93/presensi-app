@@ -10,6 +10,7 @@
 
     <div class="row">
 
+        @canany(['user-izin-create'])
         <div class="col-sm-12 col-lg-12">
             <form action="{{route('user.izin.send')}}" method="POST" enctype="multipart/form-data">
                 <div class="card border">
@@ -40,7 +41,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label class="" for="">Dokumen</label>
-                                    <input type="file" class="form-control" name="dokumen" />
+                                    <input type="file" class="form-control" name="dokumen" accept="application/pdf,image/*"/>
                                 </div>
                             </div>
                         </div>
@@ -55,17 +56,21 @@
                             rows="4"></textarea>
                         </div>
                         
+                        @canany(['user-izin-store'])
                         <button type="submit" class="tbl-absen-in btn-block btn mt-2 btn-primary">
                             <div class="ht-40 justify-content-center">
                                 <span class="pd-x-15"><i class="fas fa-paper-plane"></i> Kirim Permohonan Izin</span>
                             </div>
                         </button>
+                        @endcanany
                         
                     </div><!-- card -->
                 </div>
             </form>
         </div><!-- col-3 -->
-
+        @endcanany
+        
+        @canany(['user-izin-list'])
         <div class="col-sm-12 col-lg-12">
             <div class="card border">
                 <div class="card-header">
@@ -81,7 +86,9 @@
                                 <th class=""><span class="">Alasan </span></th>
                                 <th class=""><span class="">Dokumen </span></th>
                                 <th class=""><span class="">Status </span></th>
+                                @canany(['user-izin-edit','user-izin-delete','user-izin-show'])
                                 <th class=""><span class="">Aksi </span></th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -110,11 +117,14 @@
                                     <span class="badge badge-warning text-white">Menunggu</span>
                                     @endif
                                 </td>
+                                @canany(['user-izin-edit','user-izin-delete','user-izin-show'])
                                 <td>
                                     @canany(['user-izin-show'])
                                     <a href="{{route('user.izin.detail', $row->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Detail</a>
                                     @endcanany
                                 </td>
+                                @endcanany
+
                                 
                             </tr>
                             @endforeach
@@ -123,6 +133,7 @@
                 </div>
             </div><!-- card -->
         </div><!-- col-3 -->
+        @endcanany
 
         
     </div><!-- row -->

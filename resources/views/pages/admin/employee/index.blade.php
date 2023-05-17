@@ -6,8 +6,8 @@
     <div class="section-header">
         <h1> {{$head['head_title_per_page'] ?? 'Title' }}</h1>
     </div>
-    
-    
+
+    @canany(['admin-karyawan-list'])
     <div class="row">
         <div class="col">
             <div class="card card-statistic-2">
@@ -187,7 +187,9 @@
                                     {{-- <th class="">Tanggal Register</th> --}}
                                     {{-- <th class="">Shift</th> --}}
                                     <th class="">Status</th>
+                                    @canany(['admin-karyawan-edit','admin-karyawan-delete','admin-karyawan-is-active'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -245,11 +247,13 @@
                                     <td>{!!$row->is_active == 1 ? '<span
                                             class="badge badge-success">Aktif</span>':'<span
                                             class="badge badge-danger">Non Aktif</span>' !!}</td>
+
+                                    @canany(['admin-karyawan-edit','admin-karyawan-delete','admin-karyawan-is-active'])
                                     <td>
 
                                         @canany(['admin-karyawan-is-active'])
                                         <a href="#"
-                                            class="btn btn-{{$row->is_active == 1 ? 'danger':'success' }} btn-icon wd-35 ht-35"
+                                            class="btn btn-{{$row->is_active == 1 ? 'danger':'success' }} btn-sm"
                                             data-toggle="modal" data-target="#modaldemo{{$row->id}}">
                                             <div><i
                                                     class="fa {{$row->is_active == 1 ? 'fa-toggle-on':'fa-toggle-off' }} "></i>
@@ -259,11 +263,13 @@
 
                                         @canany(['admin-karyawan-edit'])
                                         <a href="{{route('adm.employee.edit', $row->id)}}"
-                                            class="btn btn-info btn-sm btn-icon wd-35 ht-35 ">
+                                            class="btn btn-info btn-sm ">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                         @endcanany
                                     </td>
+                                    @endcanany
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -273,6 +279,7 @@
             </div>
         </div>
     </div>
+    @endcanany
 
 </div>
 

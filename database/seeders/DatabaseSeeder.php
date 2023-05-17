@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             TimezoneSeeder::class,
             RoleSeeder::class,
-            UserSeeder::class,
             PermissionsSeeder::class,
             AsignRoleToPermissionsSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

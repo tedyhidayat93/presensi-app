@@ -8,6 +8,7 @@
       </div>
     <div class="row">
         
+        @canany(['admin-waktu-kerja-edit','admin-waktu-kerja-create'])
         <div class="col-12 col-md-6">
             <div class="card">
                 <div class="card-header bg-white">
@@ -16,7 +17,10 @@
                 @include('pages.admin.shift.form')
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        @endcanany
+
+        @canany(['admin-waktu-kerja-list'])
+        <div class="col-12 @canany(['admin-waktu-kerja-edit','admin-waktu-kerja-create']) col-md-6 @endcanany">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
                     <div class="card-header pd-15 bd-color-gray-lighter">
@@ -28,9 +32,11 @@
                                 <tr>
                                     <th class="wd-10p">#</th>
                                     <th class="">Nama Jam Kerja</th>
-                                    <th class="">Jam</th>
+                                    <th class="">Hari & Jam Kerja</th>
                                     {{-- <th class="">Jumlah Karyawan</th> --}}
+                                    @canany(['admin-waktu-kerja-edit','admin-waktu-kerja-delete'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,24 +97,22 @@
 
                                         </td>
                                         {{-- <td> <span class="text-18 font-weight-bold"> {{ count( $row->karyawan ) }} </span> Karyawan</td> --}}
+                                        @canany(['admin-waktu-kerja-edit','admin-waktu-kerja-delete'])
                                         <td>
-
                                             {{-- <a href="{{route('adm.setting.shift', $row->id)}}" class="btn btn-dark btn-sm ">
                                                 <div><i class="icon ion-person-stalker"></i></div>
                                             </a> --}}
-
                                             {{-- <a href="#" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a> --}}
-                                            
                                             @canany(['admin-waktu-kerja-edit'])
                                             <a href="{{route('adm.edit.shift', $row->id)}}" class="btn btn-info btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
                                             @endcanany
-
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -117,12 +121,14 @@
                 </div>
             </div>
         </div>
+        @endcanany
     </div>
 
 </div>
 
 
 <!-- MODAL ALERT MESSAGE DELETE -->
+@canany(['admin-waktu-kerja-delete'])
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -148,6 +154,7 @@
     </div><!-- modal-dialog -->
 </div><!-- modal -->
 @endforeach
+@endcanany
 
 
 @endsection

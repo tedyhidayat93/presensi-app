@@ -8,12 +8,16 @@
     </div>
     <div class="row">
         
+        @canany(['admin-pendidikan-edit','admin-pendidikan-create'])
         <div class="col-12 col-md-5">
             <div class="card">
                 @include('pages.admin.master.pendidikan.form')
             </div>
         </div>
-        <div class="col-12 col-md-7">
+        @endcanany
+        
+        @canany(['admin-pendidikan-list'])
+        <div class="col-12 @canany(['admin-pendidikan-edit','admin-pendidikan-create']) col-md-7 @endcanany">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
                     <div class="card-body pd-15 bd-color-gray-lighter">
@@ -22,7 +26,9 @@
                                 <tr>
                                     <th class="wd-10p">#</th>
                                     <th class="">Nama Jenjang</th>
+                                    @canany(['admin-pendidikan-edit','admin-pendidikan-create'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,18 +37,21 @@
                                     <tr>
                                         <td>{{$i++}}.</td>
                                         <td>{{$row->education}}</td>
+                                        @canany(['admin-pendidikan-edit','admin-pendidikan-delete'])
                                         <td>
-
+                                            @canany(['admin-pendidikan-delete'])
                                             <a href="#" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#modaldemo{{$row->id}}">
                                                 <div><i class="fa fa-trash"></i></div>
                                             </a>
-                                            
+                                            @endcanany
+                                            @canany(['admin-pendidikan-edit'])
                                             <a href="{{route('adm.master.edit.pendidikan', $row->id)}}" class="btn btn-info btn-sm ">
                                                 <div><i class="fa fa-edit"></i></div>
                                             </a>
-
+                                            @endcanany
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -51,12 +60,14 @@
                 </div>
             </div>
         </div>
+        @endcanany
     </div>
 
 </div>
 
 
 <!-- MODAL ALERT MESSAGE DELETE -->
+@canany(['admin-pendidikan-delete'])
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -82,6 +93,7 @@
     </div><!-- modal-dialog -->
 </div><!-- modal -->
 @endforeach
+@endcanany
 
 
 @endsection

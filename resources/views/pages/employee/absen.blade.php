@@ -10,6 +10,7 @@
     
     <div class="row">
 
+        @canany(['user-presensi-checkout','user-presensi-checkin'])
         <div class="col-sm-12 col-lg-5">
             <form action="{{route('user.absen.io')}}" method="POST" enctype="multipart/form-data">
                 <div class="card p-0 bg-transparent shadow-none">
@@ -54,7 +55,7 @@
                                 @endif  
 
                                 <div class="card border">
-                                    <div class="card-body p-1" style="overflow:hidden;">
+                                    <div class="card-body p-1 d-flex justify-content-center bg-dark rounded" style="overflow:hidden;">
                                         <div id="my_camera" class="rounded"></div>
                                         <div id="resultFoto"></div>
                                     </div>
@@ -138,7 +139,9 @@
                 </div>
             </form>
         </div><!-- col-3 -->
+        @endcanany
 
+        @canany(['user-presensi-list'])
         <div class="col-sm-12 col-lg-7">
             <div class="card border ">
                 <div class="card-header">
@@ -151,13 +154,15 @@
                                 <th class="wd-5p">#</th>
                                 <th class="">Pegawai</th>
                                 <th class="">Jenis</th>
-                                <th class="">Tanggal Check In</th>
+                                <th class="">Tgl Check In</th>
                                 <th class="">Jam Check In</th>
-                                <th class="">Tanggal Check Out</th>
+                                <th class="">Tgl Check Out</th>
                                 <th class="">Jam Check Out</th>
-                                <th class="">Terlambat</th>
+                                <th class="">Telat</th>
                                 <th class="">Total Jam Kerja</th>
+                                @canany(['user-presensi-show','user-presensi-edit','user-presensi-delete'])
                                 <th class="wd-5p">Aksi</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -205,7 +210,7 @@
                                         <span class="text-18 mt-1 font-weight-bold {{$row->late != null ? 'text-danger':'text-dark'}}">  {{ $row->clock_in != null ? date('H:i:s', strtotime($row->clock_in)) : '-'}} </span>
 
                                     </td>
-                                    <td>{{ $row->date_out == null ? date('d-M-Y', strtotime($row->updated_at)) : date('d-M-Y', strtotime($row->date_out))}}</td>
+                                    <td>{{ $row->date_out == null ? '-' : date('d-M-Y', strtotime($row->date_out))}}</td>
                                     <td>
                                         <div class="d-flex">
                                             <i title="Perangkat" class="mr-1 text-success fa {{ $row->device == 'web' ? 'fa-globe' : 'fa-mobile'}}"></i>
@@ -219,13 +224,15 @@
                                     </td>
                                     <td> <span class="{{$row->late != null ? 'text-danger':''}}"> {{ $row->late != null ?  \App\Helpers\General::convertSecondToStringTime($row->late) : '-'}} </span></td>
                                     <td>{{ $total_kerja ?? '-'}}</td>
+                                    @canany(['user-presensi-show','user-presensi-edit','user-presensi-delete'])
                                     <td>
 
                                         @canany(['user-presensi-show'])
                                         <a href="{{route('user.absen.detail', $row->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Detail</a>
                                         @endcanany
-
+                                        
                                     </td>
+                                    @endcanany
                                 </tr>
                             @endif
                             @endforeach
@@ -234,7 +241,7 @@
                 </div>
             </div><!-- card -->
         </div><!-- col-3 -->
-
+        @endcanany
         
     </div><!-- log -->
 </div><!-- login-wrapper -->
@@ -260,32 +267,72 @@ show-sub
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
 
 
+
 <script>
-      // menampilkan kamera dengan menentukan ukuran, format dan kualitas 
-      Webcam.set({
-        // width: 320,
-        height: 328,
-        // dest_width: 640,
-        dest_height: 320,
-        image_format: 'png',
-        jpeg_quality: 90
+    var initCam = {};
+
+    $(document).ready(function() {
+    
+        // Cek apakah user mengakses website dari perangkat mobile
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+    
+        // Cek ukuran lebar layar browser
+        function getBrowserWidth() {
+            return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        }
+    
+        // Cek ukuran tinggi layar browser
+        function getBrowserHeight() {
+            return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        }
+    
+        if (isMobileDevice() === true) {
+            // alert(1)
+            initCam = {
+                width: 300,
+                height: 400,
+                image_format: 'png',
+                jpeg_quality: 90,
+                flip_horiz: true
+            }
+        } else if(isMobileDevice() === false) {
+            // alert(2)
+            initCam = {
+                width: 400,
+                height: 300,
+                image_format: 'png',
+                jpeg_quality: 90,
+                flip_horiz: true
+            }
+        }
+        
+        Webcam.set(initCam);
+        Webcam.attach('#my_camera');
+        
+        console.log(initCam);
+        console.log("Lebar browser: " + getBrowserWidth());
+        console.log("Tinggi browser: " + getBrowserHeight());
+    
+        // menampilkan kamera dengan menentukan ukuran, format dan kualitas 
     });
+    
 
     $('#btnReCapture').hide();
-
-    //menampilkan webcam di dalam file html dengan id my_camera
-    Webcam.attach('#my_camera');
 
     function take_snapshot() {
         Webcam.snap( function(data_uri) {
             document.getElementById('results').innerHTML = '<input id="results" type="hidden" name="foto" value="' + data_uri + '">';
-             document.getElementById('resultFoto').innerHTML ='<img id="resultFoto" src="' + data_uri + '"/>';
-        } );
+            document.getElementById('resultFoto').innerHTML ='<img id="resultFoto" src="' + data_uri + '"/>';
+        })
+        ;
         $('#my_camera').css('display', 'none');
         $('#btnCapture').css('display', 'none');
         $('#btnReCapture').css('display', 'block');
     }
 </script>
+
 
 <script>
     $(document).ready(function() {

@@ -8,12 +8,16 @@
     </div>
     <div class="row">
         
+        @canany(['admin-jabatan-create','admin-jabatan-edit'])
         <div class="col-12 col-md-5">
             <div class="card">
                 @include('pages.admin.master.employee_type.form')
             </div>
         </div>
-        <div class="col-12 col-md-7">
+        @endcanany
+
+        @canany(['admin-jabatan-list'])
+        <div class="col-12 @canany(['admin-jabatan-create','admin-jabatan-edit']) col-md-7 @endcanany">
             <div class="widget-2">
                 <div class="card shadow-base overflow-hidden">
                     <div class="card-body pd-15 bd-color-gray-lighter">
@@ -22,7 +26,9 @@
                                 <tr>
                                     <th class="wd-10p">#</th>
                                     <th class="">Jabatan</th>
+                                    @canany(['admin-jabatan-create','admin-jabatan-edit'])
                                     <th class="wd-5p">Aksi</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,6 +37,7 @@
                                     <tr>
                                         <td>{{$i++}}.</td>
                                         <td>{{$row->type}}</td>
+                                        @canany(['admin-jabatan-delete','admin-jabatan-edit'])
                                         <td>
 
                                             @can('admin-jabatan-delete')
@@ -47,6 +54,7 @@
                                             @endcan
 
                                         </td>
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -55,12 +63,14 @@
                 </div>
             </div>
         </div>
+        @endcanany
     </div>
 
 </div>
 
 
 <!-- MODAL ALERT MESSAGE DELETE -->
+@canany(['admin-jabatan-delete'])
 @foreach ($data as $row)
 <div id="modaldemo{{$row->id}}" class="modal fade">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,6 +96,7 @@
     </div><!-- modal-dialog -->
 </div><!-- modal -->
 @endforeach
+@endcanany
 
 
 @endsection

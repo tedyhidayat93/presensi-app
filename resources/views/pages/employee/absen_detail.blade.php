@@ -202,11 +202,12 @@
         </div>
     </div>
 
+    @canany(['user-presensi-show'])
     <div class="row row-sm mg-t-20">
         <div class="col-12 col-md-6">
             <div class="card pd-0 bd-0 shadow-base">
                 <div class="card-body pd-x-30 pd-t-30 pd-b-10">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-md-flex align-items-center justify-content-between">
                         <div>
                             <h6 style="font-size: 14px;" class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Check In
                             </h6>
@@ -243,11 +244,11 @@
         <div class="col-12 col-md-6">
             <div class="card pd-0 bd-0 shadow-base">
                 <div class="card-body pd-x-30 pd-t-30 pd-b-10">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-md-flex align-items-center justify-content-between">
                         <div>
                             <h6 style="font-size: 14px;" class="text-13 text-uppercase text-inverse font-weight-bold text-spacing-1 mb-0">Lokasi Check Out
                             </h6>
-                            <small>Tanggal : <b> {{ date('d-M-Y', strtotime($data->date))}} </b></small>
+                            <small>Tanggal : <b> {{ $data->date_out == null ? '-' : date('d-M-Y', strtotime($data->date_out))}} </b></small>
                         </div>
                         <div class="text-13">
                             <p class="mb-0"><span class="square-8 rounded-circle bg-purple mg-r-10"></span> Koordinat
@@ -278,6 +279,7 @@
             </div><!-- card -->
         </div><!-- col-3 -->
     </div><!-- row -->
+    @endcanany
 
 </div><!-- br-pagebody -->
 @endsection

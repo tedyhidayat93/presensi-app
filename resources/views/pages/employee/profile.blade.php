@@ -30,11 +30,12 @@
                         <div class="profile-widget-items">
                             <div class="profile-widget-item">
                                 <div class="profile-widget-item-label text-dark">Bergabung Sejak</div>
-                                <div class="profile-widget-item-value">{{date('d F Y', strtotime(Auth::user()->tanggal_masuk))}}</div>
+                                <div class="profile-widget-item-value">{{Auth::user()->tanggal_masuk != null ? date('d F Y', strtotime(Auth::user()->tanggal_masuk)) : '-'}}</div>
                             </div>
                             <div class="profile-widget-item">
                                 <div class="profile-widget-item-label text-dark">Masa Kerja</div>
                                 <div class="profile-widget-item-value">
+                                    @if(Auth::user()->tanggal_masuk != null)
                                     @php
                                         $startDate = \Carbon\Carbon::parse(Auth::user()->tanggal_masuk);
                                         if(Auth::user()->is_active == 1) {
@@ -45,6 +46,9 @@
                                         $duration = $endDate->diff($startDate);
                                         echo $duration->format('%y tahun %m bulan')
                                     @endphp
+                                    @else
+                                    -
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -119,6 +123,8 @@
                     </div>
                 </div>
             </div>
+
+            @canany(['user-profile-edit'])
             <div class="col-12 col-md-12 col-lg-6">
                 <div class="card mt-4">
                     <form method="post" action="{{route('user.profile.update_password')}}" class="needs-validation" novalidate="">
@@ -143,6 +149,7 @@
                     </form>
                 </div>
             </div>
+            @endcanany
         </div>
     </div>
 </div><!-- br-pagebody -->

@@ -145,11 +145,10 @@
                                 <tr>
                                     <td>{{$i++}}.</td>
                                     <td>
-                                        @if ($row->photo_profile)
-                                        <img width="40" class="rounded-circle"
-                                            src="{{ asset('uploads/images/employee/'. $row->user->photo_profile) }}">
+                                        @if ($row->user->photo_profile)
+                                        <img width="30" class="rounded-circle" src="{{ asset('uploads/images/employee/'. $row->user->photo_profile) }}">
                                         @else
-                                        <img width="40" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
+                                        <img width="30" class="rounded-circle" src="{{ asset('images/default-ava.jpg') }}"> 
                                         @endif
                                     </td>
                                     <td>{{$row->user->full_name ?? '-'}}</td>
